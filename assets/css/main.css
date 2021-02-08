@@ -1094,6 +1094,18 @@ table tfoot td {
           transform: scale(1.2);
 }
 
+/* QUANTUM CLASSES */
+.quantum-websites ul li {
+  display: block;
+  text-align: justify;
+}
+
+.quantum-websites ul li:first-child {
+  margin-left: 10px;
+}
+
+
+
 footer .copyright {
   font-size: 14px;
   text-align: center;
