@@ -114,7 +114,7 @@ And 3 bits is where it starts to become a bit obnoxious. And we double our numbe
 ## What is a state space?
 A state space is the set of all states available to a bit string.
 
-For each bit added to the string, we will double the number of states. The number of possible states available for an $$n$$ bit string is $$2^n$$. For a 5 bit string we would require a table with $$2^5 = 32$$ rows. But, thats just too much effort for this blog post.
+For each bit added to the string, we will double the number of states. The number of possible states available for an $$n$$ bit string is $$2^n$$. For a 5 bit string we would require a table with $$2^5 = 32$$ rows. But, that's just too much effort for this blog post.
 
 Using classical bits, there are $$2^n$$ possible states but there is only $$1$$ state that exists at any time. On our table, we can represent this by adding another column labeled **State**. In this column, if the register exists in that state (row), then the value will be $$1$$, otherwise the value will be $$0$$. Let's see an example by representing the decimal value $$2$$ on a 2 bit register.
 
@@ -229,7 +229,7 @@ So far, this looks the same as Fig. 2 sans the $$|ket\rangle$$ notation. The cha
 
 There we go! Whats that? Whats the $$.25$$? 
 
-Thats the probability that when we read the quantum system it will fall into that state. Quantum systems can be split across multiple states at one time, but when we read the value the quantum system collapses into a classical state.
+That's the probability that when we read the quantum system it will fall into that state. Quantum systems can be split across multiple states at one time, but when we read the value the quantum system collapses into a classical state.
 
 <center>
 <table  style="background-color:rgba(0, 0, 0, 0); border:0;" ><tr><td style="border:0;">
@@ -292,7 +292,9 @@ Thats the probability that when we read the quantum system it will fall into tha
     </table>
 </td></tr></table>
 </center>
-In this case we start out with a Quantum System in equal superposition across the states and once we measure it, we are solidly in the $$|2\rangle$$ state. Just like before, if we know we are only going to be in 1 state out in the whole state space, we can reduce the table to one row.
+In this case we start out with a Quantum System in equal superposition across the states and once we measure it, we are solidly in the $$|2\rangle$$ state. There was only a 25% chance we would get out the $$|2\rangle$$ state. 
+
+Just like before, if we know we are only going to be in 1 state out in the whole state space, we can reduce the table to one row.
 
 <center>
 <table  style="background-color:rgba(0, 0, 0, 0); border:0;" ><tr><td style="border:0;">
@@ -378,14 +380,14 @@ Notice that once the Quantum System collapses, its easy to represent the Quantum
 
 ## Napkin Math
 
-Lets imagine we can represent each row of the table with a single float value. It depends on the language, buts lets say thats a single float is 64 bits. If we want to simulate 32 qubits, then there will be $$2^{32}$$ rows. Thats 4,294,967,296 rows multiplied by 64 bits is 274,877,906,944 bits. Or, about 34 Gigabytes.
+Lets imagine we can represent each row of the table with a single float value. It depends on the language, but lets say that's a single float is 64 bits. If we want to simulate 32 qubits, then there will be $$2^{32}$$ rows. That's 4,294,967,296 rows multiplied by 64 bits is 274,877,906,944 bits. Or, about 34 Gigabytes.
 
 You would need 34 Gigabytes to represent a Quantum State of 32 qubits. And each time you add another qubit the classical requirement doubles, so at 40 qubits you need 8.8 Terabytes to store the quantum state.  
 
 This is with no optimization and the numbers can be brought down a bit through some smart manipulation of math, but its very difficult to simulate beyond a 60 qubit quantum computer on classical hardware. The table just grows too quickly. Its almost like an Exponential Explosion in the number of rows.
 
 ## Ain't nobody got time for that!
-No one wants to go around creating tables for every quantum state they want to represent, so we use eqiuations that combine elements of the **State** column and either the **Binary** or **Decimal** column. $$\psi$$ is often the greek letter we use to represent an arbitrary Quantum State.
+No one wants to go around creating tables for every quantum state they want to represent, so we use equations that combine elements of the **State** column and either the **Binary** or **Decimal** column. $$\psi$$ is often the greek letter we use to represent an arbitrary Quantum State.
 
 An arbitrary equation for a 2 qubit state might look like this: $$|\psi\rangle = \alpha_{00}|00\rangle + \alpha_{01}|01\rangle + \alpha_{10}|10\rangle + \alpha_{11}|11\rangle$$ 
 .
