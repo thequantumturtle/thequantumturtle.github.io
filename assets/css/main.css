@@ -1491,3 +1491,17 @@ a.newer-posts:hover {
     font-size: 21px;
   }
 }
+
+table.bit-table {
+  border: 1px solid black;
+  table-layout: fixed;
+  width: 100px;
+  text-align: center;
+}
+
+.bit-table th {
+  border: 1px solid black;
+  width: 80px;
+  overflow: hidden;
+}
+
