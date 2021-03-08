@@ -2,13 +2,13 @@
 layout: post
 title: Circle Notation
 date: 2021-02-23 22:51:00 -0500
-description: The best notation for beginners!
-img: work-in-progress.jpg # Add image post (optional)
+description: The best notation for beginners and pros alike!
+img: CircleNotation.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [Quantum Computers, Simulators, Quantum Notation]
 ---
 
-In my not so humble opinion Quantum Circle Notation is the best way for a budding QC developer or scientist to get started in this field. This claim might be a bit bold considering that this notation has not been widely accepted by the community but I'm hoping to make a compelling argument in this post. 
+In my not so humble opinion Quantum Circle Notation is the best way for a budding QC developer or scientist to get started in this field. Simultaneously I find it to be a great way for experienced individuals to effectively convey their ideas. This claim might be a bit bold considering that this notation has not been widely accepted by the community but I'm hoping to make a compelling argument in this post. 
 
 
 ## Where does it come from?
@@ -62,10 +62,10 @@ Now that we know the notation can convey the same information as a complex equat
 
 Each circle represents a state that can be represented by the qubit string. For $$\psi_A$$ there are 4 states in the state space and thus there are 4 circles. When we represent a quantum state in circle notation we always represent the whole state space.
 
-Each state $$s$$ is represented by a drawing inside its corresponding state circle. The drawing is a direct representation of \\(\alpha_s\\) 
+Each state $$s$$ is represented by a drawing inside its corresponding state circle. The drawing is a direct representation of the state's amplitude \\(\alpha_s\\) 
 where \\(\alpha_s\\) is any arbitray \\(\alpha\\) in \\(|\psi\rangle = \alpha_{0}|0\rangle + ... + \alpha_{n-1}|n-1\rangle\\). 
 
-Each state circle state circle is a unit circle with radius 1 and has an inner circle drawn in it. The radius of that circle is the magnitude of the state $$s$$ which can be found by taking the [complex modulus](https://mathworld.wolfram.com/ComplexModulus.html){:target="_blank"} of 
+Each state circle is a unit circle with radius 1 and has an inner circle drawn in it. The radius of that circle is the magnitude of the state $$s$$ which can be found by taking the [complex modulus](https://mathworld.wolfram.com/ComplexModulus.html){:target="_blank"} of 
 $$ \alpha_s $$ which looks like so: $$ |\alpha_s| $$.
 
 ### Magnitude
@@ -119,3 +119,5 @@ $$|\psi_c\rangle$$ and $$|\psi_b\rangle$$ are equivalent.
 ## Cons
 - Number of state circles scales with state space of the system
 - Not good at visualizing complex single qubit transformations through 3D space
+
+For more information on Circle Notation checkout [Programming Quantum Computers](https://www.amazon.com/Programming-Quantum-Computers-Essential-Algorithms/dp/1492039683){:target="_blank"} Chapter 2.
