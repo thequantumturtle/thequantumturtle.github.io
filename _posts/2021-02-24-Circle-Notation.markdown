@@ -2,10 +2,12 @@
 title: Circle Notation
 date: 2021-02-23 22:51:00 -0500
 description: The best notation for beginners and pros alike!
-img: ../images/CircleNotation.jpg # Add image post (optional)
+img: # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [Quantum Computers, Simulators, Quantum Notation]
 ---
+
+# ![Circle Notation](../images/CircleNotation.jpg 'Circle Notation')
 
 In my not so humble opinion Quantum Circle Notation is the best way for a budding QC developer or scientist to get started in this field. Simultaneously I find it to be a great way for experienced individuals to effectively convey their ideas. This claim might be a bit bold considering that this notation has not been widely accepted by the community but I'm hoping to make a compelling argument in this post. 
 
