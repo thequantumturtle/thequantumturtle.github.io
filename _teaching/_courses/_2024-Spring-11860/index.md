@@ -1,5 +1,5 @@
 ---
-title: "Course name"
+title: "11-860 Spring 2024"
 layout: home
 menuItem: "Basic info"
 menuPosition: 1
