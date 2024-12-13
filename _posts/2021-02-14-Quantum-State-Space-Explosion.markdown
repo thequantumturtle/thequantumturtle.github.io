@@ -1,9 +1,8 @@
 ---
-layout: post
 title: Quantum State Space Explosion
 date: 2021-02-17 22:51:00 -0500
 description: How does a Quantum State Space explode compared to a Classical State Space?
-img: nuclear-bomb-explosion.jpg # Add image post (optional)
+img: images/nuclear-bomb-explosion.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [Quantum Computers, Simulators]
 ---

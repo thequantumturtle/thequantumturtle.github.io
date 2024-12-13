@@ -1,9 +1,8 @@
 ---
-layout: post
 title: Circle Notation
 date: 2021-02-23 22:51:00 -0500
 description: The best notation for beginners and pros alike!
-img: CircleNotation.jpg # Add image post (optional)
+img: images/CircleNotation.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [Quantum Computers, Simulators, Quantum Notation]
 ---
