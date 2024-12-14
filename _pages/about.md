@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "Dan ''The Man'' Justice"
+title: "Daniel Justice"
 author_profile: true
 redirect_from: 
   - /about/
