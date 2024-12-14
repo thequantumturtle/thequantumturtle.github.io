@@ -1,4 +1,5 @@
 ---
+layout: archive
 title: "17-620: Quantum Circuit Mappings"
 type: "Fall Semester"
 venue: "Carnegie Mellon University"

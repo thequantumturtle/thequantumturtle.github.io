@@ -1,4 +1,5 @@
 ---
+layout: archive
 title: "11-860: Quantum Computing Theory and Lab"
 type: "Spring Semester"
 venue: "Carnegie Mellon University"

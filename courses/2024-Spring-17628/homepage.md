@@ -1,4 +1,5 @@
 ---
+layout: archive
 title: "17-628: Applied Quantum Computing"
 collection: teaching
 type: "Spring Semester"
