@@ -1,6 +1,6 @@
 ---
 title: "17-617: Programming Universal Gate Quantum Computers"
-type: "Fall Semester"
+type: "Fall Semester Test Test"
 venue: "Carnegie Mellon University"
 date: 2020-08-21
 # location: "City, Country"
