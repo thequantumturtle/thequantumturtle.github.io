@@ -1,7 +1,7 @@
 # Daniel Justice
 
 ## To Add New Courses
-Add the course material (homepage and syllabus) to a new folder with format (year-semester-coursecode).  Then, create a new file in _teachings that redirects to the homepage.[
+Add the course material (homepage and syllabus) to a new folder with format (year-semester-coursecode).  Then, create a new year-semester-coursecode.md file in _teaching that redirects to the homepage.
 
 ## Running locally
 
