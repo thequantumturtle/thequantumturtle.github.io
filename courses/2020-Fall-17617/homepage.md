@@ -1,4 +1,5 @@
 ---
+layout: default
 title: "17-617: Programming Universal Gate Quantum Computers"
 type: "Fall Semester"
 venue: "Carnegie Mellon University"
