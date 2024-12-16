@@ -50,14 +50,14 @@ Most weeks are designed to be 1 day of lecture and 1 day of lab.
 **01/15**: 1-Qubit Gates and Measurement - **Lecture**  
 **01/20**: Martin Luther King Jr. Day - **No Lecture**  
 **01/22**: **Lab**  
-**1/27**: BB84 and No Cloning - **Lecture**  <span style="color:red"> HOMEWORK 2</span>
+**1/27**: BB84 and No Cloning - **Lecture**  <span style="color:red"> HOMEWORK 1</span>\
 **01/29**: **Lab**  
 **02/03**: CHSH and No Communication - **Lecture**   
 **02/05**: **Lab**  
 **02/10**: Multi-Qubit Gates - **Lecture**  
 **02/12**: **Lab**  
 **02/17**: Building a Quantum Circuit for a Classical Problem - **Lecture**  
-**02/19**: **Lab**  <span style="color:red"> HOMEWORK 2</span>
+**02/19**: **Lab**  <span style="color:red"> HOMEWORK 2</span>\
 **02/24**: Crypt/NVIDIA/Classiq/QuEra - **Lecture**  
 **02/26**: Deutsche's Algorithm - **Lecture**  
 **03/03**: **Spring Break**  
@@ -67,7 +67,7 @@ Most weeks are designed to be 1 day of lecture and 1 day of lab.
 **03/17**: **Lab**   
 **03/19**: Grover's Algorithm - **Lecture**  
 **03/24**: **Lab**  
-**03/26**: Shor's Algorithm - **Lecture**  <span style="color:red"> HOMEWORK 3</span>
+**03/26**: Shor's Algorithm - **Lecture**  <span style="color:red"> HOMEWORK 3</span>\
 **03/31**: **Lab**  
 **04/02**: Data Encoding - **Lecture**  
 **04/07**: **Lab**  
