@@ -9,7 +9,7 @@ date: 2025-01-01
 
 Monday and Wednesday (5:00pm to 6:20pm EST @ GHC 4215)   
 ### Instructors: [Daniel Justice](https://thequantumturtle.github.io/), [Bhiksha Raj](http://mlsp.cs.cmu.edu/people/bhiksha/), [Rita Singh](http://mlsp.cs.cmu.edu/people/rsingh/index.html) 
-### TA: [Thomas Cantalapiedra]("https://thomas-scs.github.io/")
+### TA: [Thomas Cantalapiedra](https://thomas-scs.github.io/)
 
 
 ## Announcements!
