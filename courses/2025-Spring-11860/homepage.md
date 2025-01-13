@@ -14,10 +14,10 @@ Monday and Wednesday (5:00pm to 6:20pm EST @ GHC 4215)
 
 ## Announcements!
 The first few classes will be done remotely! Do **NOT** show up to GHC 4215 or else you will be lonely!
-Class can be found on Zoom right **HERE** (Will be added later).
+Class can be found on Zoom right [**HERE**](https://cmu.zoom.us/j/99820694854?pwd=WkpFTHFzRlBUUkNqWGpFSlhHaDdqUT09).
 
 ## Location
-Doherty Hall Room 1211
+GHC 4215
 
 ## Important Links
 **Piazza**: For announcements and communication.  Will be added later
@@ -47,10 +47,10 @@ Most weeks are designed to be 1 day of lecture and 1 day of lab.
 
 ## Schedule
 **01/13**: Transition from Classical to Quantum Computing - **Lecture**   
-**01/15**: 1-Qubit Gates and Measurement - **Lecture**  
+**01/15**: Measurement, No Cloning and BB84 - **Lecture**  
 **01/20**: Martin Luther King Jr. Day - **No Lecture**  
 **01/22**: **Lab**  
-**1/27**: BB84 and No Cloning - **Lecture**  <span style="color:red"> HOMEWORK 1</span>\
+**1/27**: 1-Qubit Gates - **Lecture**  <span style="color:red"> HOMEWORK 1</span>\
 **01/29**: **Lab**  
 **02/03**: CHSH and No Communication - **Lecture**   
 **02/05**: **Lab**  
