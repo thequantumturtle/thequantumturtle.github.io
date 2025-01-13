@@ -20,8 +20,8 @@ Class can be found on Zoom right [**HERE**](https://cmu.zoom.us/j/99820694854?pw
 GHC 4215
 
 ## Important Links
-**Piazza**: For announcements and communication.  Will be added later
-**Canvas**: For those fun assignments that everyone likes to do.  Will be added later
+[**Piazza**](https://piazza.com/class/m5szmfcg9a12k9): For announcements and communication.
+[**Canvas**](https://canvas.cmu.edu/courses/44546): For those fun assignments that everyone likes to do.  
 
 ## Course Goals
 Students will gain familiarity with current universal gate quantum computing tools and technology. Students will also become comfortable with several QC algorithms and their implementation on state of the art quantum computer simulators and hardware. 
