@@ -20,7 +20,7 @@ Class can be found on Zoom right [**HERE**](https://cmu.zoom.us/j/99820694854?pw
 GHC 4215
 
 ## Important Links
-[**Piazza**](https://piazza.com/class/m5szmfcg9a12k9): For announcements and communication.
+[**Piazza**](https://piazza.com/class/m5szmfcg9a12k9): For announcements and communication. <br>
 [**Canvas**](https://canvas.cmu.edu/courses/44546): For those fun assignments that everyone likes to do.  
 
 ## Course Goals
