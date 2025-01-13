@@ -30,7 +30,7 @@ Students will gain familiarity with current universal gate quantum computing too
 30% Homeworks, 30% Group Project, 10% Participation, 30% weekly quizzes.
 
 ## Quizzes
-Each week a quiz will be given. The worst one will not be counted.
+There will be 14 quizzes.  Quizzes will be released at midnight on Friday of each week (other than spring-break week), and remain open for 48 hours until midnight on Sunday.  We will retain the best 12 scores for your final grade.
 
 ## Prerequisites
 Python, Jupyter Notebooks, Linear Algebra
