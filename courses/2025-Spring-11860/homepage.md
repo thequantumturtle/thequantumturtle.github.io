@@ -46,7 +46,7 @@ Most weeks are designed to be 1 day of lecture and 1 day of lab.
 
 
 ## Schedule
-**01/13**: Transition from Classical to Quantum Computing - **Lecture**   
+**01/13**: <a href="Quantum_lec1_ClassicalToQuantum.pdf" target="_blank">Transition from Classical to Quantum Computing</a> - **Lecture**   
 **01/15**: Measurement, No Cloning and BB84 - **Lecture**  
 **01/20**: Martin Luther King Jr. Day - **No Lecture**  
 **01/22**: **Lab**  
