@@ -46,12 +46,12 @@ Most weeks are designed to be 1 day of lecture and 1 day of lab.
 
 
 ## Schedule
-**01/13**: <a href="./Quantum_lec1_ClassicalToQuantum.pdf" target="_blank">Transition from Classical to Quantum Computing</a> - **Lecture**   
-**01/15**: <a href="./lec2_BB84_p1.pdf" target="_blank">Measurement, No Cloning and BB84</a> - **Lecture**  
+**01/13**: <a href="/courses/2025-Spring-11860/Quantum_lec1_ClassicalToQuantum.pdf" target="_blank">Transition from Classical to Quantum Computing</a> - **Lecture**   
+**01/15**: <a href="/courses/2025-Spring-11860/lec2_BB84_p1.pdf" target="_blank">Measurement, No Cloning and BB84</a> - **Lecture**  
 **01/20**: Martin Luther King Jr. Day - **No Lecture**  
 **01/22**: **Lab**  
-**1/27**: <a href="./lec3_One_Qubit_Gates_withbomb.pdf" target="_blank">1-Qubit Gates</a> - **Lecture**  <a href="https://canvas.cmu.edu/courses/44546/assignments/818234" target="_blank"> <span style="color:red"> HOMEWORK 1 </span> </a>\
-**01/29**: <a href="./Lab2.ipynb" target="_blank"> <span style="font-weight:bold">Lab</span> </a>  
+**1/27**: <a href="/courses/2025-Spring-11860/lec3_One_Qubit_Gates_withbomb.pdf" target="_blank">1-Qubit Gates</a> - **Lecture**  <a href="https://canvas.cmu.edu/courses/44546/assignments/818234" target="_blank"> <span style="color:red"> HOMEWORK 1 </span> </a>\
+**01/29**: <a href="/courses/2025-Spring-11860/Lab2.ipynb" target="_blank"> <span style="font-weight:bold">Lab</span> </a>  
 **02/03**: CHSH and No Communication - **Lecture**   
 **02/05**: **Lab**  
 **02/10**: Multi-Qubit Gates - **Lecture**  
