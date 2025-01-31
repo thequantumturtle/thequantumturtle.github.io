@@ -50,8 +50,8 @@ Most weeks are designed to be 1 day of lecture and 1 day of lab.
 **01/15**: <a href="lec2_BB84_p1.pdf" target="_blank">Measurement, No Cloning and BB84</a> - **Lecture**  
 **01/20**: Martin Luther King Jr. Day - **No Lecture**  
 **01/22**: **Lab**  
-**1/27**: <a href="lec3_One_Qubit_Gates_withbomb.pdf" target="_blank">1-Qubit Gates</a> - **Lecture**  <span style="color:red"> HOMEWORK 1</span>\
-**01/29**: **Lab**  
+**1/27**: <a href="lec3_One_Qubit_Gates_withbomb.pdf" target="_blank">1-Qubit Gates</a> - **Lecture**  <span href= "https://canvas.cmu.edu/courses/44546/assignments/818234" style="color:red" target="_blank"> HOMEWORK 1</span>\
+**01/29**: <span href="Lab2.ipynb" style="font-weight:bold">Lab</span>  
 **02/03**: CHSH and No Communication - **Lecture**   
 **02/05**: **Lab**  
 **02/10**: Multi-Qubit Gates - **Lecture**  
