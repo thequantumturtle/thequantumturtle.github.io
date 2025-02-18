@@ -54,9 +54,9 @@ Most weeks are designed to be 1 day of lecture and 1 day of lab.
 **01/29**: <a href="/courses/2025-Spring-11860/Lab2.ipynb" target="_blank"> <span style="font-weight:bold">Lab</span> </a>  
 **02/03**: <a href="/courses/2025-Spring-11860/lec4_Timemachine.pdf" target="_blank">CHSH and No Communication</a> - **Lecture**   
 **02/05**: **Lab**  
-**02/10**: <a href="/courses/2025-Spring-11860/lec5_god_gates_circuits.pdf" target="_blank">Multi-Qubit Gates</a> - **Lecture**  
+**02/10**: <a href="/courses/2025-Spring-11860/lec5_god_gates_circuits.pdf" target="_blank">Multi-Qubit Gates and Quantum Circuits</a> - **Lecture**  
 **02/12**: **Lab**  
-**02/17**: Building a Quantum Circuit for a Classical Problem - **Lecture**  
+**02/17**: <a href="/courses/2025-Spring-11860/lec6_QuantumTeleportation.pdf" target="_blank">Entanglement and Quantum Teleportation</a> - **Lecture**  
 **02/19**: **Lab**  <span style="color:red"> HOMEWORK 2</span>\
 **02/24**: Crypt/NVIDIA/Classiq/QuEra - **Lecture**  
 **02/26**: Deutsche's Algorithm - **Lecture**  
