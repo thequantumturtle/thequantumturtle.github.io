@@ -56,7 +56,7 @@ Most weeks are designed to be 1 day of lecture and 1 day of lab.
 **02/05**: **Lab**  
 **02/10**: <a href="/courses/2025-Spring-11860/lec5_god_gates_circuits.pdf" target="_blank">Multi-Qubit Gates and Quantum Circuits</a> - **Lecture**  
 **02/12**: **Lab**  
-**02/17**: <a href="/courses/2025-Spring-11860/lec6_QuantumTeleportation.pdf" target="_blank">Entanglement and Quantum Teleportation</a> - **Lecture**  
+**02/17**: <a href="/courses/2025-Spring-11860/Lec6_QuantumTeleportation.pdf" target="_blank">Entanglement and Quantum Teleportation</a> - **Lecture**  
 **02/19**: **Lab**  <span style="color:red"> HOMEWORK 2</span>\
 **02/24**: Crypt/NVIDIA/Classiq/QuEra - **Lecture**  
 **02/26**: Deutsche's Algorithm - **Lecture**  
