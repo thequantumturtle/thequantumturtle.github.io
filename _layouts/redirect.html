@@ -1,0 +1,22 @@
+---
+layout: none
+---
+<!DOCTYPE html>
+<html lang="en-US">
+  <meta charset="utf-8">
+  <title>Redirecting...</title>
+  {% assign target = page.redirect_to %}
+  {% if target contains "://" %}
+    {% assign target_url = target %}
+  {% elsif jekyll.environment == "production" and site.url %}
+    {% assign target_url = target | absolute_url %}
+  {% else %}
+    {% assign target_url = target | relative_url %}
+  {% endif %}
+  <link rel="canonical" href="{{ target_url }}">
+  <script>location="{{ target_url }}"</script>
+  <meta http-equiv="refresh" content="0; url={{ target_url }}">
+  <meta name="robots" content="noindex">
+  <h1>Redirecting...</h1>
+  <a href="{{ target_url }}">Click here if you are not redirected.</a>
+</html>

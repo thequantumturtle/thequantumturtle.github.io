@@ -20,7 +20,7 @@ When you are initially working your website, it is very useful to be able to pre
     brew install node
     gem install bundler
     ```
-1. Run `bundle install` to install ruby dependencies. If you get errors, delete Gemfile.lock and try again.
+1. Run `bundle install` to install Ruby dependencies. If you get errors, delete Gemfile.lock and try again.
 1. Run `jekyll serve -l -H localhost` to generate the HTML and serve it from `localhost:4000` the local server will automatically rebuild and refresh the pages on change.
 
 If you are running on Linux it may be necessary to install some additional dependencies prior to being able to run locally: `sudo apt install build-essential gcc make`
@@ -29,13 +29,20 @@ If you are running on Linux it may be necessary to install some additional depen
 
 Working from a different OS, or just want to avoid installing dependencies? You can use the provided `Dockerfile` to build a container that will run the site for you if you have [Docker](https://www.docker.com/) installed.
 
-Start by build the container:
+Docker uses a small entrypoint script and a local config override to keep local URLs clean:
+
+- `docker-entrypoint.sh` runs `bundle install` if needed, cleans `_site`, and starts Jekyll.
+- `_config_local.yml` keeps `url`/`baseurl` empty so redirects and asset URLs stay relative in local dev.
+- `Dockerfile` wires those together and runs the entrypoint.
+
+Start by building the container:
 
 ```bash
 docker build -t jekyll-site .
 ```
 
 Next, run the container:
+
 ```bash
 docker run -p 4000:4000 --rm -v $(pwd):/usr/src/app jekyll-site
 ```

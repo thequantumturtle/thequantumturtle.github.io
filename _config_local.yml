@@ -1,0 +1,5 @@
+
+
+
+url                      : "" # keep redirects and absolute_url relative in local dev
+baseurl                  : "" # keep local URLs rooted at /
