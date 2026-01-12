@@ -13,14 +13,17 @@ This page will be updated with the Spring 2026 schedule, logistics, and material
 ## Logistics
 Monday and Wednesday (5:00pm to 6:20pm EST @ GHC 4215)
 ### Instructors: [Daniel Justice](https://thequantumturtle.github.io/), [Bhiksha Raj](http://mlsp.cs.cmu.edu/people/bhiksha/), [Rita Singh](http://mlsp.cs.cmu.edu/people/rsingh/index.html)
-### TA: TBD
+### TA: Ryan Wang
+
+## Announcements!
+Class can be found on Zoom right [**HERE**](https://cmu.zoom.us/j/99820694854?pwd=WkpFTHFzRlBUUkNqWGpFSlhHaDdqUT09).
 
 ## Location
 GHC 4215
 
 ## Important Links
-**Piazza**: TBD (announcements and communication). <br>
-**Canvas**: TBD (assignments and course materials).  
+**Piazza**: https://piazza.com/class/mk4a0cn1bgr6qt (announcements and communication). <br>
+**Canvas**: https://canvas.cmu.edu/courses/51095 (assignments and course materials).  
 
 ## Course Goals
 Students will gain familiarity with current universal gate quantum computing tools and technology. Students will also become comfortable with several QC algorithms and their implementation on state of the art quantum computer simulators and hardware. 
