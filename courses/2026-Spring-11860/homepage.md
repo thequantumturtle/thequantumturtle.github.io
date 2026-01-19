@@ -8,7 +8,7 @@ date: 2026-01-01
 ---
 
 ## Course Overview
-This page will be updated with the Spring 2026 schedule, logistics, and materials.
+This course introduces core quantum computing concepts with an emphasis on algorithms, circuits, and hands-on implementation. Expect a mix of lecture and lab work covering quantum information fundamentals, gate-based computing, and modern applications in cryptography and machine learning.
 
 ## Logistics
 Monday and Wednesday (5:00pm to 6:20pm EST @ GHC 4215)
@@ -29,9 +29,9 @@ GHC 4215
 Students will gain familiarity with current universal gate quantum computing tools and technology. Students will also become comfortable with several QC algorithms and their implementation on state of the art quantum computer simulators and hardware. 
 
 ## Books
-#### Main Book:
+#### Main Book (recommended):
 - [Octopus Book](https://www.amazon.com/Programming-Quantum-Computers-Essential-Algorithms/dp/1492039683)  
-  We will be working mostly out of this book.
+  We will be working mostly out of this book. It is also available through CMU's [O'Reilly Online subscription](https://learning.oreilly.com/library/view/programming-quantum-computers/9781492039679/).
 
 #### Extra Reading:
 - [Blue Book](https://www.amazon.com/Quantum-Computing-Computer-Scientists-Yanofsky/dp/0521879965)  
