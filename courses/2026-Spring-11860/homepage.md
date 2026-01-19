@@ -14,9 +14,7 @@ This course introduces core quantum computing concepts with an emphasis on algor
 Monday and Wednesday (5:00pm to 6:20pm EST @ GHC 4215)
 ### Instructors: [Daniel Justice](https://thequantumturtle.github.io/), [Bhiksha Raj](http://mlsp.cs.cmu.edu/people/bhiksha/), [Rita Singh](http://mlsp.cs.cmu.edu/people/rsingh/index.html)
 ### TA: [Ryan Wang](https://ryan-twang.github.io)
-
-## Announcements!
-Class can be found on Zoom right [**HERE**](https://cmu.zoom.us/j/99820694854?pwd=WkpFTHFzRlBUUkNqWGpFSlhHaDdqUT09).
+### Zoom: [Join the class](https://cmu.zoom.us/j/99820694854?pwd=WkpFTHFzRlBUUkNqWGpFSlhHaDdqUT09) (use for remote sessions)
 
 ## Location
 GHC 4215
