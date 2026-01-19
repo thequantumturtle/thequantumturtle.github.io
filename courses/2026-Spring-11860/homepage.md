@@ -23,6 +23,9 @@ GHC 4215
 [**Piazza**](https://piazza.com/class/mk4a0cn1bgr6qt): announcements and communication. <br>
 [**Canvas**](https://canvas.cmu.edu/courses/51095): assignments and course materials.  
 
+## Communication norms
+Homework, assignments, and course materials will be posted on Canvas. Questions, comments, and informal course communication will take place on Piazza. Important communications, including absences, should be emailed directly to the instructors. Class recordings may be released upon request to Dr. Raj.
+
 ## Course Goals
 Students will gain familiarity with current universal gate quantum computing tools and technology. Students will also become comfortable with several QC algorithms and their implementation on state of the art quantum computer simulators and hardware. 
 
