@@ -22,6 +22,7 @@ GHC 4215
 ## Important Links
 [**Piazza**](https://piazza.com/class/mk4a0cn1bgr6qt): announcements and communication. <br>
 [**Canvas**](https://canvas.cmu.edu/courses/51095): assignments and course materials.  
+[**Syllabus**](/courses/2026-Spring-11860/syllabus/): printable course syllabus.
 
 ## Communication norms
 Homework, assignments, and course materials will be posted on Canvas. Questions, comments, and informal course communication will take place on Piazza. Important communications, including absences, should be emailed directly to the instructors. Class recordings may be released upon request to Dr. Raj.
