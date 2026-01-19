@@ -13,7 +13,7 @@ This page will be updated with the Spring 2026 schedule, logistics, and material
 ## Logistics
 Monday and Wednesday (5:00pm to 6:20pm EST @ GHC 4215)
 ### Instructors: [Daniel Justice](https://thequantumturtle.github.io/), [Bhiksha Raj](http://mlsp.cs.cmu.edu/people/bhiksha/), [Rita Singh](http://mlsp.cs.cmu.edu/people/rsingh/index.html)
-### TA: Ryan Wang
+### TA: [Ryan Wang](https://ryan-twang.github.io)
 
 ## Announcements!
 Class can be found on Zoom right [**HERE**](https://cmu.zoom.us/j/99820694854?pwd=WkpFTHFzRlBUUkNqWGpFSlhHaDdqUT09).
@@ -22,8 +22,8 @@ Class can be found on Zoom right [**HERE**](https://cmu.zoom.us/j/99820694854?pw
 GHC 4215
 
 ## Important Links
-**Piazza**: https://piazza.com/class/mk4a0cn1bgr6qt (announcements and communication). <br>
-**Canvas**: https://canvas.cmu.edu/courses/51095 (assignments and course materials).  
+[**Piazza**](https://piazza.com/class/mk4a0cn1bgr6qt): announcements and communication. <br>
+[**Canvas**](https://canvas.cmu.edu/courses/51095): assignments and course materials.  
 
 ## Course Goals
 Students will gain familiarity with current universal gate quantum computing tools and technology. Students will also become comfortable with several QC algorithms and their implementation on state of the art quantum computer simulators and hardware. 
@@ -45,8 +45,8 @@ Most weeks are designed to be 1 day of lecture and 1 day of lab.
 ## Schedule
 The first class is January 12. Dates follow the [CMU 2025-26 academic calendar](https://www.cmu.edu/hub/calendar/docs/2526-academic-calendar.pdf).
 
-**01/12**: Transition from Classical to Quantum Computing - **Lecture**  
-**01/14**: Measurement, No Cloning and BB84 - **Lecture**  
+**01/12**: <a href="/courses/2026-Spring-11860/Lecture1-TheNewMath.pdf" target="_blank">Transition from Classical to Quantum Computing</a> - **Lecture**  
+**01/14**: <a href="/courses/2026-Spring-11860/Lecture2-TheCat.pdf" target="_blank">Measurement, No Cloning and BB84</a> - **Lecture**  
 **01/19**: Martin Luther King Jr. Day - **No Lecture**  
 **01/21**: **Lab**  
 **01/26**: 1-Qubit Gates - **Lecture**  
