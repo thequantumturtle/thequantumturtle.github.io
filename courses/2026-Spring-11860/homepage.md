@@ -55,13 +55,16 @@ Note: The syllabus is subject to occasional change. This is especially the case 
 
 Most weeks are designed to be 1 day of lecture and 1 day of lab. 
 
+## Labs
+- [Lab 1: Classical vs Quantum Information](/courses/2026-Spring-11860/labs/lab-01/)
+
 ## Schedule
 The first class is January 12. Dates follow the [CMU 2025-26 academic calendar](https://www.cmu.edu/hub/calendar/docs/2526-academic-calendar.pdf).
 
 **01/12**: <a href="/courses/2026-Spring-11860/Lecture1-TheNewMath.pdf" target="_blank">Transition from Classical to Quantum Computing</a> - **Lecture**  
 **01/14**: <a href="/courses/2026-Spring-11860/Lecture2-TheCat.pdf" target="_blank">Measurement, No Cloning and BB84</a> - **Lecture**  
 **01/19**: Martin Luther King Jr. Day - **No Lecture**  
-**01/21**: **Lab**  
+**01/21**: [Lab 1: Classical vs Quantum Information](/courses/2026-Spring-11860/labs/lab-01/) - **Lab**  
 **01/26**: 1-Qubit Gates - **Lecture**  
 **01/28**: <a href="/courses/2026-Spring-11860/BB84.pdf" target="_blank">BB84</a> - **Lab**  
 **02/02**: CHSH and No Communication - **Lecture**  
