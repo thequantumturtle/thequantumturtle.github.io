@@ -63,7 +63,7 @@ The first class is January 12. Dates follow the [CMU 2025-26 academic calendar](
 **01/19**: Martin Luther King Jr. Day - **No Lecture**  
 **01/21**: **Lab**  
 **01/26**: 1-Qubit Gates - **Lecture**  
-**01/28**: **Lab**  
+**01/28**: <a href="/courses/2026-Spring-11860/BB84.pdf" target="_blank">BB84</a> - **Lab**  
 **02/02**: CHSH and No Communication - **Lecture**  
 **02/04**: **Lab**  
 **02/09**: Multi-Qubit Gates and Quantum Circuits - **Lecture**  
