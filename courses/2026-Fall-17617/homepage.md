@@ -1,0 +1,58 @@
+---
+layout: archive
+title: "17-617: Programming Quantum Computers"
+type: "Fall Semester"
+venue: "Carnegie Mellon University"
+date: 2026-08-24
+---
+
+Tuesdays and Thursdays (5:00pm to 6:20pm @ 3SC 265)   
+[Daniel Justice](https://thequantumturtle.github.io/)
+
+## Important Links
+Canvas: TBD  
+Piazza: TBD
+
+## Location
+Class room is at 3SC 265. The class is in person. I encourage you to come to class. Remote access details, if needed, will be posted later.
+
+## Course Goals
+Students will gain familiarity with current universal gate quantum computing tools and technology. Students will also become comfortable with several QC algorithms and their implementation on state of the art quantum computer simulators and hardware. 
+
+## Materials
+Course materials, assignments, and announcements will be posted here and/or on Canvas.
+
+## Grading
+90% Homeworks/Quizzes, 10% Participation.
+
+## Quizzes
+Each week a quiz will be given. The worst one will not be counted.
+
+## Prerequisites
+Python, Jupyter Notebooks, Linear Algebra
+
+Students will **not** need an understanding of quantum mechanics.
+
+Note: The syllabus is subject to occasional change. This is especially the case in the latter half of the semester once your professors have become comfortable with the group's overall skill level. Adequate notice will be given.
+
+## Basic course structure
+
+Due to this being a mini, we will do our best to skirt into a new topic each and every day. 
+
+## Schedule
+[**Day 1**](/courses/2026-Fall-17617/syllabus/1-Introduction): Introduction  
+[**Day 2**](/courses/2026-Fall-17617/syllabus/2-One-Qbit): Qubits  
+[**Day 3**](/courses/2026-Fall-17617/syllabus/3-Multi-Qbits): Multiple Qubits  
+[**Day 4**](/courses/2026-Fall-17617/syllabus/4-Teleportation): Quantum Teleportation  
+[**Day 5**](/courses/2026-Fall-17617/syllabus/5-BB84): BB84  
+[**Day 6**](/courses/2026-Fall-17617/syllabus/6-Arithmetic): Quantum Arithmetic and Logic  
+[**Day 7**](/courses/2026-Fall-17617/syllabus/7-Universal-Gates): Universal Gates  
+[**Day 8**](/courses/2026-Fall-17617/syllabus/8-Amp-Amp): Amplitude Amplification  
+[**Day 9**](/courses/2026-Fall-17617/syllabus/9-Quantum-Search): Quantum Search  
+[**Day 10**](/courses/2026-Fall-17617/syllabus/10-QFT): QFT: Quantum Fourier Transform  
+[**Day 11**](/courses/2026-Fall-17617/syllabus/11-Shors): Shor's Factoring Algorithm  
+[**Day 12**](/courses/2026-Fall-17617/syllabus/12-Guest): Guest Lecture  
+[**Day 13**](/courses/2026-Fall-17617/syllabus/13-Quantum-Phase-Estimation): Quantum Phase Estimation
+
+
+<!-- *Schedule with assignments, readings, etc. can be found [here](schedule.html)* -->
