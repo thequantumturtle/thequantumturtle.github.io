@@ -4,6 +4,8 @@ day: September 09
 title: Quantum Teleportation
 ---
 
+[Back to course homepage](/courses/2026-Fall-17617/homepage/)
+
 ### Before Class
 Read Chapter 4 in the [Octopus](https://www.amazon.com/Programming-Quantum-Computers-Essential-Algorithms/dp/1492039683) Book
 

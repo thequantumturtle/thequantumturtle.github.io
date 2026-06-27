@@ -4,6 +4,8 @@ day: TBD
 title: Universal Gates
 ---
 
+[Back to course homepage](/courses/2026-Fall-17617/homepage/)
+
 ### Summary
 We will look at universal gate sets and how a small collection of quantum gates can be used to build arbitrary quantum computations.
 
