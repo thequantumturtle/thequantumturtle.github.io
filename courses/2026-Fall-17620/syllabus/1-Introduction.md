@@ -4,7 +4,7 @@ day: TBD
 title: Introduction
 ---
 
-[Back to course homepage](/courses/2026-Fall-17620/homepage/)
+[Course homepage](/courses/2026-Fall-17620/homepage/) | [Next: Introduction to Pennylane](/courses/2026-Fall-17620/syllabus/2-Pennylane/)
 
 ## Before Class
 

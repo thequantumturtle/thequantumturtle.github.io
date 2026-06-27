@@ -4,7 +4,7 @@ day: TBD
 title: QNNs Practical
 ---
 
-[Back to course homepage](/courses/2026-Fall-17620/homepage/)
+[Previous: QSVMS Practical](/courses/2026-Fall-17620/syllabus/9-QSVM-Practical/) | [Course homepage](/courses/2026-Fall-17620/homepage/) | [Next: Guest Lecture](/courses/2026-Fall-17620/syllabus/11-Guest/)
 
 ### Summary
 We will build and train quantum neural network examples.

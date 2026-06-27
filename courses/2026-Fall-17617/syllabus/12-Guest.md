@@ -4,7 +4,7 @@ day : TBD
 title: Guest Lecture
 ---
 
-[Back to course homepage](/courses/2026-Fall-17617/homepage/)
+[Previous: Shor's Algorithm](/courses/2026-Fall-17617/syllabus/11-Shors/) | [Course homepage](/courses/2026-Fall-17617/homepage/) | [Next: Quantum Phase Estimation](/courses/2026-Fall-17617/syllabus/13-Quantum-Phase-Estimation/)
 
 ### Summary
 TBD

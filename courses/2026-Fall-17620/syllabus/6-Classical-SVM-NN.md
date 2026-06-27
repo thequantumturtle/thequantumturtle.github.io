@@ -4,7 +4,7 @@ day: TBD
 title: SVMs and NNs - Classical Focus
 ---
 
-[Back to course homepage](/courses/2026-Fall-17620/homepage/)
+[Previous: Data Encoding](/courses/2026-Fall-17620/syllabus/5-Data-Encoding/) | [Course homepage](/courses/2026-Fall-17620/homepage/) | [Next: Hybrid Quantum-Classical Algos for ML](/courses/2026-Fall-17620/syllabus/7-Hybrid-QC-ML/)
 
 ### Summary
 We will review classical support vector machines and neural networks so the quantum versions have a clear baseline.

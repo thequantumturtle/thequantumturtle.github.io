@@ -4,7 +4,7 @@ day : TBD
 title: Quantum Search
 ---
 
-[Back to course homepage](/courses/2026-Fall-17617/homepage/)
+[Previous: Amplitude Amplification](/courses/2026-Fall-17617/syllabus/8-Amp-Amp/) | [Course homepage](/courses/2026-Fall-17617/homepage/) | [Next: QFT](/courses/2026-Fall-17617/syllabus/10-QFT/)
 
 ### Summary
 Finally, lets take a look at a quantum simulator that has advantage over classical computer.

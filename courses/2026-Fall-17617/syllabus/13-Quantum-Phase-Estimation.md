@@ -4,7 +4,7 @@ day : TBD
 title: Quantum Phase Estimation
 ---
 
-[Back to course homepage](/courses/2026-Fall-17617/homepage/)
+[Previous: Guest Lecture](/courses/2026-Fall-17617/syllabus/12-Guest/) | [Course homepage](/courses/2026-Fall-17617/homepage/)
 
 ### Summary
 

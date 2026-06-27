@@ -4,7 +4,7 @@ day: TBD
 title: Thanksgiving
 ---
 
-[Back to course homepage](/courses/2026-Fall-17620/homepage/)
+[Previous: Guest Lecture](/courses/2026-Fall-17620/syllabus/11-Guest/) | [Course homepage](/courses/2026-Fall-17620/homepage/) | [Next: Q-Means](/courses/2026-Fall-17620/syllabus/13-Q-Means/)
 
 ### Summary
 No class.

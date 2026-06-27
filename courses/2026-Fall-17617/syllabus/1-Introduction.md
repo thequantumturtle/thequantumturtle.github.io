@@ -5,7 +5,7 @@ title: Introduction
 # tags: [hello]
 ---
 
-[Back to course homepage](/courses/2026-Fall-17617/homepage/)
+[Course homepage](/courses/2026-Fall-17617/homepage/) | [Next: One Qubit is Better Than no Qubit](/courses/2026-Fall-17617/syllabus/2-One-Qbit/)
 
 ## Before Class
 

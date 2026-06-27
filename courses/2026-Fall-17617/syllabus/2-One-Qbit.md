@@ -5,7 +5,7 @@ title: One Qubit is Better Than no Qubit
 # tags: [Qubit, Circle Notation, Bloch Sphere]
 ---
 
-[Back to course homepage](/courses/2026-Fall-17617/homepage/)
+[Previous: Introduction](/courses/2026-Fall-17617/syllabus/1-Introduction/) | [Course homepage](/courses/2026-Fall-17617/homepage/) | [Next: Two Qbits Are Better Than One](/courses/2026-Fall-17617/syllabus/3-Multi-Qbits/)
 
 ### Before Class
 Read Chapters 1-2 in the [Octopus](https://www.amazon.com/Programming-Quantum-Computers-Essential-Algorithms/dp/1492039683) Book
