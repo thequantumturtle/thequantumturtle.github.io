@@ -11,7 +11,8 @@ Tuesdays and Thursdays (5:00pm to 6:20pm @ 3SC 265)
 
 ## Important Links
 Canvas: TBD  
-Piazza: TBD
+Piazza: TBD  
+[O'Reilly Quantum Simulator](https://oreilly-qc.github.io/)
 
 ## Location
 Class room is at 3SC 265. The class is in person. I encourage you to come to class. Remote access details, if needed, will be posted later.
