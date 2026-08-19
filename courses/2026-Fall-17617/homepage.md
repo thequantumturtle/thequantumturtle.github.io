@@ -9,6 +9,18 @@ date: 2026-08-24
 Tuesdays and Thursdays (5:00pm to 6:20pm @ 3SC 265)   
 [Daniel Justice](https://thequantumturtle.github.io/)
 
+## Want to learn quantum computing without taking a physics course?
+
+**17-617 Programming Quantum Computers** is a hands-on introduction to quantum computing for students with a programming background. This is not a survey course: you will program quantum computers.
+
+**Prerequisites: Python, Jupyter Notebooks, and basic linear algebra. No prior quantum mechanics is required.**
+
+During this mini, we will build and run quantum circuits while working through topics including quantum teleportation, BB84, quantum arithmetic, Grover's search algorithm, the Quantum Fourier Transform, Shor's algorithm, and quantum phase estimation.
+
+Along the way, we will look at both the ideas behind these algorithms and what happens when we try to run them on today's quantum simulators and hardware.
+
+**Not sure if the course is for you? Come to the first class and try it.**
+
 ## Important Links
 Canvas: TBD  
 Piazza: TBD  
@@ -18,7 +30,7 @@ Piazza: TBD
 Class room is at 3SC 265. The class is in person. I encourage you to come to class. Remote access details, if needed, will be posted later.
 
 ## Course Goals
-Students will gain familiarity with current universal gate quantum computing tools and technology. Students will also become comfortable with several QC algorithms and their implementation on state of the art quantum computer simulators and hardware. 
+Students will learn to build, reason about, and run universal gate quantum programs using contemporary tools. By the end of the mini, students will be comfortable implementing several foundational quantum algorithms on simulators and current quantum hardware, and evaluating the gap between textbook algorithms and real machines.
 
 ## Materials
 Course materials, assignments, and announcements will be posted here and/or on Canvas.
