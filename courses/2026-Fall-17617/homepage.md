@@ -22,12 +22,13 @@ Along the way, we will look at both the ideas behind these algorithms and what h
 **Not sure if the course is for you? Come to the first class and try it.**
 
 ## Important Links
-Canvas: TBD  
+[Canvas](https://canvas.cmu.edu/courses/56016)  
+[Zoom](https://cmu.zoom.us/j/98482083797?pwd=tVjPUvbtm8rYe4Xnnbl29DHa5jbojd.1)  
 Piazza: TBD  
 [O'Reilly Quantum Simulator](https://oreilly-qc.github.io/)
 
 ## Location
-Class room is at 3SC 265. The class is in person. I encourage you to come to class. Remote access details, if needed, will be posted later.
+Class room is at 3SC 265. The class is in person, and I encourage you to come to class. Students may also join remotely using the Zoom link above.
 
 ## Course Goals
 Students will learn to build, reason about, and run universal gate quantum programs using contemporary tools. By the end of the mini, students will be comfortable implementing several foundational quantum algorithms on simulators and current quantum hardware, and evaluating the gap between textbook algorithms and real machines.
