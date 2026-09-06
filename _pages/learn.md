@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Learn"
+title: ""
 permalink: /learn/
 author_profile: false
 ---
