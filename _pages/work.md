@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Work"
+title: ""
 permalink: /work/
 author_profile: false
 ---
