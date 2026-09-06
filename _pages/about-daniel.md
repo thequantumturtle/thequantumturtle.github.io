@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "About Daniel"
+title: ""
 permalink: /about-daniel/
 author_profile: false
 ---
