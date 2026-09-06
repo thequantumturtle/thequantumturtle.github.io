@@ -10,8 +10,9 @@ RUN apt-get update && apt-get install -y \
 # Set the working directory inside the container
 WORKDIR /usr/src/app
 
-# Copy Gemfile + lockfile into the container (necessary for `bundle install`)
-COPY Gemfile Gemfile.lock ./
+# Copy Gemfile into the container for dependency installation.
+# This repository does not currently track a Gemfile.lock.
+COPY Gemfile ./
 COPY docker-entrypoint.sh ./
 
 # Install bundler and dependencies
