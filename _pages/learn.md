@@ -1,41 +1,66 @@
 ---
 layout: single
-title: "Learn Quantum Computing"
+title: "Learn"
 permalink: /learn/
-author_profile: true
+author_profile: false
 ---
 
-Quantum computing makes more sense when you can **build something, test it, and see what changes**.
+<div class="qt-home qt-subpage">
+  <section class="qt-subhero">
+    <p class="qt-kicker">Learn</p>
+    <h1>Learn quantum by building, testing, and questioning it.</h1>
+    <p class="qt-lede">This is the front door to the learning material I’ve built through teaching, research, and experimentation.</p>
+  </section>
 
-This page is the front door to the learning material I’ve built through teaching, research, and experimentation.
+  <section class="qt-section qt-learn-band">
+    <div>
+      <p class="qt-kicker">Start here</p>
+      <h2>Programming Quantum Computers</h2>
+      <p>If you’re new to quantum computing and want a structured path, this is the best place to start.</p>
+      <a href="/courses/2026-Fall-17617/homepage/">Open the Fall 2026 course →</a>
+    </div>
+    <div class="qt-featured-resource">
+      <p class="qt-meta">Carnegie Mellon University · Fall 2026</p>
+      <h3>From qubits to algorithms</h3>
+      <p>Qubits · Gates · Multi-qubit systems · Teleportation · QKD · Algorithms</p>
+    </div>
+  </section>
 
-## Start here
+  <section class="qt-section">
+    <div class="qt-section__heading">
+      <p class="qt-kicker">Approach</p>
+      <h2>Understanding matters more than vocabulary.</h2>
+    </div>
+    <p class="qt-wide-copy">I want learners to develop enough intuition to build circuits, inspect results, compare approaches, and ask better questions about the tools and claims they encounter.</p>
+  </section>
 
-### Programming Quantum Computers — Fall 2026
-My current Carnegie Mellon course starts with qubits and gates, then moves through multi-qubit systems, teleportation, quantum key distribution, and algorithms.
+  <section class="qt-questions">
+    <p>Compared to what?</p>
+    <p>Faster than what?</p>
+    <p>Useful for what?</p>
+    <span>Useful questions whether you’re learning your first circuit or evaluating a new quantum claim.</span>
+  </section>
 
-[**Open the course →**](/courses/2026-Fall-17617/homepage/)
-
-If you’re new to quantum computing and want a structured path, this is the best place to start.
-
-## Explore past courses
-
-I’ve taught courses and modules on introductory quantum computing, quantum programming, quantum applications, and quantum machine learning. The teaching archive collects those materials chronologically.
-
-[**Browse the teaching archive →**](/teaching/)
-
-## How I approach learning quantum
-
-I’m less interested in memorizing quantum vocabulary than in developing good technical judgment.
-
-When looking at a quantum technique or claim, I tend to come back to three questions:
-
-- **Compared to what?**
-- **Faster than what?**
-- **Useful for what?**
-
-Those questions apply whether you’re learning your first circuit, evaluating a quantum machine-learning paper, or trying to decide whether an organization should care about a new quantum capability.
-
-## More resources are coming
-
-I’m gradually turning classroom exercises, demonstrations, worksheets, and experiments into standalone resources that anyone can use. The goal is to make this site useful even if you’re not enrolled in one of my courses.
+  <section class="qt-section">
+    <div class="qt-section__heading">
+      <p class="qt-kicker">Keep exploring</p>
+      <h2>Courses and resources</h2>
+    </div>
+    <div class="qt-focus-list">
+      <article>
+        <h3>Teaching archive</h3>
+        <p>Past and current courses in quantum computing and quantum machine learning.</p>
+        <a href="/teaching/">Browse teaching →</a>
+      </article>
+      <article>
+        <h3>Classroom resources</h3>
+        <p>I’m turning classroom exercises, demonstrations, and worksheets into standalone material that anyone can use.</p>
+      </article>
+      <article>
+        <h3>Work and research</h3>
+        <p>See how the same questions show up in research, evaluation, and technology readiness.</p>
+        <a href="/work/">Explore my work →</a>
+      </article>
+    </div>
+  </section>
+</div>
