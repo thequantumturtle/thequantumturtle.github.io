@@ -51,8 +51,8 @@
 
   color: var(--qt-text);
   font-family: Inter, "Helvetica Neue", Arial, sans-serif;
-  font-size: 1rem;
-  line-height: 1.65;
+  font-size: .98rem;
+  line-height: 1.6;
 }
 
 .qt-home h1,
@@ -61,24 +61,25 @@
   color: var(--qt-text);
   font-family: Literata, Georgia, "Times New Roman", serif;
   font-weight: 600;
-  line-height: 1.12;
+  line-height: 1.1;
 }
 
 .qt-home h1 {
-  margin: 0 0 1.35rem;
-  font-size: clamp(2.6rem, 6vw, 5.6rem);
-  letter-spacing: -0.035em;
+  max-width: 12ch;
+  margin: 0 0 1.1rem;
+  font-size: clamp(2.5rem, 4.25vw, 4.35rem);
+  letter-spacing: -0.03em;
 }
 
 .qt-home h2 {
-  margin-top: .25rem;
-  font-size: clamp(2rem, 4vw, 3.4rem);
-  letter-spacing: -0.025em;
+  margin-top: .2rem;
+  font-size: clamp(1.75rem, 2.7vw, 2.75rem);
+  letter-spacing: -0.02em;
 }
 
 .qt-home h3 {
-  margin: .4rem 0 .55rem;
-  font-size: 1.45rem;
+  margin: .35rem 0 .45rem;
+  font-size: 1.25rem;
 }
 
 .qt-home a {
@@ -93,34 +94,34 @@
 .qt-focus-list span {
   color: var(--qt-slate);
   font-family: "IBM Plex Mono", Consolas, monospace;
-  font-size: .78rem;
+  font-size: .72rem;
   letter-spacing: .06em;
   text-transform: uppercase;
 }
 
 .qt-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
-  gap: clamp(2rem, 7vw, 6rem);
+  grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr);
+  gap: clamp(2rem, 4vw, 4rem);
   align-items: center;
-  padding: clamp(2rem, 5vw, 5rem) 0 clamp(4rem, 8vw, 7rem);
+  padding: clamp(2rem, 3.5vw, 3.5rem) 0 clamp(3rem, 5vw, 5rem);
 }
 
 .qt-lede {
-  max-width: 44rem;
-  margin-bottom: 1.8rem;
-  font-size: clamp(1.08rem, 2vw, 1.3rem);
+  max-width: 42rem;
+  margin-bottom: 1.4rem;
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
 }
 
 .qt-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: .8rem;
+  gap: .7rem;
 }
 
 .qt-button {
   display: inline-block;
-  padding: .7rem 1rem;
+  padding: .6rem .9rem;
   border: 1px solid var(--qt-forest);
   border-radius: 2px;
   text-decoration: none !important;
@@ -144,28 +145,28 @@
 }
 
 .qt-photo-note {
-  margin-top: .55rem;
+  margin-top: .5rem;
   color: var(--qt-bark);
-  font-size: .78rem;
+  font-size: .74rem;
 }
 
 .qt-intro {
-  max-width: 60rem;
+  max-width: 58rem;
   margin: 0 auto;
-  padding: 2.2rem 0 5rem;
+  padding: 1.8rem 0 3.5rem;
   border-top: 1px solid var(--qt-border);
   font-family: Literata, Georgia, serif;
-  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-size: clamp(1.1rem, 1.75vw, 1.45rem);
 }
 
 .qt-section {
-  padding: clamp(4rem, 8vw, 7rem) 0;
+  padding: clamp(3rem, 5vw, 5rem) 0;
   border-top: 1px solid var(--qt-border);
 }
 
 .qt-section__heading {
   max-width: 47rem;
-  margin-bottom: 2.3rem;
+  margin-bottom: 1.8rem;
 }
 
 .qt-focus-list,
@@ -173,35 +174,35 @@
 .qt-thinking-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(1.5rem, 4vw, 3rem);
+  gap: clamp(1.3rem, 3vw, 2.5rem);
 }
 
 .qt-focus-list article,
 .qt-work-grid article,
 .qt-thinking-list article {
-  padding-top: 1rem;
+  padding-top: .85rem;
   border-top: 1px solid var(--qt-border);
 }
 
 .qt-learn-band {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(2rem, 7vw, 6rem);
-  padding-left: clamp(1.5rem, 4vw, 3rem);
-  padding-right: clamp(1.5rem, 4vw, 3rem);
+  gap: clamp(2rem, 4vw, 4rem);
+  padding-left: clamp(1.5rem, 3vw, 2.5rem);
+  padding-right: clamp(1.5rem, 3vw, 2.5rem);
   background: #ece9df;
   border-top: none;
 }
 
 .qt-featured-resource {
   align-self: center;
-  padding-left: 1.6rem;
+  padding-left: 1.4rem;
   border-left: 2px solid var(--qt-forest);
 }
 
 .qt-questions {
-  margin: clamp(3rem, 7vw, 6rem) calc(50% - 50vw);
-  padding: clamp(3rem, 7vw, 6rem) max(5vw, calc((100vw - 1200px) / 2));
+  margin: clamp(2.5rem, 5vw, 4.5rem) calc(50% - 50vw);
+  padding: clamp(2.5rem, 5vw, 4.5rem) max(5vw, calc((100vw - 1280px) / 2));
   background: var(--qt-forest);
   color: #f6f3ec;
 }
@@ -210,20 +211,20 @@
   margin: 0;
   color: inherit;
   font-family: Literata, Georgia, serif;
-  font-size: clamp(2rem, 5vw, 4.6rem);
+  font-size: clamp(1.8rem, 3.6vw, 3.5rem);
   line-height: 1.08;
 }
 
 .qt-questions span {
   display: block;
   max-width: 35rem;
-  margin-top: 1.5rem;
+  margin-top: 1.2rem;
   color: #dfe5df;
 }
 
 .qt-about-strip {
   max-width: 58rem;
-  padding: clamp(4rem, 8vw, 7rem) 0 2rem;
+  padding: clamp(3rem, 5vw, 5rem) 0 2rem;
   border-top: 1px solid var(--qt-border);
 }
 
@@ -232,7 +233,7 @@ body:has(.qt-home) {
 }
 
 body:has(.qt-home) #main {
-  max-width: 1200px;
+  max-width: 1280px;
 }
 
 body:has(.qt-home) .page {
@@ -253,6 +254,10 @@ body:has(.qt-home) .page__content {
   .qt-work-grid,
   .qt-thinking-list {
     grid-template-columns: 1fr;
+  }
+
+  .qt-home h1 {
+    max-width: 14ch;
   }
 
   .qt-hero__photo-wrap {
