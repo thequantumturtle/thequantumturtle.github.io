@@ -44,11 +44,13 @@ redirect_from:
         <span>02</span>
         <h3>Evaluating Quantum Claims</h3>
         <p>How do we tell when a quantum result is meaningful, and what should we compare it against?</p>
+        <a href="/work/#evaluating-claims">See how I approach it →</a>
       </article>
       <article>
         <span>03</span>
         <h3>Post-Quantum Readiness</h3>
         <p>Thinking about the gap between technically available cryptography and an organization’s ability to adopt it well.</p>
+        <a href="/work/#pqc-readiness">Explore the problem →</a>
       </article>
     </div>
   </section>
@@ -78,16 +80,19 @@ redirect_from:
         <p class="qt-meta">Research · Benchmarking · QML</p>
         <h3>Quantum Machine Learning Evaluation</h3>
         <p>How do we tell whether a quantum machine-learning result is actually meaningful, reproducible, or better than realistic alternatives?</p>
+        <a href="/work/#qml-evaluation">Explore this work →</a>
       </article>
       <article>
         <p class="qt-meta">PQC · Adoption · Readiness</p>
         <h3>Post-Quantum Readiness</h3>
         <p>What should organizations do before quantum computing becomes operationally relevant to them?</p>
+        <a href="/work/#pqc-readiness">Explore this work →</a>
       </article>
       <article>
         <p class="qt-meta">Teaching · Programming · Quantum</p>
         <h3>Programming Quantum Computers</h3>
         <p>Building enough intuition through code and circuits that students can question the tools and claims they encounter.</p>
+        <a href="/work/#quantum-programming">Explore this work →</a>
       </article>
     </div>
     <p><a href="/work/">Explore selected work →</a></p>
