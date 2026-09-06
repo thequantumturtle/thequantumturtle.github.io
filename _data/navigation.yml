@@ -4,11 +4,11 @@ main:
   - title: "Learn"
     url: /learn/
 
-  - title: "Research & Work"
-    url: /publications/
-
-  - title: "Teaching"
-    url: /teaching/
+  - title: "Work"
+    url: /work/
 
   - title: "Writing"
     url: /year-archive/
+
+  - title: "About"
+    url: /about-daniel/
