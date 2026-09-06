@@ -18,18 +18,18 @@ author_profile: false
       <h2>Three areas I keep coming back to</h2>
     </div>
     <div class="qt-work-grid">
-      <article>
+      <article id="qml-evaluation">
         <p class="qt-meta">Research · Benchmarking · QML</p>
         <h3>Quantum Machine Learning Evaluation</h3>
         <p>How do we tell whether a quantum machine-learning result is meaningful, reproducible, or actually better than realistic alternatives?</p>
         <a href="/publications/">See related publications →</a>
       </article>
-      <article>
+      <article id="pqc-readiness">
         <p class="qt-meta">PQC · Adoption · Readiness</p>
         <h3>Post-Quantum Readiness</h3>
         <p>What should organizations be doing before quantum computing becomes operationally relevant to them, and how do we avoid confusing technical availability with organizational readiness?</p>
       </article>
-      <article>
+      <article id="quantum-programming">
         <p class="qt-meta">Teaching · Programming · Quantum</p>
         <h3>Programming Quantum Computers</h3>
         <p>I teach quantum computing by having students build, test, and reason about circuits so they develop enough intuition to question the tools and claims they encounter.</p>
@@ -38,7 +38,7 @@ author_profile: false
     </div>
   </section>
 
-  <section class="qt-questions">
+  <section class="qt-questions" id="evaluating-claims">
     <p>Compared to what?</p>
     <p>Faster than what?</p>
     <p>Useful for what?</p>
