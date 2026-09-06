@@ -40,7 +40,7 @@
 @import "vendor/magnific-popup/magnific-popup";
 @import "print";
 
-/* Quantum Turtle homepage experiment */
+/* Quantum Turtle visual system */
 .qt-home {
   --qt-bg: #f6f3ec;
   --qt-text: #282722;
@@ -228,6 +228,39 @@
   border-top: 1px solid var(--qt-border);
 }
 
+.qt-subpage {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.qt-subhero {
+  max-width: 62rem;
+  padding: clamp(2.5rem, 5vw, 4.5rem) 0 clamp(3rem, 5vw, 5rem);
+}
+
+.qt-subpage .qt-subhero h1 {
+  max-width: 18ch;
+  font-size: clamp(2.35rem, 3.6vw, 3.7rem);
+}
+
+.qt-subpage .qt-section {
+  padding: clamp(2.75rem, 4.5vw, 4.5rem) 0;
+}
+
+.qt-about-copy {
+  max-width: 48rem;
+  font-size: 1.05rem;
+}
+
+.qt-about-copy p {
+  margin-bottom: 1.25rem;
+}
+
+.qt-wide-copy {
+  max-width: 50rem;
+  font-size: 1.05rem;
+}
+
 body:has(.qt-home) {
   background: var(--qt-bg, #f6f3ec);
 }
@@ -247,6 +280,45 @@ body:has(.qt-home) .page__content {
   width: 100%;
 }
 
+/* Personal identity in the global header */
+.qt-site-id {
+  display: inline-flex !important;
+  align-items: baseline;
+  gap: .55rem;
+  text-decoration: none !important;
+}
+
+.qt-site-id__name {
+  color: #282722;
+  font-family: Literata, Georgia, serif;
+  font-weight: 600;
+}
+
+.qt-site-id__brand {
+  color: #667b82;
+  font-family: "IBM Plex Mono", Consolas, monospace;
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+body:has(.qt-home) .masthead {
+  border-bottom-color: #d8d2c7;
+  background: rgba(246, 243, 236, .96);
+}
+
+body:has(.qt-home) .greedy-nav,
+body:has(.qt-home) .greedy-nav a {
+  background: transparent;
+}
+
+body:has(.qt-home) .masthead__menu-item:not(.masthead__menu-item--lg) a {
+  color: #2f4a38;
+  font-size: .88rem;
+  font-weight: 600;
+}
+
 @media (max-width: 800px) {
   .qt-hero,
   .qt-learn-band,
@@ -257,6 +329,10 @@ body:has(.qt-home) .page__content {
   }
 
   .qt-home h1 {
+    max-width: 14ch;
+  }
+
+  .qt-subpage .qt-subhero h1 {
     max-width: 14ch;
   }
 
@@ -271,5 +347,9 @@ body:has(.qt-home) .page__content {
   .qt-learn-band {
     margin-left: -1rem;
     margin-right: -1rem;
+  }
+
+  .qt-site-id__brand {
+    display: none;
   }
 }
