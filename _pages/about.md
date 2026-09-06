@@ -15,7 +15,7 @@ redirect_from:
       <p class="qt-lede">I teach quantum computing at Carnegie Mellon University and work on how we learn, evaluate, and prepare for emerging technology.</p>
       <div class="qt-actions">
         <a class="qt-button qt-button--primary" href="/learn/">Start learning</a>
-        <a class="qt-button qt-button--quiet" href="/publications/">Explore my work</a>
+        <a class="qt-button qt-button--quiet" href="/work/">Explore my work</a>
       </div>
     </div>
     <div class="qt-hero__photo-wrap">
@@ -90,7 +90,7 @@ redirect_from:
         <p>Building enough intuition through code and circuits that students can question the tools and claims they encounter.</p>
       </article>
     </div>
-    <p><a href="/publications/">Explore research and publications →</a></p>
+    <p><a href="/work/">Explore selected work →</a></p>
   </section>
 
   <section class="qt-questions">
@@ -117,5 +117,6 @@ redirect_from:
     <p class="qt-kicker">About</p>
     <h2>The hard part isn’t always building the technology. It’s knowing when and how to use it.</h2>
     <p>I came to quantum computing through software engineering and emerging technology rather than the traditional physics path. That shapes how I teach and research it: I care a lot about whether we can build something, measure it, compare it, and understand what it is actually useful for.</p>
+    <p><a href="/about-daniel/">More about me →</a></p>
   </section>
 </div>
