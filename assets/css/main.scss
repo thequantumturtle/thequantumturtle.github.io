@@ -39,3 +39,232 @@
 @import "vendor/font-awesome/brands";
 @import "vendor/magnific-popup/magnific-popup";
 @import "print";
+
+/* Quantum Turtle homepage experiment */
+.qt-home {
+  --qt-bg: #f6f3ec;
+  --qt-text: #282722;
+  --qt-forest: #2f4a38;
+  --qt-bark: #7a6654;
+  --qt-slate: #667b82;
+  --qt-border: #d8d2c7;
+
+  color: var(--qt-text);
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.qt-home h1,
+.qt-home h2,
+.qt-home h3 {
+  color: var(--qt-text);
+  font-family: Literata, Georgia, "Times New Roman", serif;
+  font-weight: 600;
+  line-height: 1.12;
+}
+
+.qt-home h1 {
+  margin: 0 0 1.35rem;
+  font-size: clamp(2.6rem, 6vw, 5.6rem);
+  letter-spacing: -0.035em;
+}
+
+.qt-home h2 {
+  margin-top: .25rem;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  letter-spacing: -0.025em;
+}
+
+.qt-home h3 {
+  margin: .4rem 0 .55rem;
+  font-size: 1.45rem;
+}
+
+.qt-home a {
+  color: var(--qt-forest);
+  font-weight: 600;
+  text-decoration-thickness: 1px;
+  text-underline-offset: .2em;
+}
+
+.qt-kicker,
+.qt-meta,
+.qt-focus-list span {
+  color: var(--qt-slate);
+  font-family: "IBM Plex Mono", Consolas, monospace;
+  font-size: .78rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.qt-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(280px, .85fr);
+  gap: clamp(2rem, 7vw, 6rem);
+  align-items: center;
+  padding: clamp(2rem, 5vw, 5rem) 0 clamp(4rem, 8vw, 7rem);
+}
+
+.qt-lede {
+  max-width: 44rem;
+  margin-bottom: 1.8rem;
+  font-size: clamp(1.08rem, 2vw, 1.3rem);
+}
+
+.qt-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .8rem;
+}
+
+.qt-button {
+  display: inline-block;
+  padding: .7rem 1rem;
+  border: 1px solid var(--qt-forest);
+  border-radius: 2px;
+  text-decoration: none !important;
+}
+
+.qt-button--primary {
+  background: var(--qt-forest);
+  color: #fff !important;
+}
+
+.qt-button--quiet {
+  background: transparent;
+}
+
+.qt-hero__photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 2px;
+  filter: saturate(.82) contrast(.96);
+}
+
+.qt-photo-note {
+  margin-top: .55rem;
+  color: var(--qt-bark);
+  font-size: .78rem;
+}
+
+.qt-intro {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 2.2rem 0 5rem;
+  border-top: 1px solid var(--qt-border);
+  font-family: Literata, Georgia, serif;
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+.qt-section {
+  padding: clamp(4rem, 8vw, 7rem) 0;
+  border-top: 1px solid var(--qt-border);
+}
+
+.qt-section__heading {
+  max-width: 47rem;
+  margin-bottom: 2.3rem;
+}
+
+.qt-focus-list,
+.qt-work-grid,
+.qt-thinking-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+.qt-focus-list article,
+.qt-work-grid article,
+.qt-thinking-list article {
+  padding-top: 1rem;
+  border-top: 1px solid var(--qt-border);
+}
+
+.qt-learn-band {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 7vw, 6rem);
+  padding-left: clamp(1.5rem, 4vw, 3rem);
+  padding-right: clamp(1.5rem, 4vw, 3rem);
+  background: #ece9df;
+  border-top: none;
+}
+
+.qt-featured-resource {
+  align-self: center;
+  padding-left: 1.6rem;
+  border-left: 2px solid var(--qt-forest);
+}
+
+.qt-questions {
+  margin: clamp(3rem, 7vw, 6rem) calc(50% - 50vw);
+  padding: clamp(3rem, 7vw, 6rem) max(5vw, calc((100vw - 1200px) / 2));
+  background: var(--qt-forest);
+  color: #f6f3ec;
+}
+
+.qt-questions p {
+  margin: 0;
+  color: inherit;
+  font-family: Literata, Georgia, serif;
+  font-size: clamp(2rem, 5vw, 4.6rem);
+  line-height: 1.08;
+}
+
+.qt-questions span {
+  display: block;
+  max-width: 35rem;
+  margin-top: 1.5rem;
+  color: #dfe5df;
+}
+
+.qt-about-strip {
+  max-width: 58rem;
+  padding: clamp(4rem, 8vw, 7rem) 0 2rem;
+  border-top: 1px solid var(--qt-border);
+}
+
+body:has(.qt-home) {
+  background: var(--qt-bg, #f6f3ec);
+}
+
+body:has(.qt-home) #main {
+  max-width: 1200px;
+}
+
+body:has(.qt-home) .page {
+  float: none;
+  width: 100%;
+  padding-right: 0;
+}
+
+body:has(.qt-home) .page__inner-wrap,
+body:has(.qt-home) .page__content {
+  width: 100%;
+}
+
+@media (max-width: 800px) {
+  .qt-hero,
+  .qt-learn-band,
+  .qt-focus-list,
+  .qt-work-grid,
+  .qt-thinking-list {
+    grid-template-columns: 1fr;
+  }
+
+  .qt-hero__photo-wrap {
+    order: 2;
+  }
+
+  .qt-hero__photo {
+    aspect-ratio: 16 / 11;
+  }
+
+  .qt-learn-band {
+    margin-left: -1rem;
+    margin-right: -1rem;
+  }
+}
