@@ -1,49 +1,127 @@
 ---
 permalink: /
-title: "Daniel Justice"
-author_profile: true
-redirect_from: 
+title: ""
+author_profile: false
+redirect_from:
   - /about/
   - /about.html
 ---
 
-<!-- This is the front page of a website that is powered by the [Academic Pages template](https://github.com/academicpages/academicpages.github.io) and hosted on GitHub pages. [GitHub pages](https://pages.github.com) is a free service in which websites are built and hosted from code and data stored in a GitHub repository, automatically updating when a new commit is made to the repository. This template was forked from the [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/) created by Michael Rose, and then extended to support the kinds of content that academics have: publications, talks, teaching, a portfolio, blog posts, and a dynamically-generated CV. You can fork [this template](https://github.com/academicpages/academicpages.github.io) right now, modify the configuration and markdown files, add your own PDFs and other content, and have your own site for free, with no ads!
+<div class="qt-home">
+  <section class="qt-hero">
+    <div class="qt-hero__copy">
+      <p class="qt-kicker">Daniel Justice · Quantum Computing</p>
+      <h1>Quantum computing is interesting. Knowing what to do with it is harder.</h1>
+      <p class="qt-lede">I teach quantum computing at Carnegie Mellon University and work on how we learn, evaluate, and prepare for emerging technology.</p>
+      <div class="qt-actions">
+        <a class="qt-button qt-button--primary" href="/learn/">Start learning</a>
+        <a class="qt-button qt-button--quiet" href="/work/">Explore my work</a>
+      </div>
+    </div>
+    <div class="qt-hero__photo-wrap">
+      <img class="qt-hero__photo" src="/images/DanielSnow.jpg" alt="Daniel Justice outdoors">
+      <p class="qt-photo-note">The current repository photo is standing in for the trail photo while we test the layout.</p>
+    </div>
+  </section>
 
-A data-driven personal website
-======
-Like many other Jekyll-based GitHub Pages templates, Academic Pages makes you separate the website's content from its form. The content & metadata of your website are in structured markdown files, while various other files constitute the theme, specifying how to transform that content & metadata into HTML pages. You keep these various markdown (.md), YAML (.yml), HTML, and CSS files in a public GitHub repository. Each time you commit and push an update to the repository, the [GitHub pages](https://pages.github.com/) service creates static HTML pages based on these files, which are hosted on GitHub's servers free of charge.
+  <section class="qt-intro">
+    <p><strong>The Quantum Turtle</strong> is where I share the work: courses, experiments, explanations, technical notes, and the occasional attempt to separate what quantum technology can do from what people hope it can do.</p>
+  </section>
 
-Many of the features of dynamic content management systems (like Wordpress) can be achieved in this fashion, using a fraction of the computational resources and with far less vulnerability to hacking and DDoSing. You can also modify the theme to your heart's content without touching the content of your site. If you get to a point where you've broken something in Jekyll/HTML/CSS beyond repair, your markdown files describing your talks, publications, etc. are safe. You can rollback the changes or even delete the repository and start over - just be sure to save the markdown files! Finally, you can also write scripts that process the structured data on the site, such as [this one](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.ipynb) that analyzes metadata in pages about talks to display [a map of every location you've given a talk](https://academicpages.github.io/talkmap.html).
+  <section class="qt-section">
+    <div class="qt-section__heading">
+      <p class="qt-kicker">Current focus</p>
+      <h2>What I’m working on now</h2>
+    </div>
+    <div class="qt-focus-list">
+      <article>
+        <span>01</span>
+        <h3>Programming Quantum Computers</h3>
+        <p>Teaching quantum by having students build, test, and reason about actual circuits.</p>
+        <a href="/courses/2026-Fall-17617/homepage/">Explore the course →</a>
+      </article>
+      <article>
+        <span>02</span>
+        <h3>Evaluating Quantum Claims</h3>
+        <p>How do we tell when a quantum result is meaningful, and what should we compare it against?</p>
+        <a href="/work/#evaluating-claims">See how I approach it →</a>
+      </article>
+      <article>
+        <span>03</span>
+        <h3>Post-Quantum Readiness</h3>
+        <p>Thinking about the gap between technically available cryptography and an organization’s ability to adopt it well.</p>
+        <a href="/work/#pqc-readiness">Explore the problem →</a>
+      </article>
+    </div>
+  </section>
 
-Getting started
-======
-1. Register a GitHub account if you don't have one and confirm your e-mail (required!)
-1. Fork [this template](https://github.com/academicpages/academicpages.github.io) by clicking the "Use this template" button in the top right. 
-1. Go to the repository's settings (rightmost item in the tabs that start with "Code", should be below "Unwatch"). Rename the repository "[your GitHub username].github.io", which will also be your website's URL.
-1. Set site-wide configuration and create content & metadata (see below -- also see [this set of diffs](http://archive.is/3TPas) showing what files were changed to set up [an example site](https://getorg-testacct.github.io) for a user with the username "getorg-testacct")
-1. Upload any files (like PDFs, .zip files, etc.) to the files/ directory. They will appear at https://[your GitHub username].github.io/files/example.pdf.  
-1. Check status by going to the repository settings, in the "GitHub pages" section
+  <section class="qt-section qt-learn-band">
+    <div>
+      <p class="qt-kicker">Learn</p>
+      <h2>Learn quantum by doing quantum.</h2>
+      <p>Most quantum concepts become easier once you can build something, change it, and see what happens.</p>
+      <a href="/learn/">Start learning →</a>
+    </div>
+    <div class="qt-featured-resource">
+      <p class="qt-meta">Carnegie Mellon University · Fall 2026</p>
+      <h3>Programming Quantum Computers</h3>
+      <p>Qubits · Gates · Entanglement · Teleportation · QKD · Algorithms</p>
+      <a href="/courses/2026-Fall-17617/homepage/">Open course →</a>
+    </div>
+  </section>
 
-Site-wide configuration
-------
-The main configuration file for the site is in the base directory in [_config.yml](https://github.com/academicpages/academicpages.github.io/blob/master/_config.yml), which defines the content in the sidebars and other site-wide features. You will need to replace the default variables with ones about yourself and your site's github repository. The configuration file for the top menu is in [_data/navigation.yml](https://github.com/academicpages/academicpages.github.io/blob/master/_data/navigation.yml). For example, if you don't have a portfolio or blog posts, you can remove those items from that navigation.yml file to remove them from the header. 
+  <section class="qt-section">
+    <div class="qt-section__heading">
+      <p class="qt-kicker">Selected work</p>
+      <h2>Research, readiness, and teaching</h2>
+    </div>
+    <div class="qt-work-grid">
+      <article>
+        <p class="qt-meta">Research · Benchmarking · QML</p>
+        <h3>Quantum Machine Learning Evaluation</h3>
+        <p>How do we tell whether a quantum machine-learning result is actually meaningful, reproducible, or better than realistic alternatives?</p>
+        <a href="/work/#qml-evaluation">Explore this work →</a>
+      </article>
+      <article>
+        <p class="qt-meta">PQC · Adoption · Readiness</p>
+        <h3>Post-Quantum Readiness</h3>
+        <p>What should organizations do before quantum computing becomes operationally relevant to them?</p>
+        <a href="/work/#pqc-readiness">Explore this work →</a>
+      </article>
+      <article>
+        <p class="qt-meta">Teaching · Programming · Quantum</p>
+        <h3>Programming Quantum Computers</h3>
+        <p>Building enough intuition through code and circuits that students can question the tools and claims they encounter.</p>
+        <a href="/work/#quantum-programming">Explore this work →</a>
+      </article>
+    </div>
+    <p><a href="/work/">Explore selected work →</a></p>
+  </section>
 
-Create content & metadata
-------
-For site content, there is one markdown file for each type of content, which are stored in directories like _publications, _talks, _posts, _teaching, or _pages. For example, each talk is a markdown file in the [_talks directory](https://github.com/academicpages/academicpages.github.io/tree/master/_talks). At the top of each markdown file is structured data in YAML about the talk, which the theme will parse to do lots of cool stuff. The same structured data about a talk is used to generate the list of talks on the [Talks page](https://academicpages.github.io/talks), each [individual page](https://academicpages.github.io/talks/2012-03-01-talk-1) for specific talks, the talks section for the [CV page](https://academicpages.github.io/cv), and the [map of places you've given a talk](https://academicpages.github.io/talkmap.html) (if you run this [python file](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.py) or [Jupyter notebook](https://github.com/academicpages/academicpages.github.io/blob/master/talkmap.ipynb), which creates the HTML for the map based on the contents of the _talks directory).
+  <section class="qt-questions">
+    <p>Compared to what?</p>
+    <p>Faster than what?</p>
+    <p>Useful for what?</p>
+    <span>Three questions I keep coming back to when evaluating emerging technology.</span>
+  </section>
 
-**Markdown generator**
+  <section class="qt-section">
+    <div class="qt-section__heading">
+      <p class="qt-kicker">Recent thinking</p>
+      <h2>Notes from the edge of the technology</h2>
+    </div>
+    <div class="qt-thinking-list">
+      <article><p class="qt-meta">Readiness</p><h3>Technology can be ready before organizations are.</h3></article>
+      <article><p class="qt-meta">Evaluation</p><h3>Compared to what? Faster than what? Useful for what?</h3></article>
+      <article><p class="qt-meta">Readiness</p><h3>What DC teaches us about preparing for technology before we need it.</h3></article>
+    </div>
+    <p><a href="/year-archive/">Browse writing →</a></p>
+  </section>
 
-The repository includes [a set of Jupyter notebooks](https://github.com/academicpages/academicpages.github.io/tree/master/markdown_generator
-) that converts a CSV containing structured data about talks or presentations into individual markdown files that will be properly formatted for the Academic Pages template. The sample CSVs in that directory are the ones I used to create my own personal website at stuartgeiger.com. My usual workflow is that I keep a spreadsheet of my publications and talks, then run the code in these notebooks to generate the markdown files, then commit and push them to the GitHub repository.
-
-How to edit your site's GitHub repository
-------
-Many people use a git client to create files on their local computer and then push them to GitHub's servers. If you are not familiar with git, you can directly edit these configuration and markdown files directly in the github.com interface. Navigate to a file (like [this one](https://github.com/academicpages/academicpages.github.io/blob/master/_talks/2012-03-01-talk-1.md) and click the pencil icon in the top right of the content preview (to the right of the "Raw | Blame | History" buttons). You can delete a file by clicking the trashcan icon to the right of the pencil icon. You can also create new files or upload files by navigating to a directory and clicking the "Create new file" or "Upload files" buttons. 
-
-Example: editing a markdown file for a talk
-![Editing a markdown file for a talk](/images/editing-talk.png)
-
-For more info
-------
-More info about configuring Academic Pages can be found in [the guide](https://academicpages.github.io/markdown/), the [growing wiki](https://github.com/academicpages/academicpages.github.io/wiki), and you can always [ask a question on GitHub](https://github.com/academicpages/academicpages.github.io/discussions). The [guides for the Minimal Mistakes theme](https://mmistakes.github.io/minimal-mistakes/docs/configuration/) (which this theme was forked from) might also be helpful. -->
+  <section class="qt-about-strip">
+    <p class="qt-kicker">About</p>
+    <h2>The hard part isn’t always building the technology. It’s knowing when and how to use it.</h2>
+    <p>I came to quantum computing through software engineering and emerging technology rather than the traditional physics path. That shapes how I teach and research it: I care a lot about whether we can build something, measure it, compare it, and understand what it is actually useful for.</p>
+    <p><a href="/about-daniel/">More about me →</a></p>
+  </section>
+</div>
