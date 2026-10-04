@@ -17,7 +17,7 @@ author_profile: false
       <p class="qt-kicker">Start here</p>
       <h2>Programming Quantum Computers</h2>
       <p>If you’re new to quantum computing and want a structured path, this is the best place to start.</p>
-      <a href="/courses/2026-Fall-17617/homepage/">Open the Fall 2026 course →</a>
+      <a href="/courses/2026-Fall-17617/homepage.html">Open the Fall 2026 course →</a>
     </div>
     <div class="qt-featured-resource">
       <p class="qt-meta">Carnegie Mellon University · Fall 2026</p>
@@ -54,7 +54,9 @@ author_profile: false
       </article>
       <article>
         <h3>Classroom resources</h3>
-        <p>I’m turning classroom exercises, demonstrations, and worksheets into standalone material that anyone can use.</p>
+        <p>Use the free BB84 classroom worksheet to explore basis choices, sifting, and eavesdropping in a guided group activity.</p>
+        <a href="/resources/bb84-classroom-worksheet/">Open the BB84 worksheet →</a>
+        <p>Color and print editions include student role sheets and an instructor guide.</p>
       </article>
       <article>
         <h3>Work and research</h3>

@@ -20,7 +20,6 @@ redirect_from:
     </div>
     <div class="qt-hero__photo-wrap">
       <img class="qt-hero__photo" src="/images/DanielSnow.jpg" alt="Daniel Justice outdoors">
-      <p class="qt-photo-note">The current repository photo is standing in for the trail photo while we test the layout.</p>
     </div>
   </section>
 
@@ -38,7 +37,7 @@ redirect_from:
         <span>01</span>
         <h3>Programming Quantum Computers</h3>
         <p>Teaching quantum by having students build, test, and reason about actual circuits.</p>
-        <a href="/courses/2026-Fall-17617/homepage/">Explore the course →</a>
+        <a href="/courses/2026-Fall-17617/homepage.html">Explore the course →</a>
       </article>
       <article>
         <span>02</span>
@@ -66,7 +65,7 @@ redirect_from:
       <p class="qt-meta">Carnegie Mellon University · Fall 2026</p>
       <h3>Programming Quantum Computers</h3>
       <p>Qubits · Gates · Entanglement · Teleportation · QKD · Algorithms</p>
-      <a href="/courses/2026-Fall-17617/homepage/">Open course →</a>
+      <a href="/courses/2026-Fall-17617/homepage.html">Open course →</a>
     </div>
   </section>
 
@@ -77,15 +76,15 @@ redirect_from:
     </div>
     <div class="qt-work-grid">
       <article>
-        <p class="qt-meta">Research · Benchmarking · QML</p>
-        <h3>Quantum Machine Learning Evaluation</h3>
-        <p>How do we tell whether a quantum machine-learning result is actually meaningful, reproducible, or better than realistic alternatives?</p>
-        <a href="/work/#qml-evaluation">Explore this work →</a>
+        <p class="qt-meta">Research · Benchmarking · Algorithms</p>
+        <h3>Quantum Algorithm Evaluation</h3>
+        <p>Evaluating QAOA for Max-Cut by comparing the quality of individual samples with strong classical alternatives.</p>
+        <a href="/work/#algorithm-evaluation">Explore this work →</a>
       </article>
       <article>
         <p class="qt-meta">PQC · Adoption · Readiness</p>
         <h3>Post-Quantum Readiness</h3>
-        <p>What should organizations do before quantum computing becomes operationally relevant to them?</p>
+        <p>How can organizations identify cryptographic dependencies and prepare the people, systems, and processes needed for migration?</p>
         <a href="/work/#pqc-readiness">Explore this work →</a>
       </article>
       <article>
@@ -103,19 +102,6 @@ redirect_from:
     <p>Faster than what?</p>
     <p>Useful for what?</p>
     <span>Three questions I keep coming back to when evaluating emerging technology.</span>
-  </section>
-
-  <section class="qt-section">
-    <div class="qt-section__heading">
-      <p class="qt-kicker">Recent thinking</p>
-      <h2>Notes from the edge of the technology</h2>
-    </div>
-    <div class="qt-thinking-list">
-      <article><p class="qt-meta">Readiness</p><h3>Technology can be ready before organizations are.</h3></article>
-      <article><p class="qt-meta">Evaluation</p><h3>Compared to what? Faster than what? Useful for what?</h3></article>
-      <article><p class="qt-meta">Readiness</p><h3>What DC teaches us about preparing for technology before we need it.</h3></article>
-    </div>
-    <p><a href="/year-archive/">Browse writing →</a></p>
   </section>
 
   <section class="qt-about-strip">
