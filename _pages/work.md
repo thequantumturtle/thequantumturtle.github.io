@@ -23,7 +23,7 @@ author_profile: false
         <p class="qt-meta">Research · Benchmarking · Algorithms</p>
         <h3>Quantum Algorithm Evaluation</h3>
         <p>In our QAOA study, we simulated Max-Cut problems and compared the approximation ratios of individual samples with strong classical alternatives. Performance varied significantly with graph type.</p>
-        <a href="/publication/2022-08-05-QAOA-Evaluation">Read the QAOA evaluation paper →</a>
+        <a href="/publication/2022-08-05-QAOA-Evaluation.html">Read the QAOA evaluation paper →</a>
       </article>
       <article id="pqc-readiness">
         <p class="qt-meta">PQC · Adoption · Readiness</p>
@@ -35,7 +35,7 @@ author_profile: false
         <p class="qt-meta">Teaching · Programming · Quantum</p>
         <h3>Programming Quantum Computers</h3>
         <p>I teach quantum computing by having students build, test, and reason about circuits so they develop enough intuition to question the tools and claims they encounter.</p>
-        <a href="/courses/2026-Fall-17617/homepage.html">Explore the current course →</a>
+        <a href="/courses/2026-Fall-17617/homepage/">Explore the current course →</a>
       </article>
     </div>
   </section>
@@ -54,7 +54,7 @@ author_profile: false
     </div>
     <p class="qt-wide-copy">I start with the task and the outcome that matters, then choose a realistic classical baseline. I ask what resources each approach uses, which costs the comparison includes, and whether the result holds across different inputs.</p>
     <p class="qt-wide-copy">For example, our QAOA study examined the quality of individual Max-Cut samples rather than relying only on an average. Comparing across graph types helped show where performance changed and why one result should not stand in for every problem instance.</p>
-    <p><a href="/publication/2022-08-05-QAOA-Evaluation">See the published example →</a></p>
+    <p><a href="/publication/2022-08-05-QAOA-Evaluation.html">See the published example →</a></p>
   </section>
 
   <section class="qt-section">

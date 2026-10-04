@@ -37,7 +37,7 @@ redirect_from:
         <span>01</span>
         <h3>Programming Quantum Computers</h3>
         <p>Teaching quantum by having students build, test, and reason about actual circuits.</p>
-        <a href="/courses/2026-Fall-17617/homepage.html">Explore the course →</a>
+        <a href="/courses/2026-Fall-17617/homepage/">Explore the course →</a>
       </article>
       <article>
         <span>02</span>
@@ -65,7 +65,7 @@ redirect_from:
       <p class="qt-meta">Carnegie Mellon University · Fall 2026</p>
       <h3>Programming Quantum Computers</h3>
       <p>Qubits · Gates · Entanglement · Teleportation · QKD · Algorithms</p>
-      <a href="/courses/2026-Fall-17617/homepage.html">Open course →</a>
+      <a href="/courses/2026-Fall-17617/homepage/">Open course →</a>
     </div>
   </section>
 
