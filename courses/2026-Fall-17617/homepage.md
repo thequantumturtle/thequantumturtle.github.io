@@ -74,8 +74,8 @@ Due to this being a mini, we will do our best to skirt into a new topic each and
 [**Day 8**](/courses/2026-Fall-17617/syllabus/8-Amp-Amp): Amplitude Amplification  
 [**Day 9**](/courses/2026-Fall-17617/syllabus/9-Quantum-Search): Quantum Search  
 [**Day 10**](/courses/2026-Fall-17617/syllabus/10-QFT): QFT: Quantum Fourier Transform  
-[**Day 11**](/courses/2026-Fall-17617/syllabus/11-Shors): **Guest Lecture — Brian Goldsmith: Fault-Tolerant Quantum Computing and Resource Estimation**  
-[**Day 12**](/courses/2026-Fall-17617/syllabus/12-Guest): Shor's Factoring Algorithm  
+[**Day 11**](/courses/2026-Fall-17617/syllabus/11-Shors): Shor's Factoring Algorithm  
+[**Day 12**](/courses/2026-Fall-17617/syllabus/12-Guest): **Guest Lecture — Brian Goldsmith: Fault-Tolerant Quantum Computing and Resource Estimation**  
 [**Day 13**](/courses/2026-Fall-17617/syllabus/13-Quantum-Phase-Estimation): Quantum Phase Estimation
 
 
