@@ -80,3 +80,5 @@ Due to this being a mini, we will do our best to skirt into a new topic each and
 
 
 <!-- *Schedule with assignments, readings, etc. can be found [here](schedule.html)* -->
+
+<!-- Pages rebuild trigger -->
