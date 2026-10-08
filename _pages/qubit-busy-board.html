@@ -1,0 +1,113 @@
+---
+layout: single
+title: "Qubit Busy Board"
+permalink: /learn/qubit-busy-board/
+author_profile: false
+---
+
+<style>
+.qbb{--ink:#193449;--blue:#276caa;max-width:960px;margin:0 auto;color:var(--ink)}
+.qbb *{box-sizing:border-box}.qbb-head{text-align:center;padding:1rem 0 1.5rem}
+.qbb-head h1{font-size:clamp(2rem,5vw,3.3rem);margin:.2rem 0}.qbb-head p{font-size:1.1rem}
+.qbb-panel{background:#f6eee0;border:12px solid #c89b66;border-radius:32px;box-shadow:0 14px 0 #a77949,0 22px 35px #19344921;padding:clamp(14px,3vw,28px)}
+.qbb-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(230px,1fr);gap:24px;align-items:center}
+.qbb-sphere{background:#fffaf1;border-radius:50%;width:100%;max-width:470px;aspect-ratio:1;margin:auto;display:block}
+.qbb-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.qbb-btn{min-height:112px;border-radius:24px;border:5px solid #ffffff8a;box-shadow:0 8px 0 #3452,0 12px 18px #1233;color:white;font-weight:900;font-size:2.3rem;cursor:pointer;touch-action:manipulation;transition:transform .08s,box-shadow .08s}
+.qbb-btn:active{transform:translateY(6px);box-shadow:0 2px 0 #3452}.qbb-btn:focus-visible{outline:4px solid #132e4d;outline-offset:3px}
+.qbb-btn small{font-size:.82rem;display:block;letter-spacing:.04em;font-weight:700}.qbb-x{background:#d9554d}.qbb-h{background:#e6ae30;color:#253447}.qbb-z{background:#4277c3}.qbb-y{background:#7c5fac}
+.qbb-measure{grid-column:1/-1;background:#339c78;min-height:95px;font-size:1.65rem}
+.qbb-reset{grid-column:1/-1;border:2px solid #b9a38c;background:#fff9ef;border-radius:12px;min-height:46px;cursor:pointer;font-weight:700;color:#28445a}
+.qbb-readouts{margin-top:24px;background:#fff9ee;border-radius:18px;padding:18px}
+.qbb-outcome{display:flex;justify-content:center;gap:14px;align-items:center;font-weight:800;font-size:1.3rem;min-height:54px;text-align:center}
+.qbb-lamp{width:40px;height:40px;border-radius:50%;background:#c6c9c5;border:5px solid #fff;box-shadow:inset 0 0 0 2px #85918c,0 2px 8px #0002}
+.qbb-lamp.active-zero{background:#47a1e8;box-shadow:0 0 20px #47a1e8}.qbb-lamp.active-one{background:#e98755;box-shadow:0 0 20px #e98755}
+.qbb-prob{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
+.qbb-bar{height:16px;background:#e4e4df;border-radius:20px;overflow:hidden}.qbb-fill{height:100%;transition:width .3s;background:#47a1e8}.qbb-fill.one{background:#e98755}
+.qbb-meta{font-size:.94rem;color:#42566a}.qbb-explain{margin-top:26px;line-height:1.7}
+@media(max-width:690px){.qbb-grid{grid-template-columns:1fr}.qbb-sphere{max-width:370px}.qbb-btn{min-height:95px}.qbb-panel{border-width:8px}.qbb-controls{gap:12px}}
+@media(prefers-reduced-motion:reduce){.qbb *{transition:none!important}}
+</style>
+
+<div class="qbb" id="qubit-busy-board">
+  <header class="qbb-head"><p class="qt-kicker">Play with a qubit</p><h1>The Qubit Busy Board</h1><p>Push a button. Watch the qubit change. What happens when you measure?</p></header>
+  <div class="qbb-panel">
+    <div class="qbb-grid">
+      <svg class="qbb-sphere" viewBox="0 0 400 400" role="img" aria-label="Bloch sphere showing the current qubit state" id="qbb-sphere">
+        <defs><radialGradient id="qbb-glow" cx="37%" cy="26%"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#e2edf3"/></radialGradient><marker id="qbb-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#d85c44"/></marker></defs>
+        <circle cx="200" cy="200" r="151" fill="url(#qbb-glow)" stroke="#819fb0" stroke-width="3"/>
+        <ellipse cx="200" cy="200" rx="151" ry="54" fill="none" stroke="#a8bac5" stroke-width="2" stroke-dasharray="6 6" transform="rotate(-15 200 200)"/>
+        <g stroke="#9ab0bf" stroke-width="2"><line x1="200" y1="355" x2="200" y2="45"/><line x1="65" y1="155" x2="335" y2="245"/><line x1="125" y1="275" x2="275" y2="125"/></g>
+        <g fill="#284961" font-size="22" font-weight="800" text-anchor="middle"><text x="200" y="32">|0⟩</text><text x="200" y="388">|1⟩</text></g>
+        <line id="qbb-vector" x1="200" y1="200" x2="200" y2="52" stroke="#d85c44" stroke-width="7" stroke-linecap="round" marker-end="url(#qbb-arrow)"/>
+        <circle cx="200" cy="200" r="8" fill="#d85c44"/><circle id="qbb-tip" cx="200" cy="52" r="8" fill="#d85c44"/>
+      </svg>
+      <div class="qbb-controls" aria-label="Quantum gate controls">
+        <button class="qbb-btn qbb-x" type="button" data-gate="X">X<small>FLIP</small></button>
+        <button class="qbb-btn qbb-h" type="button" data-gate="H">H<small>MIX</small></button>
+        <button class="qbb-btn qbb-z" type="button" data-gate="Z">Z<small>PHASE</small></button>
+        <button class="qbb-btn qbb-y" type="button" data-gate="Y">Y<small>TURN</small></button>
+        <button class="qbb-btn qbb-measure" type="button" id="qbb-measure">● MEASURE</button>
+        <button class="qbb-reset" type="button" id="qbb-reset">↺ Start over at |0⟩</button>
+      </div>
+    </div>
+    <div class="qbb-readouts">
+      <div class="qbb-outcome" aria-live="polite" aria-atomic="true"><span class="qbb-lamp" id="qbb-lamp"></span><span id="qbb-message">Ready! Try pressing X or H.</span></div>
+      <div class="qbb-prob">
+        <div><strong>0: <span id="qbb-p0">100%</span></strong><div class="qbb-bar"><div class="qbb-fill" id="qbb-fill0" style="width:100%"></div></div></div>
+        <div><strong>1: <span id="qbb-p1">0%</span></strong><div class="qbb-bar"><div class="qbb-fill one" id="qbb-fill1" style="width:0%"></div></div></div>
+      </div>
+      <p class="qbb-meta" id="qbb-state">The qubit begins at |0⟩, pointing up.</p>
+    </div>
+  </div>
+  <section class="qbb-explain">
+    <h2>What are the buttons doing?</h2>
+    <p><strong>X</strong> flips the qubit, <strong>H</strong> rotates it into or out of a superposition, <strong>Z</strong> changes its phase, and <strong>Y</strong> rotates around another axis. Unlike an ordinary bit, the qubit can point in many directions. The sphere tracks a pure single-qubit state.</p>
+    <p><strong>Try this:</strong> press H, then Measure. Reset and try again. You may get either answer. Measure collapses the state to |0⟩ or |1⟩. The bars show the probabilities <em>before</em> you measure, and update after collapse.</p>
+    <p class="qbb-meta">A touch-friendly educational simulation of ideal gates and computational-basis measurement. No real quantum hardware is involved.</p>
+  </section>
+</div>
+<script>
+(function(){
+  "use strict";
+  const root=document.getElementById("qubit-busy-board"); if(!root)return;
+  const find=id=>document.getElementById(id);
+  let x=0,y=0,z=1;
+  const message=find("qbb-message"),lamp=find("qbb-lamp");
+  const clip=v=>Math.max(-1,Math.min(1,v));
+  function render(){
+    const p0=clip((1+z)/2),p1=1-p0;
+    find("qbb-p0").textContent=Math.round(p0*100)+"%";
+    find("qbb-p1").textContent=Math.round(p1*100)+"%";
+    find("qbb-fill0").style.width=(100*p0)+"%";
+    find("qbb-fill1").style.width=(100*p1)+"%";
+    const px=200+148*(.84*x+.48*y),py=200+148*(.28*x-.49*y-.82*z);
+    const v=find("qbb-vector");v.setAttribute("x2",px);v.setAttribute("y2",py);
+    const tip=find("qbb-tip");tip.setAttribute("cx",px);tip.setAttribute("cy",py);
+    find("qbb-state").textContent="State on Bloch sphere: ("+[x,y,z].map(v=>(Math.abs(v)<1e-10?0:v).toFixed(2)).join(", ")+")";
+  }
+  function gate(g){
+    const a=x,b=y,c=z;
+    if(g==="X"){x=a;y=-b;z=-c}
+    if(g==="Y"){x=-a;y=b;z=-c}
+    if(g==="Z"){x=-a;y=-b;z=c}
+    if(g==="H"){x=c;y=-b;z=a}
+    lamp.className="qbb-lamp";
+    message.textContent=g+" gate applied. Try another button!";
+    render();
+  }
+  root.querySelectorAll("[data-gate]").forEach(b=>b.addEventListener("click",()=>gate(b.dataset.gate)));
+  find("qbb-measure").addEventListener("click",()=>{
+    const one=Math.random()<(1-z)/2;
+    x=0;y=0;z=one?-1:1;
+    lamp.className="qbb-lamp "+(one?"active-one":"active-zero");
+    message.textContent="You measured "+(one?"1":"0")+"!";
+    render();
+  });
+  find("qbb-reset").addEventListener("click",()=>{
+    x=0;y=0;z=1;lamp.className="qbb-lamp";
+    message.textContent="Back to |0⟩. What will you try?";render();
+  });
+  render();
+})();
+</script>

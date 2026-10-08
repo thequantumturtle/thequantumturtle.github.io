@@ -48,6 +48,11 @@ author_profile: false
     </div>
     <div class="qt-focus-list">
       <article>
+        <h3>Qubit Busy Board</h3>
+        <p>Press colorful quantum gates, move a Bloch sphere, and discover what happens when you measure.</p>
+        <a href="/learn/qubit-busy-board/">Play with the qubit →</a>
+      </article>
+      <article>
         <h3>Teaching archive</h3>
         <p>Past and current courses in quantum computing and quantum machine learning.</p>
         <a href="/teaching/">Browse teaching →</a>
