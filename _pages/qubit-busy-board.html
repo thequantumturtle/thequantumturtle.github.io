@@ -6,108 +6,146 @@ author_profile: false
 ---
 
 <style>
-.qbb{--ink:#193449;--blue:#276caa;max-width:960px;margin:0 auto;color:var(--ink)}
-.qbb *{box-sizing:border-box}.qbb-head{text-align:center;padding:1rem 0 1.5rem}
-.qbb-head h1{font-size:clamp(2rem,5vw,3.3rem);margin:.2rem 0}.qbb-head p{font-size:1.1rem}
-.qbb-panel{background:#f6eee0;border:12px solid #c89b66;border-radius:32px;box-shadow:0 14px 0 #a77949,0 22px 35px #19344921;padding:clamp(14px,3vw,28px)}
-.qbb-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(230px,1fr);gap:24px;align-items:center}
-.qbb-sphere{background:#fffaf1;border-radius:50%;width:100%;max-width:470px;aspect-ratio:1;margin:auto;display:block}
-.qbb-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.qbb-btn{min-height:112px;border-radius:24px;border:5px solid #ffffff8a;box-shadow:0 8px 0 #3452,0 12px 18px #1233;color:white;font-weight:900;font-size:2.3rem;cursor:pointer;touch-action:manipulation;transition:transform .08s,box-shadow .08s}
-.qbb-btn:active{transform:translateY(6px);box-shadow:0 2px 0 #3452}.qbb-btn:focus-visible{outline:4px solid #132e4d;outline-offset:3px}
-.qbb-btn small{font-size:.82rem;display:block;letter-spacing:.04em;font-weight:700}.qbb-x{background:#d9554d}.qbb-h{background:#e6ae30;color:#253447}.qbb-z{background:#4277c3}.qbb-y{background:#7c5fac}
-.qbb-measure{grid-column:1/-1;background:#339c78;min-height:95px;font-size:1.65rem}
-.qbb-reset{grid-column:1/-1;border:2px solid #b9a38c;background:#fff9ef;border-radius:12px;min-height:46px;cursor:pointer;font-weight:700;color:#28445a}
-.qbb-readouts{margin-top:24px;background:#fff9ee;border-radius:18px;padding:18px}
-.qbb-outcome{display:flex;justify-content:center;gap:14px;align-items:center;font-weight:800;font-size:1.3rem;min-height:54px;text-align:center}
-.qbb-lamp{width:40px;height:40px;border-radius:50%;background:#c6c9c5;border:5px solid #fff;box-shadow:inset 0 0 0 2px #85918c,0 2px 8px #0002}
-.qbb-lamp.active-zero{background:#47a1e8;box-shadow:0 0 20px #47a1e8}.qbb-lamp.active-one{background:#e98755;box-shadow:0 0 20px #e98755}
-.qbb-prob{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:16px 0}
-.qbb-bar{height:16px;background:#e4e4df;border-radius:20px;overflow:hidden}.qbb-fill{height:100%;transition:width .3s;background:#47a1e8}.qbb-fill.one{background:#e98755}
-.qbb-meta{font-size:.94rem;color:#42566a}.qbb-explain{margin-top:26px;line-height:1.7}
-@media(max-width:690px){.qbb-grid{grid-template-columns:1fr}.qbb-sphere{max-width:370px}.qbb-btn{min-height:95px}.qbb-panel{border-width:8px}.qbb-controls{gap:12px}}
+.qbb{--ink:#344338;max-width:1050px;margin:0 auto;color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+.qbb *{box-sizing:border-box}
+.qbb-head{text-align:center;padding:1rem 0 1.6rem}
+.qbb-head h1{font-size:clamp(2rem,5vw,3.3rem);margin:.25rem 0;color:#33443b}
+.qbb-head p{font-size:1.06rem;line-height:1.5}
+.qbb-panel{position:relative;border:13px solid #b98248;border-radius:40px;padding:clamp(15px,3vw,30px);background:repeating-linear-gradient(3deg,#e8bc7e 0px,#e6b879 20px,#eac38e 28px,#e7bb7f 50px);box-shadow:inset 0 0 0 3px #f5d9a6,inset 0 6px 16px #8d5c2555,0 13px 0 #9c683e,0 23px 33px #4b382b28}
+.qbb-screw{position:absolute;width:17px;height:17px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#f2e8d0,#a7875b 80%);border:1px solid #957448;box-shadow:inset 0 1px 3px #fff9}
+.qbb-screw:before{content:"";display:block;width:10px;height:2px;background:#94764d;transform:rotate(-30deg);position:absolute;top:7px;left:3px}
+.qbb-tl{top:13px;left:13px}.qbb-tr{top:13px;right:13px}.qbb-bl{bottom:13px;left:13px}.qbb-br{bottom:13px;right:13px}
+.qbb-brand{text-align:center;letter-spacing:.15em;font-weight:900;font-size:.87rem;color:#745036;margin:0 0 18px}
+.qbb-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(255px,.9fr);gap:24px;align-items:center}
+.qbb-display{position:relative;width:100%;max-width:460px;aspect-ratio:1;margin:auto;border-radius:50%;padding:13px;background:linear-gradient(145deg,#ead4a3,#b48c57 55%,#f7dfb4);box-shadow:inset 0 0 0 3px #815b38,0 8px 12px #76533364}
+.qbb-display:before{content:"";pointer-events:none;position:absolute;inset:20px;border-radius:50%;z-index:3;background:radial-gradient(ellipse at 31% 18%,#ffffff85 0%,#ffffff15 24%,transparent 47%);box-shadow:inset 0 0 18px #446b8855}
+.qbb-sphere{width:100%;aspect-ratio:1;border-radius:50%;display:block;background:#edf7fa}
+.qbb-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;padding:8px}
+.qbb-btn{position:relative;min-height:105px;border-radius:50%;border:7px solid #ffffff80;box-shadow:0 7px 0 #5e4e41,0 12px 0 #624f3980,0 16px 18px #624f394d;color:white;font-weight:950;font-size:2.65rem;cursor:pointer;touch-action:manipulation;transition:transform .08s,box-shadow .08s;text-shadow:0 1px 1px #0004}
+.qbb-btn:after{content:"";pointer-events:none;position:absolute;inset:5px 12px auto 12px;height:28%;border-radius:50%;background:linear-gradient(#ffffff55,transparent)}
+.qbb-btn:active,.qbb-btn.pressed{transform:translateY(6px);box-shadow:0 1px 0 #5e4e41,0 5px 7px #624f394d}
+.qbb-btn:focus-visible,.qbb-reset:focus-visible{outline:4px solid #233d55;outline-offset:5px}
+.qbb-btn small{font-size:.74rem;display:block;letter-spacing:.09em;line-height:1.1;font-weight:850}
+.qbb-x{background:linear-gradient(#ef806e,#cd5347)}.qbb-h{background:linear-gradient(#ffe18b,#dba52d);color:#473b21;text-shadow:none}.qbb-z{background:linear-gradient(#82b6ed,#3576c2)}.qbb-y{background:linear-gradient(#b99be6,#805cb3)}
+.qbb-measure{grid-column:1/-1;border-radius:25px;min-height:77px;background:linear-gradient(#73cb9b,#329765);font-size:1.6rem}
+.qbb-reset{grid-column:1/-1;border:3px solid #9f7651;background:#fff2d3;border-radius:16px;min-height:51px;cursor:pointer;font-size:1rem;font-weight:800;color:#5b4631}
+.qbb-readouts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+.qbb-light-panel{border:4px solid #967044;border-radius:18px;background:linear-gradient(#dec49a,#f5e2bf);box-shadow:inset 0 3px 8px #7052374d;padding:12px;text-align:center}
+.qbb-light-panel h3{font-size:1rem;font-weight:900;letter-spacing:.06em;margin:0 0 10px;color:#624c35}
+.qbb-lights{display:flex;justify-content:center;gap:35px;align-items:center}
+.qbb-led{display:flex;flex-direction:column;align-items:center;gap:4px;font-weight:900}
+.qbb-lamp{display:block;width:48px;height:48px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff9,#89919a 65%,#596578);border:6px solid #b9ac93;box-shadow:inset 0 0 8px #334,0 3px 2px #6f543b}
+.qbb-lamp.active-zero{background:radial-gradient(circle at 35% 30%,white,#67cbfa 35%,#2286db);box-shadow:0 0 20px #42b5fa,inset 0 0 8px #fff}
+.qbb-lamp.active-one{background:radial-gradient(circle at 35% 30%,white,#ffbd8c 35%,#e86942);box-shadow:0 0 20px #ef8050,inset 0 0 8px #fff}
+.qbb-probabilities{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:center}
+.qbb-bar{height:16px;margin-top:6px;background:#b6ac95;border-radius:20px;overflow:hidden;box-shadow:inset 0 2px 3px #4f432e6b}
+.qbb-fill{height:100%;transition:width .3s;background:#278ed8;border-radius:20px}
+.qbb-fill.one{background:#e57b4b}
+.qbb-status{text-align:center;margin:18px 4px 0;font-weight:800;font-size:1.13rem;min-height:1.7em}
+.qbb-meta{font-size:.92rem;color:#5a615b;margin:12px 4px 0;text-align:center}
+.qbb-explain{margin-top:27px;line-height:1.7}
+.qbb-explain h2{color:#35493b}
+@media(max-width:720px){.qbb-grid{grid-template-columns:1fr;gap:18px}.qbb-display{max-width:390px}.qbb-controls{max-width:390px;margin:auto;width:100%}.qbb-btn{min-height:92px}.qbb-panel{border-width:9px}.qbb-readouts{grid-template-columns:1fr}.qbb-light-panel{padding:10px}}
 @media(prefers-reduced-motion:reduce){.qbb *{transition:none!important}}
 </style>
 
 <div class="qbb" id="qubit-busy-board">
-  <header class="qbb-head"><p class="qt-kicker">Play with a qubit</p><h1>The Qubit Busy Board</h1><p>Push a button. Watch the qubit change. What happens when you measure?</p></header>
+  <header class="qbb-head"><p class="qt-kicker">The Quantum Turtle · A hands-on experiment</p><h1>The Qubit Busy Board</h1><p>A little wooden toy for a very curious qubit. Press a button and see what moves!</p></header>
   <div class="qbb-panel">
+    <i aria-hidden="true" class="qbb-screw qbb-tl"></i><i aria-hidden="true" class="qbb-screw qbb-tr"></i><i aria-hidden="true" class="qbb-screw qbb-bl"></i><i aria-hidden="true" class="qbb-screw qbb-br"></i>
+    <p class="qbb-brand">QUANTUM PLAY LAB · NO. 01</p>
     <div class="qbb-grid">
-      <svg class="qbb-sphere" viewBox="0 0 400 400" role="img" aria-label="Bloch sphere showing the current qubit state" id="qbb-sphere">
-        <defs><radialGradient id="qbb-glow" cx="37%" cy="26%"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#e2edf3"/></radialGradient><marker id="qbb-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#d85c44"/></marker></defs>
-        <circle cx="200" cy="200" r="151" fill="url(#qbb-glow)" stroke="#819fb0" stroke-width="3"/>
-        <ellipse cx="200" cy="200" rx="151" ry="54" fill="none" stroke="#a8bac5" stroke-width="2" stroke-dasharray="6 6" transform="rotate(-15 200 200)"/>
-        <g stroke="#9ab0bf" stroke-width="2"><line x1="200" y1="355" x2="200" y2="45"/><line x1="65" y1="155" x2="335" y2="245"/><line x1="125" y1="275" x2="275" y2="125"/></g>
-        <g fill="#284961" font-size="22" font-weight="800" text-anchor="middle"><text x="200" y="32">|0⟩</text><text x="200" y="388">|1⟩</text></g>
-        <line id="qbb-vector" x1="200" y1="200" x2="200" y2="52" stroke="#d85c44" stroke-width="7" stroke-linecap="round" marker-end="url(#qbb-arrow)"/>
-        <circle cx="200" cy="200" r="8" fill="#d85c44"/><circle id="qbb-tip" cx="200" cy="52" r="8" fill="#d85c44"/>
-      </svg>
-      <div class="qbb-controls" aria-label="Quantum gate controls">
-        <button class="qbb-btn qbb-x" type="button" data-gate="X">X<small>FLIP</small></button>
-        <button class="qbb-btn qbb-h" type="button" data-gate="H">H<small>MIX</small></button>
-        <button class="qbb-btn qbb-z" type="button" data-gate="Z">Z<small>PHASE</small></button>
-        <button class="qbb-btn qbb-y" type="button" data-gate="Y">Y<small>TURN</small></button>
+      <div class="qbb-display">
+        <svg class="qbb-sphere" viewBox="0 0 400 400" role="img" aria-label="A protected Bloch sphere window with a moving red pointer for the qubit state" id="qbb-sphere">
+          <defs>
+            <radialGradient id="qbb-face" cx="35%" cy="24%"><stop stop-color="#fffefd"/><stop offset=".72" stop-color="#ddecf1"/><stop offset="1" stop-color="#bed4de"/></radialGradient>
+            <marker id="qbb-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 Z" fill="#d95445"/></marker>
+            <clipPath id="qbb-clip"><circle cx="200" cy="200" r="171"/></clipPath>
+          </defs>
+          <circle cx="200" cy="200" r="172" fill="url(#qbb-face)" stroke="#526f7b" stroke-width="3"/>
+          <g clip-path="url(#qbb-clip)" stroke="#94adb8" fill="none">
+            <ellipse cx="200" cy="200" rx="152" ry="51" stroke-width="2.5" transform="rotate(-15 200 200)"/>
+            <ellipse cx="200" cy="200" rx="152" ry="51" stroke-dasharray="6 6" stroke-width="1.6" transform="rotate(72 200 200)"/>
+            <path d="M 200 48 Q 300 200 200 352 Q 100 200 200 48" stroke-width="1.5" opacity=".65"/>
+            <line x1="200" y1="368" x2="200" y2="32" stroke-width="2"/>
+            <line x1="48" y1="157" x2="351" y2="243" stroke-width="1.4"/>
+            <line x1="115" y1="296" x2="288" y2="110" stroke-width="1.4"/>
+          </g>
+          <g fill="#294e60" font-size="23" font-weight="900" text-anchor="middle"><text x="200" y="24">|0⟩</text><text x="200" y="389">|1⟩</text></g>
+          <g fill="#6e8894" font-size="14" font-weight="700"><text x="333" y="159">x</text><text x="296" y="104">y</text></g>
+          <line id="qbb-vector" x1="200" y1="200" x2="200" y2="48" stroke="#d95445" stroke-width="10" stroke-linecap="round" marker-end="url(#qbb-arrow)" style="filter:drop-shadow(1px 3px 2px #6d4a3955)"/>
+          <circle cx="200" cy="200" r="13" fill="#c9a87b" stroke="#725839" stroke-width="4"/>
+          <circle cx="200" cy="200" r="4" fill="#fff0d0"/>
+          <circle id="qbb-tip" cx="200" cy="48" r="5" fill="#d95445"/>
+          <circle cx="200" cy="200" r="170" fill="none" stroke="#ffffff88" stroke-width="3"/>
+        </svg>
+      </div>
+      <div class="qbb-controls" aria-label="Quantum gate buttons">
+        <button class="qbb-btn qbb-x" type="button" data-gate="X" aria-label="Apply X flip gate">X<small>FLIP</small></button>
+        <button class="qbb-btn qbb-h" type="button" data-gate="H" aria-label="Apply Hadamard gate">H<small>MIX</small></button>
+        <button class="qbb-btn qbb-z" type="button" data-gate="Z" aria-label="Apply Z phase gate">Z<small>PHASE</small></button>
+        <button class="qbb-btn qbb-y" type="button" data-gate="Y" aria-label="Apply Y gate">Y<small>TURN</small></button>
         <button class="qbb-btn qbb-measure" type="button" id="qbb-measure">● MEASURE</button>
-        <button class="qbb-reset" type="button" id="qbb-reset">↺ Start over at |0⟩</button>
+        <button class="qbb-reset" type="button" id="qbb-reset">↺ RESET TO |0⟩</button>
       </div>
     </div>
     <div class="qbb-readouts">
-      <div class="qbb-outcome" aria-live="polite" aria-atomic="true"><span class="qbb-lamp" id="qbb-lamp"></span><span id="qbb-message">Ready! Try pressing X or H.</span></div>
-      <div class="qbb-prob">
-        <div><strong>0: <span id="qbb-p0">100%</span></strong><div class="qbb-bar"><div class="qbb-fill" id="qbb-fill0" style="width:100%"></div></div></div>
-        <div><strong>1: <span id="qbb-p1">0%</span></strong><div class="qbb-bar"><div class="qbb-fill one" id="qbb-fill1" style="width:0%"></div></div></div>
-      </div>
-      <p class="qbb-meta" id="qbb-state">The qubit begins at |0⟩, pointing up.</p>
+      <div class="qbb-light-panel"><h3>MEASUREMENT LIGHTS</h3><div class="qbb-lights"><span class="qbb-led"><span class="qbb-lamp" id="qbb-lamp0"></span>0</span><span class="qbb-led"><span class="qbb-lamp" id="qbb-lamp1"></span>1</span></div></div>
+      <div class="qbb-light-panel"><h3>CHANCE OF EACH RESULT</h3><div class="qbb-probabilities">
+        <div><strong>0 · <span id="qbb-p0">100%</span></strong><div class="qbb-bar"><div class="qbb-fill" id="qbb-fill0" style="width:100%"></div></div></div>
+        <div><strong>1 · <span id="qbb-p1">0%</span></strong><div class="qbb-bar"><div class="qbb-fill one" id="qbb-fill1" style="width:0%"></div></div></div>
+      </div></div>
     </div>
+    <p class="qbb-status" id="qbb-message" aria-live="polite" aria-atomic="true">Ready! Try the big red X button.</p>
+    <p class="qbb-meta" id="qbb-state">The qubit begins at |0⟩.</p>
   </div>
   <section class="qbb-explain">
-    <h2>What are the buttons doing?</h2>
-    <p><strong>X</strong> flips the qubit, <strong>H</strong> rotates it into or out of a superposition, <strong>Z</strong> changes its phase, and <strong>Y</strong> rotates around another axis. Unlike an ordinary bit, the qubit can point in many directions. The sphere tracks a pure single-qubit state.</p>
-    <p><strong>Try this:</strong> press H, then Measure. Reset and try again. You may get either answer. Measure collapses the state to |0⟩ or |1⟩. The bars show the probabilities <em>before</em> you measure, and update after collapse.</p>
-    <p class="qbb-meta">A touch-friendly educational simulation of ideal gates and computational-basis measurement. No real quantum hardware is involved.</p>
+    <h2>Little buttons, real quantum rules</h2>
+    <p>The wooden frame, round viewing window, protected pointer and oversized buttons are a digital model for a future physical busy board. <strong>X</strong> flips a state, <strong>H</strong> changes its superposition, <strong>Z</strong> changes relative phase and <strong>Y</strong> rotates around a different axis. The displayed arrow is a 2D projection of the 3D Bloch vector, so distinct positions in depth can sometimes overlap.</p>
+    <p><strong>Try it:</strong> press H, then Measure. Reset and try again. You may see 0 or 1, each with a 50% chance. Measurement updates the state to the outcome, so the result becomes certain until another gate changes it.</p>
+    <p class="qbb-meta">A simulation of ideal single-qubit gates and computational-basis measurement. No quantum hardware is used.</p>
   </section>
 </div>
 <script>
 (function(){
-  "use strict";
-  const root=document.getElementById("qubit-busy-board"); if(!root)return;
-  const find=id=>document.getElementById(id);
-  let x=0,y=0,z=1;
-  const message=find("qbb-message"),lamp=find("qbb-lamp");
-  const clip=v=>Math.max(-1,Math.min(1,v));
-  function render(){
-    const p0=clip((1+z)/2),p1=1-p0;
-    find("qbb-p0").textContent=Math.round(p0*100)+"%";
-    find("qbb-p1").textContent=Math.round(p1*100)+"%";
-    find("qbb-fill0").style.width=(100*p0)+"%";
-    find("qbb-fill1").style.width=(100*p1)+"%";
-    const px=200+148*(.84*x+.48*y),py=200+148*(.28*x-.49*y-.82*z);
-    const v=find("qbb-vector");v.setAttribute("x2",px);v.setAttribute("y2",py);
-    const tip=find("qbb-tip");tip.setAttribute("cx",px);tip.setAttribute("cy",py);
-    find("qbb-state").textContent="State on Bloch sphere: ("+[x,y,z].map(v=>(Math.abs(v)<1e-10?0:v).toFixed(2)).join(", ")+")";
-  }
-  function gate(g){
-    const a=x,b=y,c=z;
-    if(g==="X"){x=a;y=-b;z=-c}
-    if(g==="Y"){x=-a;y=b;z=-c}
-    if(g==="Z"){x=-a;y=-b;z=c}
-    if(g==="H"){x=c;y=-b;z=a}
-    lamp.className="qbb-lamp";
-    message.textContent=g+" gate applied. Try another button!";
-    render();
-  }
-  root.querySelectorAll("[data-gate]").forEach(b=>b.addEventListener("click",()=>gate(b.dataset.gate)));
-  find("qbb-measure").addEventListener("click",()=>{
-    const one=Math.random()<(1-z)/2;
-    x=0;y=0;z=one?-1:1;
-    lamp.className="qbb-lamp "+(one?"active-one":"active-zero");
-    message.textContent="You measured "+(one?"1":"0")+"!";
-    render();
-  });
-  find("qbb-reset").addEventListener("click",()=>{
-    x=0;y=0;z=1;lamp.className="qbb-lamp";
-    message.textContent="Back to |0⟩. What will you try?";render();
-  });
+"use strict";
+const root=document.getElementById("qubit-busy-board");if(!root)return;
+const find=id=>document.getElementById(id);
+let x=0,y=0,z=1;
+const message=find("qbb-message"),lamp0=find("qbb-lamp0"),lamp1=find("qbb-lamp1");
+const clip=v=>Math.max(-1,Math.min(1,v));
+function render(){
+  const p0=clip((1+z)/2),p1=1-p0;
+  find("qbb-p0").textContent=Math.round(p0*100)+"%";
+  find("qbb-p1").textContent=Math.round(p1*100)+"%";
+  find("qbb-fill0").style.width=(100*p0)+"%";
+  find("qbb-fill1").style.width=(100*p1)+"%";
+  const px=200+151*(.84*x+.48*y),py=200+151*(.28*x-.49*y-.99*z);
+  const vector=find("qbb-vector");vector.setAttribute("x2",px);vector.setAttribute("y2",py);
+  const tip=find("qbb-tip");tip.setAttribute("cx",px);tip.setAttribute("cy",py);
+  find("qbb-state").textContent="Bloch vector: ("+[x,y,z].map(v=>(Math.abs(v)<1e-10?0:v).toFixed(2)).join(", ")+")";
+}
+function clearLamps(){lamp0.className="qbb-lamp";lamp1.className="qbb-lamp"}
+function gate(g){
+  const a=x,b=y,c=z;
+  if(g==="X"){x=a;y=-b;z=-c}
+  if(g==="Y"){x=-a;y=b;z=-c}
+  if(g==="Z"){x=-a;y=-b;z=c}
+  if(g==="H"){x=c;y=-b;z=a}
+  clearLamps();message.textContent=g+" gate! The pointer moved.";
   render();
+}
+root.querySelectorAll("[data-gate]").forEach(b=>b.addEventListener("click",()=>gate(b.dataset.gate)));
+find("qbb-measure").addEventListener("click",()=>{
+  const one=Math.random()<(1-z)/2;
+  x=0;y=0;z=one?-1:1;clearLamps();
+  (one?lamp1:lamp0).classList.add(one?"active-one":"active-zero");
+  message.textContent="The light says "+(one?"1":"0")+"!";
+  render();
+});
+find("qbb-reset").addEventListener("click",()=>{
+  x=0;y=0;z=1;clearLamps();message.textContent="Back at |0⟩. Press another button!";render();
+});
+render();
 })();
 </script>
