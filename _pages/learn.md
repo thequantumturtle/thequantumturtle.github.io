@@ -15,14 +15,14 @@ author_profile: false
   <section class="qt-section qt-learn-band">
     <div>
       <p class="qt-kicker">Start here</p>
-      <h2>Programming Quantum Computers</h2>
-      <p>If you’re new to quantum computing and want a structured path, this is the best place to start.</p>
-      <a href="/courses/2026-Fall-17617/homepage/">Open the Fall 2026 course →</a>
+      <h2>What does a qubit add to a bit?</h2>
+      <p>Compare bits, probabilistic bits, and qubits. Experiment with phase and gates, then reconstruct a hidden state through one-qubit tomography.</p>
+      <a href="/learn/one-qubit/">Open the interactive one-qubit lab →</a>
     </div>
     <div class="qt-featured-resource">
-      <p class="qt-meta">Carnegie Mellon University · Fall 2026</p>
-      <h3>From qubits to algorithms</h3>
-      <p>Qubits · Gates · Multi-qubit systems · Teleportation · QKD · Algorithms</p>
+      <p class="qt-meta">Interactive learning · Module 1</p>
+      <h3>From probabilities to tomography</h3>
+      <p>Bits · Amplitudes · Phase · Gates · Tomography · Mixtures</p>
     </div>
   </section>
 
@@ -56,6 +56,7 @@ author_profile: false
         <h3>Teaching archive</h3>
         <p>Past and current courses in quantum computing and quantum machine learning.</p>
         <a href="/teaching/">Browse teaching →</a>
+        <p><a href="/courses/2026-Fall-17617/homepage/">Programming Quantum Computers · Fall 2026 →</a></p>
       </article>
       <article>
         <h3>Classroom resources</h3>
