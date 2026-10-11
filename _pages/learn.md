@@ -48,6 +48,11 @@ author_profile: false
     </div>
     <div class="qt-focus-list">
       <article>
+        <h3>My First Qubit: Circle Notation</h3>
+        <p>Turn the balance and phase controls to explore every pure single-qubit state, then apply gates and measure.</p>
+        <a href="/learn/my-first-qubit/">Try the interactive busy board →</a>
+      </article>
+      <article>
         <h3>Qubit Busy Board</h3>
         <p>Press colorful quantum gates, move a Bloch sphere, and discover what happens when you measure.</p>
         <a href="/learn/qubit-busy-board/">Play with the qubit →</a>
