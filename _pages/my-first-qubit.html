@@ -1,0 +1,117 @@
+---
+layout: single
+title: "My First Qubit: Circle Notation Busy Board"
+permalink: /learn/my-first-qubit/
+author_profile: false
+---
+<style>
+.mfq{max-width:950px;margin:auto;color:#473723;font-family:system-ui,-apple-system,sans-serif}
+.mfq *{box-sizing:border-box}
+.mfq header{text-align:center;padding:10px 0 24px}
+.mfq h1{font-size:clamp(2rem,5vw,3rem);color:#473723;margin:.4rem 0}
+.mfq header p{max-width:620px;margin:8px auto;font-size:1.05rem;line-height:1.5}
+.mfq-board{background:repeating-linear-gradient(4deg,#e3b984 0 22px,#e9c391 23px 44px);border:13px solid #a97444;border-radius:34px;padding:clamp(12px,3vw,27px);box-shadow:inset 0 0 0 3px #f4ddb0,0 12px 0 #8b5f39,0 22px 30px #493a2733;position:relative}
+.mfq-brand{text-align:center;font-size:.86rem;font-weight:900;letter-spacing:.14em;color:#745133;margin-bottom:16px}
+.mfq-screen{border:7px solid #87643d;border-radius:22px;padding:20px;background:#f6ecd5;box-shadow:inset 0 4px 10px #8b613d45}
+.mfq-display{display:grid;grid-template-columns:1fr 1fr;gap:clamp(8px,2vw,28px);max-width:620px;margin:0 auto}
+.mfq-state{text-align:center;font-weight:900;color:#493a2e}
+.mfq-state svg{width:100%;max-width:260px;display:block;margin:auto;filter:drop-shadow(0 4px 2px #75644a30)}
+.mfq-state span{font-size:1.22rem}
+.mfq-outcome{display:flex;justify-content:center;align-items:center;gap:20px;margin-top:17px}
+.mfq-lamp-group{display:flex;align-items:center;gap:8px;font-weight:900}
+.mfq-lamp{height:31px;width:31px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#b9b8ab,#767a73);border:4px solid #b19b7a;box-shadow:inset 0 0 7px #655c52}
+.mfq-lamp.on0{background:radial-gradient(circle at 35% 25%,white,#67c8ff 45%,#167dc0);box-shadow:0 0 17px #35b4fd}
+.mfq-lamp.on1{background:radial-gradient(circle at 35% 25%,white,#f9b279 45%,#d86f38);box-shadow:0 0 17px #ed9855}
+.mfq-controls{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:20px}
+.mfq-knob{border-radius:20px;background:#f8e6c2;border:4px solid #a98257;padding:14px;text-align:center}
+.mfq-knob label{display:block;font-weight:900;font-size:1.05rem}
+.mfq-knob input{width:100%;margin:12px 0;accent-color:#715b8e;cursor:pointer}
+.mfq-knob strong{font-size:1.12rem}
+.mfq-knob p{font-size:.83rem;margin:5px 0;color:#6b5942}
+.mfq-gates{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:25px}
+.mfq-gate{border:5px solid #ffffff88;border-radius:50%;aspect-ratio:1/1;min-height:65px;font-size:clamp(1.6rem,4vw,2.5rem);font-weight:950;color:white;box-shadow:0 7px 0 #74573b,0 10px 10px #392c2040;cursor:pointer;touch-action:manipulation}
+.mfq-gate:active{transform:translateY(6px);box-shadow:0 1px 0 #74573b}
+.mfq-gate.x{background:#d66759}.mfq-gate.y{background:#9870b9}.mfq-gate.z{background:#598fc8}.mfq-gate.h{background:#e9bd50;color:#473723}
+.mfq-bottom{display:grid;grid-template-columns:2fr 1fr;gap:14px;margin-top:22px}
+.mfq-bottom button{cursor:pointer;min-height:65px;border-radius:18px;font-size:1.15rem;font-weight:900;border:4px solid #f3e1bc}
+.mfq-measure{background:#4c9e72;color:white}.mfq-reset{background:#f9edd5;color:#604d35}
+.mfq-info{text-align:center;font-weight:800;margin:16px 0 0;min-height:1.5em}
+.mfq-explain{margin-top:30px;line-height:1.7}.mfq-explain h2{color:#493a2e}
+.mfq-note{color:#74614b;font-size:.88rem}
+.mfq button:focus-visible,.mfq input:focus-visible{outline:4px solid #203f68;outline-offset:4px}
+@media(max-width:520px){.mfq-board{border-width:8px}.mfq-screen{padding:10px}.mfq-knob{padding:10px}.mfq-controls{gap:9px}.mfq-knob label{font-size:.94rem}.mfq-gates{gap:7px}.mfq-bottom{gap:8px}.mfq-bottom button{font-size:.93rem}}
+</style>
+<div class="mfq" id="my-first-qubit">
+<header><p class="qt-kicker">The Quantum Turtle · Quantum Play Lab</p><h1>My First Qubit</h1><p>Two glowing circles, two knobs, and real quantum rules. Turn a knob to make any pure qubit state.</p></header>
+<div class="mfq-board">
+<div class="mfq-brand">MY FIRST QUBIT · PLAY WITH LIGHT</div>
+<div class="mfq-screen">
+<div class="mfq-display">
+<div class="mfq-state"><svg viewBox="0 0 220 220" role="img" aria-label="Circle for amplitude zero"><circle cx="110" cy="110" r="96" fill="#e2d6be" stroke="#927b5b" stroke-width="4"/><circle cx="110" cy="110" r="96" fill="none" stroke="#fcf6e8" stroke-width="3"/><circle id="mfq-circle0" cx="110" cy="110" r="96" fill="#5d9ed0"/><line id="mfq-hand0" x1="110" y1="110" x2="110" y2="14" stroke="#293f4c" stroke-width="6" stroke-linecap="round"/><circle cx="110" cy="110" r="5" fill="#293f4c"/></svg><span>|0⟩ · <span id="mfq-p0">100%</span></span></div>
+<div class="mfq-state"><svg viewBox="0 0 220 220" role="img" aria-label="Circle for amplitude one"><circle cx="110" cy="110" r="96" fill="#e2d6be" stroke="#927b5b" stroke-width="4"/><circle cx="110" cy="110" r="96" fill="none" stroke="#fcf6e8" stroke-width="3"/><circle id="mfq-circle1" cx="110" cy="110" r="0" fill="#e99b66"/><line id="mfq-hand1" x1="110" y1="110" x2="110" y2="110" stroke="#293f4c" stroke-width="6" stroke-linecap="round"/><circle cx="110" cy="110" r="5" fill="#293f4c"/></svg><span>|1⟩ · <span id="mfq-p1">0%</span></span></div>
+</div>
+<div class="mfq-outcome" aria-label="Measurement indicator lights"><span class="mfq-lamp-group"><span class="mfq-lamp" id="mfq-lamp0"></span>0</span><span class="mfq-lamp-group"><span class="mfq-lamp" id="mfq-lamp1"></span>1</span></div>
+</div>
+<div class="mfq-controls">
+<div class="mfq-knob"><label for="mfq-balance">BALANCE · θ</label><input type="range" id="mfq-balance" min="0" max="180" step="1" value="0"/><strong id="mfq-theta">0°</strong><p>Choose how much 0 and 1</p></div>
+<div class="mfq-knob"><label for="mfq-phase">PHASE · φ</label><input type="range" id="mfq-phase" min="0" max="360" step="1" value="0"/><strong id="mfq-phi">0°</strong><p>Turn the second clock hand</p></div>
+</div>
+<div class="mfq-gates" aria-label="Quantum gate buttons"><button type="button" class="mfq-gate x" data-gate="X">X</button><button type="button" class="mfq-gate h" data-gate="H">H</button><button type="button" class="mfq-gate z" data-gate="Z">Z</button><button type="button" class="mfq-gate y" data-gate="Y">Y</button></div>
+<div class="mfq-bottom"><button type="button" class="mfq-measure" id="mfq-measure">● MEASURE</button><button type="button" class="mfq-reset" id="mfq-reset">↺ RESET</button></div>
+<p class="mfq-info" aria-live="polite" id="mfq-info">Start at |0⟩. Turn either knob!</p>
+</div>
+<div class="mfq-explain">
+<h2>How the two knobs work</h2>
+<p><strong>Balance</strong> changes the relative probability of the two outcomes, from all 0 to all 1. <strong>Phase</strong> rotates the clock hand for the |1⟩ amplitude, showing its phase relative to the |0⟩ amplitude. The |0⟩ hand is the fixed reference. At the poles, the relative phase is physically irrelevant.</p>
+<p>Filled <em>area</em>, not radius, represents the probability. Together the two controls can express every <strong>pure</strong> single-qubit state, but not arbitrary mixed states.</p>
+<p>Try <strong>H → Z → H → MEASURE</strong> from |0⟩: the answer is always 1. Or turn BALANCE to 90° and see that the outcomes have equal probability.</p>
+<p class="mfq-note">Interactive concept for a potential physical busy board. In a real toy, the sliders would become robust rotary encoders and the circles could be displays behind protected windows. This is a classical simulator, not quantum hardware.</p>
+</div>
+</div>
+<script>
+(function(){
+"use strict";
+const root=document.getElementById("my-first-qubit");if(!root)return;
+const el=id=>document.getElementById(id);
+const d2r=Math.PI/180,r2d=180/Math.PI,clamp=n=>Math.max(-1,Math.min(1,n));
+let x=0,y=0,z=1,phaseMemory=0;
+const balance=el("mfq-balance"),phase=el("mfq-phase"),info=el("mfq-info");
+function setFromAngles(t,p){const T=t*d2r,P=p*d2r;x=Math.sin(T)*Math.cos(P);y=Math.sin(T)*Math.sin(P);z=Math.cos(T);phaseMemory=p%360;if(phaseMemory<0)phaseMemory+=360;clearLamps();render()}
+function clearLamps(){el("mfq-lamp0").className="mfq-lamp";el("mfq-lamp1").className="mfq-lamp"}
+function render(){
+const theta=Math.acos(clamp(z))*r2d;
+const phi=Math.hypot(x,y)>1e-8?((Math.atan2(y,x)*r2d+360)%360):phaseMemory;
+const p0=clamp((1+z)/2),p1=1-p0;
+balance.value=Math.round(theta);phase.value=Math.round(phi);
+el("mfq-theta").textContent=Math.round(theta)+"°";el("mfq-phi").textContent=Math.round(phi)+"°";
+[[p0,0],[p1,1]].forEach(([p,i])=>{
+const radius=96*Math.sqrt(p);
+el("mfq-circle"+i).setAttribute("r",radius);
+el("mfq-p"+i).textContent=Math.round(p*100)+"%";
+const line=el("mfq-hand"+i);const a=(i?phi:0)*d2r;const active=p>1e-9;
+line.setAttribute("x2",110+(active?radius*Math.sin(a):0));
+line.setAttribute("y2",110-(active?radius*Math.cos(a):0));
+line.style.visibility=active?"visible":"hidden";
+});
+}
+balance.addEventListener("input",()=>{setFromAngles(Number(balance.value),Number(phase.value));info.textContent="Balance changed!"});
+phase.addEventListener("input",()=>{setFromAngles(Number(balance.value),Number(phase.value));info.textContent="Relative phase changed!"});
+root.querySelectorAll("[data-gate]").forEach(button=>button.addEventListener("click",()=>{
+const a=x,b=y,c=z,g=button.dataset.gate;
+if(g==="X"){x=a;y=-b;z=-c}
+else if(g==="Y"){x=-a;y=b;z=-c}
+else if(g==="Z"){x=-a;y=-b;z=c}
+else if(g==="H"){x=c;y=-b;z=a}
+if(Math.hypot(x,y)>1e-8)phaseMemory=(Math.atan2(y,x)*r2d+360)%360;
+clearLamps();render();info.textContent=g+" gate applied!";
+}));
+el("mfq-measure").addEventListener("click",()=>{
+const one=Math.random()<(1-z)/2;
+x=0;y=0;z=one?-1:1;clearLamps();
+el("mfq-lamp"+(one?1:0)).classList.add(one?"on1":"on0");
+render();info.textContent="Measured "+(one?"1":"0")+"!";
+});
+el("mfq-reset").addEventListener("click",()=>{x=0;y=0;z=1;phaseMemory=0;clearLamps();render();info.textContent="Ready! Back at |0⟩."});
+render();
+})();
+</script>
