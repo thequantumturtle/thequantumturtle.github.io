@@ -353,3 +353,75 @@ body:has(.qt-home) .masthead__menu-item:not(.masthead__menu-item--lg) a {
     display: none;
   }
 }
+
+
+/* Course showcase: two clear entry points instead of another generic three-column list. */
+.qt-courses {
+  padding-top: clamp(2.5rem, 4vw, 4rem);
+}
+.qt-courses__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.qt-courses__header h2 { margin-bottom: .35rem; }
+.qt-courses__header p { max-width: 39rem; margin-bottom: 0; }
+.qt-courses__archive-link { flex: 0 0 auto; padding-bottom: .4rem; }
+.qt-courses__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+.qt-home a.qt-course-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: clamp(1.4rem, 2.5vw, 2rem);
+  border: 1px solid var(--qt-border);
+  border-radius: 4px;
+  background: #f0eee6;
+  color: #282722;
+  text-decoration: none;
+  transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+}
+.qt-home a.qt-course-card:hover,
+.qt-home a.qt-course-card:focus-visible {
+  border-color: var(--qt-forest);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(35, 48, 38, .07);
+}
+.qt-course-card__top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  margin-bottom: 1.7rem;
+  color: var(--qt-slate);
+  font-family: "IBM Plex Mono", Consolas, monospace;
+  font-size: .72rem;
+  letter-spacing: .055em;
+  text-transform: uppercase;
+}
+.qt-course-card__code { color: var(--qt-forest); font-weight: 700; }
+.qt-home .qt-course-card h3 {
+  max-width: 19ch;
+  margin: 0 0 .65rem;
+  color: var(--qt-forest);
+  font-family: Literata, Georgia, serif;
+  font-size: clamp(1.3rem, 2vw, 1.75rem);
+  line-height: 1.25;
+}
+.qt-home .qt-course-card p { max-width: 38ch; margin-bottom: 1.8rem; font-weight: 400; }
+.qt-course-card__action {
+  margin-top: auto;
+  color: var(--qt-forest);
+  font-size: .88rem;
+  font-weight: 700;
+}
+@media (max-width: 800px) {
+  .qt-courses__header { align-items: start; flex-direction: column; }
+  .qt-courses__grid { grid-template-columns: 1fr; }
+}
