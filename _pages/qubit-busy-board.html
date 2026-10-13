@@ -47,10 +47,34 @@ author_profile: false
 .qbb-explain h2{color:#35493b}
 @media(max-width:720px){.qbb-grid{grid-template-columns:1fr;gap:18px}.qbb-display{max-width:390px}.qbb-controls{max-width:390px;margin:auto;width:100%}.qbb-btn{min-height:92px}.qbb-panel{border-width:9px}.qbb-readouts{grid-template-columns:1fr}.qbb-light-panel{padding:10px}}
 @media(prefers-reduced-motion:reduce){.qbb *{transition:none!important}}
+
+/* Direct state controls and guided exploration, parallel to My First Qubit. */
+.qbb-intro{max-width:680px;margin:.5rem auto 0}
+.qbb-step{margin:0 0 .9rem;font-weight:800;font-size:1rem;color:#624c35}
+.qbb-state-controls{margin-top:23px;padding:18px;border:4px solid #a98257;border-radius:20px;background:#f8e6c2}
+.qbb-state-controls h2{font-family:system-ui,-apple-system,sans-serif;font-size:1.25rem;color:#493a2e;margin:0 0 4px}
+.qbb-state-controls>p{font-size:.88rem;margin:0 0 14px;color:#6b5942}
+.qbb-sliders{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.qbb-slider{display:block;border:2px solid #c9a879;border-radius:15px;padding:12px;background:#f9edd6;font-size:.95rem;font-weight:800}
+.qbb-slider span{display:flex;justify-content:space-between;gap:.5rem}
+.qbb-slider input{width:100%;margin:13px 0 4px;accent-color:#715b8e;cursor:pointer}
+.qbb-slider small{display:block;color:#705e48;font-size:.78rem;font-weight:500}
+.qbb-presets{display:flex;gap:.55rem;flex-wrap:wrap;margin-top:14px;align-items:center}
+.qbb-presets>span{font-weight:800;font-size:.85rem}
+.qbb-presets button{border:2px solid #a98257;border-radius:999px;background:#fff8e9;color:#473723;padding:.38rem .72rem;font-weight:800;cursor:pointer}
+.qbb-presets button:hover,.qbb-presets button:focus-visible{background:#dfecd9;border-color:#456e4e}
+.qbb-state-controls button:focus-visible,.qbb-slider input:focus-visible{outline:3px solid #203f68;outline-offset:3px}
+.qbb-guide{margin-top:1.4rem;padding:1.2rem 1.4rem;border-left:4px solid #4c9e72;background:#f8edd5;border-radius:3px}
+.qbb-guide h2{font-size:1.25rem;margin:0 0 .4rem}
+.qbb-guide ol{margin:.6rem 0;padding-left:1.3rem}
+.qbb-guide li{margin:.3rem 0}
+.qbb-guide a{color:#2f4a38}
+.qbb-coordinates{font-variant-numeric:tabular-nums}
+@media(max-width:600px){.qbb-sliders{grid-template-columns:1fr}.qbb-state-controls{padding:12px}}
 </style>
 
 <div class="qbb" id="qubit-busy-board">
-  <header class="qbb-head"><p class="qt-kicker">The Quantum Turtle · A hands-on experiment</p><h1>The Qubit Busy Board</h1><p>A little wooden toy for a very curious qubit. Press a button and see what moves!</p></header>
+  <header class="qbb-head"><p class="qt-kicker">The Quantum Turtle · A hands-on experiment</p><h1>The Qubit Busy Board</h1><p>A little wooden toy for a very curious qubit. Press a gate, explore any pure qubit state with two controls, then measure what happens.</p></header>
   <div class="qbb-panel">
     <i aria-hidden="true" class="qbb-screw qbb-tl"></i><i aria-hidden="true" class="qbb-screw qbb-tr"></i><i aria-hidden="true" class="qbb-screw qbb-bl"></i><i aria-hidden="true" class="qbb-screw qbb-br"></i>
     <p class="qbb-brand">QUANTUM PLAY LAB · NO. 01</p>
@@ -89,6 +113,30 @@ author_profile: false
         <button class="qbb-reset" type="button" id="qbb-reset">↺ RESET TO |0⟩</button>
       </div>
     </div>
+    <section class="qbb-state-controls" aria-labelledby="qbb-state-controls-title">
+      <h2 id="qbb-state-controls-title">Choose a state</h2>
+      <p>Move the pointer yourself. Balance chooses the chance of 0 or 1; phase rotates around the sphere. These controls can reach every pure single-qubit state.</p>
+      <div class="qbb-sliders">
+        <label class="qbb-slider" for="qbb-theta">
+          <span>Balance · θ <output id="qbb-theta-value" for="qbb-theta">0°</output></span>
+          <input type="range" id="qbb-theta" min="0" max="180" step="1" value="0">
+          <small>Top |0⟩ → Equator → Bottom |1⟩</small>
+        </label>
+        <label class="qbb-slider" for="qbb-phi">
+          <span>Phase · φ <output id="qbb-phi-value" for="qbb-phi">0°</output></span>
+          <input type="range" id="qbb-phi" min="0" max="360" step="1" value="0">
+          <small>Rotate around the equator</small>
+        </label>
+      </div>
+      <div class="qbb-presets" aria-label="Example states">
+        <span>Try a state:</span>
+        <button type="button" data-state="zero">|0⟩</button>
+        <button type="button" data-state="one">|1⟩</button>
+        <button type="button" data-state="plus">|+⟩</button>
+        <button type="button" data-state="minus">|−⟩</button>
+        <button type="button" data-state="plus-i">|+i⟩</button>
+      </div>
+    </section>
     <div class="qbb-readouts">
       <div class="qbb-light-panel"><h3>MEASUREMENT LIGHTS</h3><div class="qbb-lights"><span class="qbb-led"><span class="qbb-lamp" id="qbb-lamp0"></span>0</span><span class="qbb-led"><span class="qbb-lamp" id="qbb-lamp1"></span>1</span></div></div>
       <div class="qbb-light-panel"><h3>CHANCE OF EACH RESULT</h3><div class="qbb-probabilities">
@@ -99,9 +147,19 @@ author_profile: false
     <p class="qbb-status" id="qbb-message" aria-live="polite" aria-atomic="true">Ready! Try the big red X button.</p>
     <p class="qbb-meta" id="qbb-state">The qubit begins at |0⟩.</p>
   </div>
+  <section class="qbb-guide" aria-label="Try these experiments">
+    <h2>Try this first</h2>
+    <ol>
+      <li>Choose <strong>|0⟩</strong> and watch the pointer point up.</li>
+      <li>Press <strong>H</strong>. The pointer moves to the equator and measurement becomes 50/50.</li>
+      <li>Press <strong>Z</strong>. The probabilities stay the same, but the pointer changes direction.</li>
+      <li>Press <strong>H</strong> again, then <strong>Measure</strong>. You should always get 1.</li>
+    </ol>
+    <p>Prefer the two-circle view? <a href="/learn/my-first-qubit/">Try My First Qubit →</a></p>
+  </section>
   <section class="qbb-explain">
     <h2>Little buttons, real quantum rules</h2>
-    <p>The wooden frame, round viewing window, protected pointer and oversized buttons are a digital model for a future physical busy board. <strong>X</strong> flips a state, <strong>H</strong> changes its superposition, <strong>Z</strong> changes relative phase and <strong>Y</strong> rotates around a different axis. The displayed arrow is a 2D projection of the 3D Bloch vector, so distinct positions in depth can sometimes overlap.</p>
+    <p>The wooden frame, round viewing window, protected pointer and oversized buttons are a digital model for a future physical busy board. <strong>X</strong> flips a state, <strong>H</strong> changes its superposition, <strong>Z</strong> changes relative phase and <strong>Y</strong> rotates around a different axis. The displayed arrow is a 2D projection of the 3D Bloch vector, so distinct positions in depth can sometimes overlap. The balance and phase controls follow the standard Bloch angles: θ is measured down from the north pole and φ rotates around the equator. Phase has no observable effect at either pole.</p>
     <p><strong>Try it:</strong> press H, then Measure. Reset and try again. You may see 0 or 1, each with a 50% chance. Measurement updates the state to the outcome, so the result becomes certain until another gate changes it.</p>
     <p class="qbb-meta">A simulation of ideal single-qubit gates and computational-basis measurement. No quantum hardware is used.</p>
   </section>
@@ -111,11 +169,16 @@ author_profile: false
 "use strict";
 const root=document.getElementById("qubit-busy-board");if(!root)return;
 const find=id=>document.getElementById(id);
-let x=0,y=0,z=1;
+let x=0,y=0,z=1,phaseMemory=0;
 const message=find("qbb-message"),lamp0=find("qbb-lamp0"),lamp1=find("qbb-lamp1");
 const clip=v=>Math.max(-1,Math.min(1,v));
+const deg=Math.PI/180;
+const theta=find("qbb-theta"),phi=find("qbb-phi");
+function setAngles(t,p){const T=t*deg,P=p*deg;x=Math.sin(T)*Math.cos(P);y=Math.sin(T)*Math.sin(P);z=Math.cos(T);phaseMemory=((p%360)+360)%360;clearLamps();render();}
+function syncAngles(){const t=Math.acos(clip(z))/deg;const p=Math.hypot(x,y)>1e-8?((Math.atan2(y,x)/deg+360)%360):phaseMemory;theta.value=Math.round(t);phi.value=Math.round(p);find("qbb-theta-value").textContent=Math.round(t)+"°";find("qbb-phi-value").textContent=Math.round(p)+"°";}
 function render(){
   const p0=clip((1+z)/2),p1=1-p0;
+  syncAngles();
   find("qbb-p0").textContent=Math.round(p0*100)+"%";
   find("qbb-p1").textContent=Math.round(p1*100)+"%";
   find("qbb-fill0").style.width=(100*p0)+"%";
@@ -132,9 +195,14 @@ function gate(g){
   if(g==="Y"){x=-a;y=b;z=-c}
   if(g==="Z"){x=-a;y=-b;z=c}
   if(g==="H"){x=c;y=-b;z=a}
-  clearLamps();message.textContent=g+" gate! The pointer moved.";
+  if(Math.hypot(x,y)>1e-8)phaseMemory=(Math.atan2(y,x)/deg+360)%360;
+  clearLamps();message.textContent=g+" gate applied. Watch the arrow and the probability bars.";
   render();
 }
+theta.addEventListener("input",()=>{setAngles(Number(theta.value),Number(phi.value));message.textContent="Balance adjusted. See how the measurement chances change.";});
+phi.addEventListener("input",()=>{setAngles(Number(theta.value),Number(phi.value));message.textContent="Phase adjusted. The arrow turns around the sphere.";});
+const presets={zero:[0,0],one:[180,0],plus:[90,0],minus:[90,180],"plus-i":[90,90]};
+root.querySelectorAll("[data-state]").forEach(b=>b.addEventListener("click",()=>{const [t,p]=presets[b.dataset.state];setAngles(t,p);message.textContent="Prepared "+b.textContent+"."; }));
 root.querySelectorAll("[data-gate]").forEach(b=>b.addEventListener("click",()=>gate(b.dataset.gate)));
 find("qbb-measure").addEventListener("click",()=>{
   const one=Math.random()<(1-z)/2;
@@ -144,7 +212,7 @@ find("qbb-measure").addEventListener("click",()=>{
   render();
 });
 find("qbb-reset").addEventListener("click",()=>{
-  x=0;y=0;z=1;clearLamps();message.textContent="Back at |0⟩. Press another button!";render();
+  x=0;y=0;z=1;phaseMemory=0;clearLamps();message.textContent="Back at |0⟩. Press another button!";render();
 });
 render();
 })();
