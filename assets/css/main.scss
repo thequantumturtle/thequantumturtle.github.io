@@ -425,3 +425,97 @@ body:has(.qt-home) .masthead__menu-item:not(.masthead__menu-item--lg) a {
   .qt-courses__header { align-items: start; flex-direction: column; }
   .qt-courses__grid { grid-template-columns: 1fr; }
 }
+
+
+/* Teaching catalog: compact, scannable, course-number-first presentation. */
+.qt-teaching__hero {
+  max-width: 55rem;
+  padding: clamp(2.5rem, 5vw, 4.5rem) 0 clamp(2.5rem, 5vw, 4rem);
+}
+.qt-teaching__hero h1 {
+  max-width: 19ch;
+  font-size: clamp(2.3rem, 4.2vw, 4rem);
+  line-height: 1.13;
+}
+.qt-teaching__hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+.qt-teaching__catalog { padding: 2.5rem 0 4rem; border-top: 1px solid var(--qt-border); }
+.qt-teaching__catalog-heading { display: flex; justify-content: space-between; align-items: end; gap: 1.5rem; }
+.qt-teaching__catalog-heading p:last-child { max-width: 21rem; }
+.qt-teaching__index { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1.5rem 0 2rem; }
+.qt-home .qt-teaching__index a {
+  display: inline-block;
+  padding: .45rem .8rem;
+  border: 1px solid var(--qt-border);
+  border-radius: 3px;
+  background: #f0eee6;
+  color: var(--qt-forest);
+  font-family: "IBM Plex Mono", Consolas, monospace;
+  font-size: .78rem;
+  text-decoration: none;
+}
+.qt-home .qt-teaching__index a:hover,
+.qt-home .qt-teaching__index a:focus-visible { border-color: var(--qt-forest); }
+.qt-teaching__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.15rem; }
+.qt-teaching__card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: clamp(1.35rem, 2.5vw, 2rem);
+  border: 1px solid var(--qt-border);
+  border-radius: 4px;
+  background: #f0eee6;
+  scroll-margin-top: 6rem;
+}
+.qt-teaching__card-head { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .75rem; margin-bottom: 1.2rem; }
+.qt-teaching__number,
+.qt-teaching__count { font-family: "IBM Plex Mono", Consolas, monospace; font-size: .76rem; letter-spacing: .045em; }
+.qt-teaching__number { color: var(--qt-forest); font-weight: 700; }
+.qt-teaching__count { color: var(--qt-slate); }
+.qt-home .qt-teaching__card h3 {
+  max-width: 25ch;
+  margin: 0 0 .65rem;
+  font-family: Literata, Georgia, serif;
+  font-size: clamp(1.35rem, 2vw, 1.8rem);
+  line-height: 1.25;
+  color: var(--qt-forest);
+}
+.qt-teaching__description { margin: 0 0 2rem; }
+.qt-teaching__offerings { margin-top: auto; padding-top: 1.2rem; border-top: 1px solid var(--qt-border); }
+.qt-home .qt-teaching__offerings h4 {
+  margin: 0 0 .65rem;
+  font-family: "IBM Plex Mono", Consolas, monospace;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--qt-slate);
+}
+.qt-teaching__offerings ul { list-style: none; margin: 0; padding: 0; }
+.qt-teaching__offerings li { margin: 0; border-bottom: 1px solid var(--qt-border); }
+.qt-teaching__offerings li:last-child { border-bottom: 0; }
+.qt-home .qt-teaching__offerings a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: .65rem 0;
+  color: var(--qt-forest);
+  font-weight: 600;
+  text-decoration: none;
+}
+.qt-home .qt-teaching__offerings a:hover,
+.qt-home .qt-teaching__offerings a:focus-visible { text-decoration: underline; text-underline-offset: .2em; }
+.qt-teaching__closing {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  padding: 2.5rem 0 3rem;
+  border-top: 1px solid var(--qt-border);
+}
+.qt-teaching__closing > div { max-width: 37rem; }
+.qt-teaching__closing > a { flex: 0 0 auto; }
+@media (max-width: 800px) {
+  .qt-teaching__catalog-heading, .qt-teaching__closing { flex-direction: column; align-items: start; }
+  .qt-teaching__grid { grid-template-columns: 1fr; }
+}
