@@ -1,6 +1,9 @@
 # The following is the order of the links in the header of the website.
 
 main:
+  - title: "Courses"
+    url: /teaching/
+
   - title: "Learn"
     url: /learn/
 
