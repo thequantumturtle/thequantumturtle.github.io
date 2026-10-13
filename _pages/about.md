@@ -54,6 +54,34 @@ redirect_from:
     </div>
   </section>
 
+  <section class="qt-section" id="courses">
+    <div class="qt-section__heading">
+      <p class="qt-kicker">Teaching · Carnegie Mellon University</p>
+      <h2>Explore my courses</h2>
+      <p>Direct access to course materials, whether we're discussing introductory circuits or quantum machine learning.</p>
+    </div>
+    <div class="qt-focus-list">
+      <article>
+        <p class="qt-meta">17-617 · Fall 2026</p>
+        <h3>Programming Quantum Computers</h3>
+        <p>Hands-on quantum programming, from single qubits to algorithms.</p>
+        <a href="/courses/2026-Fall-17617/homepage/">View course materials →</a>
+      </article>
+      <article>
+        <p class="qt-meta">17-620 · Fall 2026</p>
+        <h3>Quantum Machine Learning</h3>
+        <p>Explore quantum machine learning through course materials and examples.</p>
+        <a href="/courses/2026-Fall-17620/homepage/">View course materials →</a>
+      </article>
+      <article>
+        <p class="qt-meta">All semesters</p>
+        <h3>Complete teaching archive</h3>
+        <p>Browse earlier offerings, including Applied Quantum Computing and past course materials.</p>
+        <a href="/teaching/">Browse all courses →</a>
+      </article>
+    </div>
+  </section>
+
   <section class="qt-section qt-learn-band">
     <div>
       <p class="qt-kicker">Learn</p>

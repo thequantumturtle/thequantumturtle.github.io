@@ -26,6 +26,34 @@ author_profile: false
     </div>
   </section>
 
+  <section class="qt-section" id="courses">
+    <div class="qt-section__heading">
+      <p class="qt-kicker">Carnegie Mellon University</p>
+      <h2>Course directory</h2>
+      <p>Choose a course directly, or explore the full teaching archive by semester.</p>
+    </div>
+    <div class="qt-focus-list">
+      <article>
+        <p class="qt-meta">17-617 · Fall 2026</p>
+        <h3>Programming Quantum Computers</h3>
+        <p>Learn quantum computing by programming quantum circuits.</p>
+        <a href="/courses/2026-Fall-17617/homepage/">Open 17-617 →</a>
+      </article>
+      <article>
+        <p class="qt-meta">17-620 · Fall 2026</p>
+        <h3>Quantum Machine Learning</h3>
+        <p>Course materials covering quantum approaches to machine learning.</p>
+        <a href="/courses/2026-Fall-17620/homepage/">Open 17-620 →</a>
+      </article>
+      <article>
+        <p class="qt-meta">Previous semesters</p>
+        <h3>All courses</h3>
+        <p>Find previous offerings of 17-617, 17-620, Applied Quantum Computing, and more.</p>
+        <a href="/teaching/">Browse teaching archive →</a>
+      </article>
+    </div>
+  </section>
+
   <section class="qt-section">
     <div class="qt-section__heading">
       <p class="qt-kicker">Approach</p>
