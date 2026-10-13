@@ -7,6 +7,13 @@ author_profile: true
 
 {% include base_path %}
 
-{% for post in site.teaching reversed %}
-  {% include archive-single.html %}
+<p>Browse my Carnegie Mellon University courses by course number. Within each course, the newest semester appears first.</p>
+
+{% assign courses_by_number = site.teaching | group_by_exp: "course", "course.title | split: ':' | first" | sort: "name" %}
+{% for course_group in courses_by_number %}
+  <h2 id="course-{{ course_group.name | slugify }}">{{ course_group.name }}</h2>
+  {% assign offerings = course_group.items | sort: "date" | reverse %}
+  {% for post in offerings %}
+    {% include archive-single.html %}
+  {% endfor %}
 {% endfor %}
