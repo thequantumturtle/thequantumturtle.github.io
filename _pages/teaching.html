@@ -1,19 +1,84 @@
 ---
-layout: archive
-title: "Teaching"
+layout: single
+title: ""
 permalink: /teaching/
-author_profile: true
+author_profile: false
 ---
 
-{% include base_path %}
+<div class="qt-home qt-subpage qt-teaching">
+  <section class="qt-teaching__hero">
+    <p class="qt-kicker">Teaching · Carnegie Mellon University</p>
+    <h1>Courses built to make quantum computing tangible.</h1>
+    <p class="qt-lede">From the first quantum circuit to quantum machine learning, these courses emphasize building, experimenting, and understanding what the results actually mean.</p>
+    <div class="qt-teaching__hero-actions">
+      <a class="qt-button qt-button--primary" href="#course-catalog">Browse courses ↓</a>
+      <a class="qt-button qt-button--quiet" href="/learn/">Interactive learning tools ↗</a>
+    </div>
+  </section>
 
-<p>Browse my Carnegie Mellon University courses by course number. Within each course, the newest semester appears first.</p>
+  {% assign courses_by_number = site.teaching | group_by_exp: "course", "course.title | split: ':' | first" | sort: "name" %}
+  <section class="qt-teaching__catalog" id="course-catalog" aria-labelledby="catalog-title">
+    <div class="qt-teaching__catalog-heading">
+      <div>
+        <p class="qt-kicker">Course catalog</p>
+        <h2 id="catalog-title">Find a course</h2>
+      </div>
+      <p>Select a semester to open its course materials.</p>
+    </div>
+    <nav class="qt-teaching__index" aria-label="Jump to course">
+      {% for course_group in courses_by_number %}
+        <a href="#course-{{ course_group.name | slugify }}">{{ course_group.name }}</a>
+      {% endfor %}
+    </nav>
 
-{% assign courses_by_number = site.teaching | group_by_exp: "course", "course.title | split: ':' | first" | sort: "name" %}
-{% for course_group in courses_by_number %}
-  <h2 id="course-{{ course_group.name | slugify }}">{{ course_group.name }}</h2>
-  {% assign offerings = course_group.items | sort: "date" | reverse %}
-  {% for post in offerings %}
-    {% include archive-single.html %}
-  {% endfor %}
-{% endfor %}
+    <div class="qt-teaching__grid">
+      {% for course_group in courses_by_number %}
+        {% assign offerings = course_group.items | sort: "date" | reverse %}
+        {% assign latest = offerings | first %}
+        {% assign latest_title = latest.title | split: ': ' | last %}
+        <article class="qt-teaching__card" id="course-{{ course_group.name | slugify }}">
+          <div class="qt-teaching__card-head">
+            <span class="qt-teaching__number">{{ course_group.name }}</span>
+            <span class="qt-teaching__count">{{ offerings.size }} {% if offerings.size == 1 %}offering{% else %}offerings{% endif %}</span>
+          </div>
+          <h3>{{ latest_title }}</h3>
+          {% case course_group.name %}
+          {% when "11-860" %}
+            <p class="qt-teaching__description">A lab-centered exploration of quantum computing, cryptography, and machine learning.</p>
+          {% when "17-617" %}
+            <p class="qt-teaching__description">Program quantum computers and develop intuition through gates, circuits, and algorithms.</p>
+          {% when "17-620" %}
+            <p class="qt-teaching__description">Investigate the intersection of quantum computing and machine learning.</p>
+          {% when "17-628" %}
+            <p class="qt-teaching__description">An applied approach to quantum computing and its practical techniques.</p>
+          {% when "17-659" %}
+            <p class="qt-teaching__description">Explore specialized topics in quantum computing through course materials.</p>
+          {% else %}
+            <p class="qt-teaching__description">Explore course materials from Carnegie Mellon University.</p>
+          {% endcase %}
+          <div class="qt-teaching__offerings">
+            <h4>Course materials by semester</h4>
+            <ul>
+              {% for post in offerings %}
+                <li>
+                  <a href="{% if post.redirect_to %}{{ post.redirect_to | relative_url }}{% else %}{{ post.url | relative_url }}{% endif %}">
+                    <span>{{ post.type | remove: " Semester" }} {{ post.date | date: "%Y" }}</span>
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+  <section class="qt-teaching__closing">
+    <div>
+      <p class="qt-kicker">Keep exploring</p>
+      <h2>Try quantum computing for yourself.</h2>
+      <p>Explore interactive learning tools, including My First Qubit, alongside the formal course materials.</p>
+    </div>
+    <a href="/learn/">Explore learning tools ↗</a>
+  </section>
+</div>
