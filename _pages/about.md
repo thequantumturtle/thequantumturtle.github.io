@@ -14,7 +14,8 @@ redirect_from:
       <h1>Quantum computing is interesting. Knowing what to do with it is harder.</h1>
       <p class="qt-lede">I teach quantum computing at Carnegie Mellon University and work on how we learn, evaluate, and prepare for emerging technology.</p>
       <div class="qt-actions">
-        <a class="qt-button qt-button--primary" href="/learn/">Start learning</a>
+        <a class="qt-button qt-button--primary" href="/teaching/">View my courses</a>
+        <a class="qt-button qt-button--quiet" href="/learn/">Learning resources</a>
         <a class="qt-button qt-button--quiet" href="/work/">Explore my work</a>
       </div>
     </div>
@@ -54,31 +55,28 @@ redirect_from:
     </div>
   </section>
 
-  <section class="qt-section" id="courses">
-    <div class="qt-section__heading">
-      <p class="qt-kicker">Teaching · Carnegie Mellon University</p>
-      <h2>Explore my courses</h2>
-      <p>Direct access to course materials, whether we're discussing introductory circuits or quantum machine learning.</p>
+  <section class="qt-section qt-courses" id="courses">
+    <div class="qt-courses__header">
+      <div>
+        <p class="qt-kicker">Carnegie Mellon University · Teaching</p>
+        <h2>Courses</h2>
+        <p>Explore the courses I teach, from programming quantum circuits to quantum machine learning.</p>
+      </div>
+      <a class="qt-courses__archive-link" href="/teaching/">All courses &amp; past semesters <span aria-hidden="true">↗</span></a>
     </div>
-    <div class="qt-focus-list">
-      <article>
-        <p class="qt-meta">17-617 · Fall 2026</p>
+    <div class="qt-courses__grid">
+      <a class="qt-course-card" href="/courses/2026-Fall-17617/homepage/">
+        <span class="qt-course-card__top"><span class="qt-course-card__code">17-617</span><span class="qt-course-card__semester">Fall 2026</span></span>
         <h3>Programming Quantum Computers</h3>
-        <p>Hands-on quantum programming, from single qubits to algorithms.</p>
-        <a href="/courses/2026-Fall-17617/homepage/">View course materials →</a>
-      </article>
-      <article>
-        <p class="qt-meta">17-620 · Fall 2026</p>
+        <p>Hands-on circuits, quantum gates, algorithms, and working with quantum computers.</p>
+        <span class="qt-course-card__action">Explore course <span aria-hidden="true">↗</span></span>
+      </a>
+      <a class="qt-course-card" href="/courses/2026-Fall-17620/homepage/">
+        <span class="qt-course-card__top"><span class="qt-course-card__code">17-620</span><span class="qt-course-card__semester">Fall 2026</span></span>
         <h3>Quantum Machine Learning</h3>
-        <p>Explore quantum machine learning through course materials and examples.</p>
-        <a href="/courses/2026-Fall-17620/homepage/">View course materials →</a>
-      </article>
-      <article>
-        <p class="qt-meta">All semesters</p>
-        <h3>Complete teaching archive</h3>
-        <p>Browse earlier offerings, including Applied Quantum Computing and past course materials.</p>
-        <a href="/teaching/">Browse all courses →</a>
-      </article>
+        <p>Quantum models, machine learning concepts, and the tools used to investigate them.</p>
+        <span class="qt-course-card__action">Explore course <span aria-hidden="true">↗</span></span>
+      </a>
     </div>
   </section>
 
