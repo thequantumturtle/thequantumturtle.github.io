@@ -252,15 +252,15 @@ author_profile: false
     </div>
     <section class="qbb-state-controls" aria-labelledby="qbb-state-controls-title">
       <h2 id="qbb-state-controls-title">Choose a state</h2>
-      <p>Move the pointer yourself. Balance chooses the chance of 0 or 1; phase rotates around the sphere. These controls can reach every pure single-qubit state.</p>
+      <p>Move the pointer yourself. Probability Mix sets the chance of 0 or 1; Relative Phase rotates around the sphere. These controls can reach every pure single-qubit state.</p>
       <div class="qbb-sliders">
         <label class="qbb-slider" for="qbb-theta">
-          <span>Balance · θ <output id="qbb-theta-value" for="qbb-theta">0°</output></span>
+          <span>Probability Mix · θ <output id="qbb-theta-value" for="qbb-theta">0°</output></span>
           <input type="range" id="qbb-theta" min="0" max="180" step="1" value="0">
           <small>Top |0⟩ → Equator → Bottom |1⟩</small>
         </label>
         <label class="qbb-slider" for="qbb-phi">
-          <span>Phase · φ <output id="qbb-phi-value" for="qbb-phi">0°</output></span>
+          <span>Relative Phase · φ <output id="qbb-phi-value" for="qbb-phi">0°</output></span>
           <input type="range" id="qbb-phi" min="0" max="360" step="1" value="0">
           <small>Rotate around the equator</small>
         </label>
@@ -297,7 +297,7 @@ author_profile: false
   </section>
   <section class="qbb-explain">
     <h2>Little buttons, real quantum rules</h2>
-    <p>The wooden frame, round viewing window, protected pointer and oversized buttons are a digital model for a future physical busy board. <strong>X</strong> flips a state, <strong>H</strong> changes its superposition, <strong>Z</strong> changes relative phase and <strong>Y</strong> rotates around a different axis. Each gate now shows a smooth rotation along its true Bloch-sphere path. Measurement animates a collapse to the observed pole. Drag the Bloch sphere to inspect its three-dimensional orientation. The projected grid and vector update with your viewpoint; dragging changes the camera, not the quantum state. The balance and phase controls follow the standard Bloch angles: θ is measured down from the north pole and φ rotates around the equator. Phase has no observable effect at either pole.</p>
+    <p>The wooden frame, round viewing window, protected pointer and oversized buttons are a digital model for a future physical busy board. <strong>X</strong> flips a state, <strong>H</strong> changes its superposition, <strong>Z</strong> changes relative phase and <strong>Y</strong> rotates around a different axis. Each gate now shows a smooth rotation along its true Bloch-sphere path. Measurement animates a collapse to the observed pole. Drag the Bloch sphere to inspect its three-dimensional orientation. The projected grid and vector update with your viewpoint; dragging changes the camera, not the quantum state. The Probability Mix and Relative Phase controls follow the standard Bloch angles: θ is measured down from the north pole and φ rotates around the equator. Phase has no observable effect at either pole.</p>
     <p><strong>Try it:</strong> press H, then Measure. Reset and try again. You may see 0 or 1, each with a 50% chance. Measurement updates the state to the outcome, so the result becomes certain until another gate changes it.</p>
     <p class="qbb-meta">A simulation of ideal single-qubit gates and computational-basis measurement. No quantum hardware is used.</p>
   </section>
@@ -414,7 +414,7 @@ function measure(){
   setBusy(false);status.textContent="Measured "+(one?"1":"0")+"! The qubit collapsed to |"+(one?"1":"0")+"⟩.";
  });
 }
-theta.addEventListener("input",()=>{setAngles(Number(theta.value),Number(phi.value));status.textContent="Balance adjusted. Watch the probability bars.";});
+theta.addEventListener("input",()=>{setAngles(Number(theta.value),Number(phi.value));status.textContent="Probability mix adjusted. Watch the probability bars.";});
 phi.addEventListener("input",()=>{setAngles(Number(theta.value),Number(phi.value));status.textContent="Phase adjusted. Watch the arrow turn.";});
 const presets={zero:[0,0],one:[180,0],plus:[90,0],minus:[90,180],"plus-i":[90,90],"minus-i":[90,270]};
 root.querySelectorAll("[data-state]").forEach(b=>b.addEventListener("click",()=>{if(busy)return;const [t,p]=presets[b.dataset.state];setAngles(t,p);status.textContent="Prepared "+b.textContent+".";}));
