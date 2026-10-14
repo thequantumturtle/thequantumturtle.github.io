@@ -262,6 +262,49 @@ author_profile: false
  .qbb-sliders{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 
+
+/* Quantum Play Lab family styling: raised round controls and inset instruments.
+   The Bloch panel retains denser technical readouts than My First Qubit. */
+.qbb-panel{background:repeating-linear-gradient(4deg,#e3b984 0 22px,#e9c391 23px 44px);border-color:#a97444;box-shadow:inset 0 0 0 3px #f4ddb0,0 9px 0 #8b5f39,0 19px 27px #493a2733}
+.qbb-view-wrap{background:#f6ecd5;border:5px solid #87643d;border-radius:20px;padding:10px;box-shadow:inset 0 4px 10px #8b613d45;min-width:0}
+.qbb-controls{background:#f8e6c2;border:3px solid #a98257;border-radius:18px;box-shadow:inset 0 2px 6px #8b613d22;align-content:center;justify-items:center;min-width:0}
+.qbb-controls>.qbb-btn:not(.qbb-measure){justify-self:center;align-self:center;display:flex;flex-direction:column;justify-content:center;align-items:center;aspect-ratio:1/1;width:94px;height:94px;min-width:0;min-height:0;max-height:none;padding:3px;border-radius:50%;border:5px solid #ffffff88;box-shadow:0 6px 0 #74573b,0 9px 11px #392c2040;font-size:2.2rem;line-height:1}
+.qbb-controls>.qbb-btn:not(.qbb-measure) small{margin-top:3px;line-height:1.08;font-size:.62rem;letter-spacing:.04em}
+.qbb-controls>.qbb-btn:not(.qbb-measure):active{transform:translateY(5px);box-shadow:0 1px 0 #74573b}
+.qbb-controls>.qbb-measure{width:100%;max-height:none;border:4px solid #f3e1bc;box-shadow:0 4px 0 #74573b,0 7px 9px #392c2040;background:#4c9e72}
+.qbb-controls>.qbb-reset{width:100%;border:3px solid #a98257;box-shadow:0 2px 4px #392c2020}
+.qbb-state-controls{background:#f8e6c2;border-color:#a98257}
+.qbb-light-panel{background:linear-gradient(#f6ecd5,#f1dcb7);border-color:#87643d}
+.qbb-slider{background:#f9edd6}
+.qbb-panel .qbb-brand{color:#745133}
+@media(min-width:1061px){
+ .qbb-view-wrap{width:100%;max-width:405px;min-height:349px;display:flex;flex-direction:column;justify-content:center;padding:10px}
+ .qbb-controls{width:100%;max-width:405px;min-height:349px;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 12px;padding:12px 22px}
+ .qbb-controls>.qbb-btn:not(.qbb-measure){width:94px;height:94px}
+ .qbb-controls>.qbb-measure{grid-column:1/-1;min-height:45px;max-height:none;font-size:1.08rem}
+ .qbb-controls>.qbb-reset{grid-column:1/-1;min-height:38px}
+}
+@media(min-width:601px) and (max-width:1060px){
+ .qbb-view-wrap{width:min(100%,415px);margin:0 auto}
+ .qbb-controls{width:min(100%,415px);margin:0 auto;padding:11px;gap:9px;grid-template-columns:repeat(4,minmax(0,1fr))}
+ .qbb-controls>.qbb-btn:not(.qbb-measure){width:min(100%,78px);height:auto;aspect-ratio:1/1;font-size:1.7rem}
+ .qbb-controls>.qbb-measure{grid-column:1/3;min-height:52px}
+ .qbb-controls>.qbb-reset{grid-column:3/5;min-height:52px}
+}
+@media(max-width:600px){
+ .qbb-view-wrap{width:100%;border-width:3px;border-radius:13px;padding:5px;background:#f6ecd5}
+ .qbb-controls{width:100%;padding:7px 5px;gap:5px;border-width:2px;border-radius:12px;grid-template-columns:repeat(4,minmax(0,1fr))}
+ .qbb-controls>.qbb-btn:not(.qbb-measure){width:min(100%,58px);height:auto;aspect-ratio:1/1;min-height:0;max-height:none;font-size:1.45rem;border-width:3px;padding:2px;box-shadow:0 3px 0 #74573b,0 5px 5px #392c2040}
+ .qbb-controls>.qbb-btn:not(.qbb-measure) small{font-size:.49rem;letter-spacing:0;margin-top:2px}
+ .qbb-controls>.qbb-measure{grid-column:1/3;min-height:46px;max-height:none;border-width:2px;font-size:.83rem;border-radius:11px}
+ .qbb-controls>.qbb-reset{grid-column:3/5;min-height:46px;border-width:2px;font-size:.69rem;padding:2px}
+ .qbb-view-help{gap:4px}
+}
+@media(max-width:360px){
+ .qbb-controls>.qbb-btn:not(.qbb-measure){width:min(100%,51px);font-size:1.25rem}
+ .qbb-controls>.qbb-btn:not(.qbb-measure) small{font-size:.45rem}
+}
+
 </style>
 
 <div class="qbb" id="qubit-busy-board">
