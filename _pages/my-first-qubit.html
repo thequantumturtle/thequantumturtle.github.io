@@ -90,6 +90,14 @@ author_profile: false
 
 .mfq-simulator-link{padding:.75rem 1rem;background:#f8edd5;border-left:4px solid #4c9e72;border-radius:4px}
 .mfq-simulator-link a{font-weight:800;color:#2f4a38}
+
+.mfq-math{margin-top:12px;padding:8px 12px;border:2px solid #a98257;border-radius:12px;background:#f8e6c2}
+.mfq-math summary{font-weight:850;cursor:pointer;min-height:30px}
+.mfq-math p{margin:6px 0;line-height:1.4;font-size:.83rem}
+.mfq-math .mfq-formula{font-family:Georgia,"Times New Roman",serif;font-weight:700;font-size:1.03rem}
+.mfq-equation{display:block;overflow-wrap:anywhere;font-family:Georgia,"Times New Roman",serif;font-size:1.01rem;font-weight:700;padding:8px;background:#fff8e9;border-radius:8px}
+.mfq-math .mfq-math-note{color:#665641;font-size:.76rem}
+@media(max-width:520px){.mfq-math{margin-top:9px;padding:6px 9px}.mfq-equation{font-size:.9rem}}
 </style>
 <div class="mfq" id="my-first-qubit">
 <header><p class="qt-kicker">The Quantum Turtle · Quantum Play Lab</p><h1>My First Qubit</h1><p>Two circles show one qubit. Move the sliders, press a gate, and see what changes.</p></header>
@@ -108,6 +116,13 @@ author_profile: false
 </div>
 <div class="mfq-gates" aria-label="Quantum gate buttons"><button type="button" class="mfq-gate x" data-gate="X">X</button><button type="button" class="mfq-gate h" data-gate="H">H</button><button type="button" class="mfq-gate z" data-gate="Z">Z</button><button type="button" class="mfq-gate y" data-gate="Y">Y</button></div>
 <div class="mfq-bottom"><button type="button" class="mfq-measure" id="mfq-measure">● MEASURE</button><button type="button" class="mfq-reset" id="mfq-reset">↺ RESET</button></div>
+<details class="mfq-math">
+<summary>See the math</summary>
+<p>Both circles show one state:</p>
+<p class="mfq-formula">|ψ⟩ = a|0⟩ + b|1⟩</p>
+<output id="mfq-equation" class="mfq-equation" aria-label="Live quantum state equation">|ψ⟩ = 1.00|0⟩ + 0|1⟩</output>
+<p class="mfq-math-note">The numbers may include <em>i</em>, which shows phase. Values are rounded. θ = <output id="mfq-angle">0°</output>.</p>
+</details>
 <p class="mfq-info" aria-live="polite" id="mfq-info">Start at |0⟩. Try a slider or gate!</p>
 </div>
 <div class="mfq-explain">
@@ -129,11 +144,27 @@ let x=0,y=0,z=1,phaseMemory=0;
 const balance=el("mfq-balance"),phase=el("mfq-phase"),info=el("mfq-info");
 function setFromAngles(t,p){const T=t*d2r,P=p*d2r;x=Math.sin(T)*Math.cos(P);y=Math.sin(T)*Math.sin(P);z=Math.cos(T);phaseMemory=p%360;if(phaseMemory<0)phaseMemory+=360;clearLamps();render()}
 function clearLamps(){el("mfq-lamp0").className="mfq-lamp";el("mfq-lamp1").className="mfq-lamp"}
+
+function stateEquation(){
+ const p0=Math.max(0,Math.min(1,(1+z)/2)),p1=1-p0;
+ const a=Math.sqrt(p0),m=Math.sqrt(p1);
+ const angle=Math.hypot(x,y)>1e-8?Math.atan2(y,x):0;
+ const re=m*Math.cos(angle),im=m*Math.sin(angle);
+ const fmt=v=>(Math.abs(v)<.005?0:Math.abs(v)).toFixed(2);
+ let tail;
+ if(m<.005)tail=" + 0|1⟩";
+ else if(Math.abs(im)<.005)tail=(re<0?" − ":" + ")+fmt(re)+"|1⟩";
+ else if(Math.abs(re)<.005)tail=(im<0?" − ":" + ")+fmt(im)+"i|1⟩";
+ else tail=" + ("+(re<0?"−":"")+fmt(re)+(im<0?" − ":" + ")+fmt(im)+"i)|1⟩";
+ return "|ψ⟩ = "+fmt(a)+"|0⟩"+tail;
+}
+
 function render(){
 const theta=Math.acos(clamp(z))*r2d;
 const phi=Math.hypot(x,y)>1e-8?((Math.atan2(y,x)*r2d+360)%360):phaseMemory;
 const p0=clamp((1+z)/2),p1=1-p0;
 balance.value=Math.round(theta);phase.value=Math.round(phi);
+el("mfq-equation").textContent=stateEquation();el("mfq-angle").textContent=Math.round(theta)+"°";
 el("mfq-chance1").textContent=Math.round(p1*100)+"%";el("mfq-phi").textContent=Math.round(phi)+"°";
 [[p0,0],[p1,1]].forEach(([p,i])=>{
 const radius=96*Math.sqrt(p);
