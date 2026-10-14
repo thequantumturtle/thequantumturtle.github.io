@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "Qubit Busy Board"
+title: "Bloch Sphere Busy Board"
 permalink: /learn/qubit-busy-board/
 author_profile: false
 ---
@@ -308,10 +308,10 @@ author_profile: false
 </style>
 
 <div class="qbb" id="qubit-busy-board">
-  <header class="qbb-head"><p class="qt-kicker">The Quantum Turtle · A hands-on experiment</p><h1>The Qubit Busy Board</h1><p>A little wooden toy for a very curious qubit. Press a gate, explore any pure qubit state with two controls, then measure what happens.</p></header>
+  <header class="qbb-head"><p class="qt-kicker">The Quantum Turtle · Quantum Play Lab</p><h1>Bloch Sphere Busy Board</h1><p>Ready for the next step? Turn the 3D sphere, press a gate, and watch a qubit change.</p></header>
   <div class="qbb-panel">
     <i aria-hidden="true" class="qbb-screw qbb-tl"></i><i aria-hidden="true" class="qbb-screw qbb-tr"></i><i aria-hidden="true" class="qbb-screw qbb-bl"></i><i aria-hidden="true" class="qbb-screw qbb-br"></i>
-    <p class="qbb-brand">QUANTUM PLAY LAB · NO. 01</p>
+    <p class="qbb-brand">QUANTUM PLAY LAB · BLOCH SPHERE</p>
     <div class="qbb-grid">
       <div class="qbb-view-wrap"><div class="qbb-display">
         <svg class="qbb-sphere" viewBox="0 0 400 400" role="img" aria-label="A protected Bloch sphere window with a moving red pointer for the qubit state" id="qbb-sphere">
@@ -337,7 +337,7 @@ author_profile: false
           <circle id="qbb-tip" cx="200" cy="48" r="5" fill="#d95445"/>
           <circle cx="200" cy="200" r="170" fill="none" stroke="#ffffff88" stroke-width="3"/>
         </svg>
-      </div><div class="qbb-view-help"><span>Drag the sphere to rotate the view</span><button type="button" id="qbb-view-reset">Reset view ↺</button></div></div>
+      </div><div class="qbb-view-help"><span>Drag to turn the sphere</span><button type="button" id="qbb-view-reset">Reset view ↺</button></div></div>
       <div class="qbb-controls" aria-label="Quantum gate buttons">
         <button class="qbb-btn qbb-x" type="button" data-gate="X" aria-label="Apply X flip gate">X<small>FLIP</small></button>
         <button class="qbb-btn qbb-h" type="button" data-gate="H" aria-label="Apply Hadamard gate">H<small>MIX</small></button>
@@ -348,18 +348,18 @@ author_profile: false
       </div>
     </div>
     <section class="qbb-state-controls" aria-labelledby="qbb-state-controls-title">
-      <h2 id="qbb-state-controls-title">Choose a state</h2>
-      <p>Move the pointer yourself. Probability Mix sets the chance of 0 or 1; Relative Phase rotates around the sphere. These controls can reach every pure single-qubit state.</p>
+      <h2 id="qbb-state-controls-title">Choose a qubit state</h2>
+      <p>Use two sliders to point the arrow anywhere on the sphere. Probability Mix sets the chances of 0 and 1. Relative Phase turns the arrow around the sphere.</p>
       <div class="qbb-sliders">
         <label class="qbb-slider" for="qbb-theta">
           <span>Probability Mix · θ <output id="qbb-theta-value" for="qbb-theta">0°</output></span>
           <input type="range" id="qbb-theta" min="0" max="180" step="1" value="0">
-          <small>Top |0⟩ → Equator → Bottom |1⟩</small>
+          <small>Top |0⟩ → middle → bottom |1⟩</small>
         </label>
         <label class="qbb-slider" for="qbb-phi">
           <span>Relative Phase · φ <output id="qbb-phi-value" for="qbb-phi">0°</output></span>
           <input type="range" id="qbb-phi" min="0" max="360" step="1" value="0">
-          <small>Rotate around the equator</small>
+          <small>Turn the arrow around the sphere</small>
         </label>
       </div>
       <div class="qbb-presets" aria-label="Example states">
@@ -373,30 +373,30 @@ author_profile: false
       </div>
     </section>
     <div class="qbb-readouts">
-      <div class="qbb-light-panel"><h3>MEASUREMENT LIGHTS</h3><div class="qbb-lights"><span class="qbb-led"><span class="qbb-lamp" id="qbb-lamp0"></span>0</span><span class="qbb-led"><span class="qbb-lamp" id="qbb-lamp1"></span>1</span></div></div>
-      <div class="qbb-light-panel"><h3>CHANCE OF EACH RESULT</h3><div class="qbb-probabilities">
+      <div class="qbb-light-panel"><h3>MEASURED RESULT</h3><div class="qbb-lights"><span class="qbb-led"><span class="qbb-lamp" id="qbb-lamp0"></span>0</span><span class="qbb-led"><span class="qbb-lamp" id="qbb-lamp1"></span>1</span></div></div>
+      <div class="qbb-light-panel"><h3>CHANCE OF 0 OR 1</h3><div class="qbb-probabilities">
         <div><strong>0 · <span id="qbb-p0">100%</span></strong><div class="qbb-bar"><div class="qbb-fill" id="qbb-fill0" style="width:100%"></div></div></div>
         <div><strong>1 · <span id="qbb-p1">0%</span></strong><div class="qbb-bar"><div class="qbb-fill one" id="qbb-fill1" style="width:0%"></div></div></div>
       </div></div>
     </div>
-    <p class="qbb-status" id="qbb-message" aria-live="polite" aria-atomic="true">Ready! Try the big red X button.</p>
-    <p class="qbb-meta" id="qbb-state">The qubit begins at |0⟩.</p>
+    <p class="qbb-status" id="qbb-message" aria-live="polite" aria-atomic="true">Ready! Press X to flip the qubit.</p>
+    <p class="qbb-meta" id="qbb-state">The qubit starts at |0⟩.</p>
   </div>
   <section class="qbb-guide" aria-label="Try these experiments">
     <h2>Try this first</h2>
     <ol>
-      <li>Choose <strong>|0⟩</strong> and watch the pointer point up.</li>
-      <li>Press <strong>H</strong>. The pointer moves to the equator and measurement becomes 50/50.</li>
-      <li>Press <strong>Z</strong>. The probabilities stay the same, but the pointer changes direction.</li>
-      <li>Press <strong>H</strong> again, then <strong>Measure</strong>. You should always get 1.</li>
+      <li>Choose <strong>|0⟩</strong>. The arrow points up.</li>
+      <li>Press <strong>H</strong>. The arrow moves to the middle. Now 0 and 1 each have a 50% chance.</li>
+      <li>Press <strong>Z</strong>. The arrow turns, but the chances stay at 50/50.</li>
+      <li>Press <strong>H</strong> again, then <strong>Measure</strong>. You will get 1.</li>
     </ol>
     <p>Prefer the two-circle view? <a href="/learn/my-first-qubit/">Try My First Qubit →</a></p>
   </section>
   <section class="qbb-explain">
-    <h2>Little buttons, real quantum rules</h2>
-    <p>The wooden frame, round viewing window, protected pointer and oversized buttons are a digital model for a future physical busy board. <strong>X</strong> flips a state, <strong>H</strong> changes its superposition, <strong>Z</strong> changes relative phase and <strong>Y</strong> rotates around a different axis. Each gate now shows a smooth rotation along its true Bloch-sphere path. Measurement animates a collapse to the observed pole. Drag the Bloch sphere to inspect its three-dimensional orientation. The projected grid and vector update with your viewpoint; dragging changes the camera, not the quantum state. The Probability Mix and Relative Phase controls follow the standard Bloch angles: θ is measured down from the north pole and φ rotates around the equator. Phase has no observable effect at either pole.</p>
-    <p><strong>Try it:</strong> press H, then Measure. Reset and try again. You may see 0 or 1, each with a 50% chance. Measurement updates the state to the outcome, so the result becomes certain until another gate changes it.</p>
-    <p class="qbb-meta">A simulation of ideal single-qubit gates and computational-basis measurement. No quantum hardware is used.</p>
+    <h2>What the board shows</h2>
+    <p>This board shows one qubit as an arrow inside a sphere. The arrow tells you its state. <strong>X</strong>, <strong>Y</strong>, and <strong>Z</strong> turn the arrow around different axes. <strong>H</strong> turns it around a slanted axis. Each gate follows the correct path. Drag the sphere to see the arrow from a new angle. This changes your view, not the qubit. <strong>Probability Mix (θ)</strong> moves the arrow between the top and bottom. <strong>Relative Phase (φ)</strong> turns it around the middle. At the top or bottom, changing the phase does not change the state.</p>
+    <p><strong>Try it:</strong> Start at |0⟩. Press H, then Measure. You may get 0 or 1. Each has a 50% chance. After you measure, the qubit stays at that result until a gate changes it.</p>
+    <p class="qbb-meta">This is a model of one qubit. It runs in your browser, not on a quantum computer.</p>
   </section>
 </div>
 <script>
@@ -491,11 +491,11 @@ function gate(g){
  if(busy||!axes[g])return;
  const start=[x,y,z],axis=axes[g];
  clearLamps();setBusy(true);
- status.textContent=g+" gate: rotating 180° around the "+names[g]+" axis…";
+ status.textContent=g+" gate: turning the arrow around the "+names[g]+" axis…";
  animate(720,t=>setVector(rotate(start,axis,Math.PI*t)),()=>{
   setVector(rotate(start,axis,Math.PI));rememberPhase();render();setBusy(false);
   const cross=Math.hypot(axis[1]*start[2]-axis[2]*start[1],axis[2]*start[0]-axis[0]*start[2],axis[0]*start[1]-axis[1]*start[0]);
-  status.textContent=g+" gate complete. "+(cross<1e-7?"The arrow stayed put because the state is on the rotation axis.":"Watch how the arrow and probabilities changed.");
+  status.textContent=g+" gate complete. "+(cross<1e-7?"The arrow stayed still because it points along the turning axis.":"See how the arrow and chances changed.");
  });
 }
 function measure(){
@@ -508,16 +508,16 @@ function measure(){
  animate(460,t=>setVector(rotate(start,axis,angle*t)),()=>{
   setVector(target);rememberPhase();
   (one?lamp1:lamp0).classList.add(one?"active-one":"active-zero");
-  setBusy(false);status.textContent="Measured "+(one?"1":"0")+"! The qubit collapsed to |"+(one?"1":"0")+"⟩.";
+  setBusy(false);status.textContent="Measured "+(one?"1":"0")+"! The qubit is now in state |"+(one?"1":"0")+"⟩.";
  });
 }
-theta.addEventListener("input",()=>{setAngles(Number(theta.value),Number(phi.value));status.textContent="Probability mix adjusted. Watch the probability bars.";});
-phi.addEventListener("input",()=>{setAngles(Number(theta.value),Number(phi.value));status.textContent="Phase adjusted. Watch the arrow turn.";});
+theta.addEventListener("input",()=>{setAngles(Number(theta.value),Number(phi.value));status.textContent="Probability mix changed. Check the chances of 0 and 1.";});
+phi.addEventListener("input",()=>{setAngles(Number(theta.value),Number(phi.value));status.textContent="Relative phase changed. Watch the arrow turn.";});
 const presets={zero:[0,0],one:[180,0],plus:[90,0],minus:[90,180],"plus-i":[90,90],"minus-i":[90,270]};
 root.querySelectorAll("[data-state]").forEach(b=>b.addEventListener("click",()=>{if(busy)return;const [t,p]=presets[b.dataset.state];setAngles(t,p);status.textContent="Prepared "+b.textContent+".";}));
 root.querySelectorAll("[data-gate]").forEach(b=>b.addEventListener("click",()=>gate(b.dataset.gate)));
 el("qbb-measure").addEventListener("click",measure);
-el("qbb-reset").addEventListener("click",()=>{if(busy)return;x=0;y=0;z=1;phaseMemory=0;clearLamps();render();status.textContent="Back at |0⟩. Press another button!";});
+el("qbb-reset").addEventListener("click",()=>{if(busy)return;x=0;y=0;z=1;phaseMemory=0;clearLamps();render();status.textContent="Back at |0⟩. Try another gate!";});
 render();
 })();
 </script>
