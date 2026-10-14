@@ -103,7 +103,7 @@ author_profile: false
 <div class="mfq-outcome" aria-label="Measurement indicator lights"><span class="mfq-lamp-group"><span class="mfq-lamp" id="mfq-lamp0"></span>0</span><span class="mfq-lamp-group"><span class="mfq-lamp" id="mfq-lamp1"></span>1</span></div>
 </div>
 <div class="mfq-controls">
-<div class="mfq-knob"><label for="mfq-balance">PROBABILITY MIX · θ</label><input type="range" id="mfq-balance" min="0" max="180" step="1" value="0"/><strong id="mfq-theta">0°</strong><p>Set the chances of 0 and 1</p></div>
+<div class="mfq-knob"><label for="mfq-balance">CHANCE OF 1</label><input type="range" id="mfq-balance" min="0" max="180" step="1" value="0"/><strong id="mfq-chance1">0%</strong><p>Left: 0% · Right: 100% chance of 1</p></div>
 <div class="mfq-knob"><label for="mfq-phase">RELATIVE PHASE · φ</label><input type="range" id="mfq-phase" min="0" max="360" step="1" value="0"/><strong id="mfq-phi">0°</strong><p>Turn the |1⟩ clock hand</p></div>
 </div>
 <div class="mfq-gates" aria-label="Quantum gate buttons"><button type="button" class="mfq-gate x" data-gate="X">X</button><button type="button" class="mfq-gate h" data-gate="H">H</button><button type="button" class="mfq-gate z" data-gate="Z">Z</button><button type="button" class="mfq-gate y" data-gate="Y">Y</button></div>
@@ -113,9 +113,9 @@ author_profile: false
 <div class="mfq-explain">
 <p class="mfq-simulator-link">Ready for the next step? <a href="/learn/qubit-busy-board/">Try the 3D Bloch sphere →</a></p>
 <h2>How the two sliders work</h2>
-<p><strong>Probability Mix (θ)</strong> sets the chances of measuring 0 or 1. Watch the circles grow and shrink. <strong>Relative Phase (φ)</strong> turns the clock hand in the |1⟩ circle. The |0⟩ hand stays still so you can compare them. When either circle is empty, changing the phase has no effect on the qubit.</p>
+<p><strong>Chance of 1 (θ)</strong> sets how likely you are to measure 1. Watch the circles grow and shrink. <strong>Relative Phase (φ)</strong> turns the clock hand in the |1⟩ circle. The |0⟩ hand stays still so you can compare them. When either circle is empty, changing the phase has no effect on the qubit.</p>
 <p>Each circle’s filled <em>area</em> shows the chance of that result. The sliders can show any <strong>pure state</strong> of one qubit. A mixed state needs a different model.</p>
-<p><strong>Try it:</strong> Start at |0⟩. Press <strong>H → Z → H → MEASURE</strong>. You will get 1. Or set Probability Mix to 90°. Now 0 and 1 each have a 50% chance.</p>
+<p><strong>Try it:</strong> Start at |0⟩. Press <strong>H → Z → H → MEASURE</strong>. You will get 1. Or set Chance of 1 to 50%. Now 0 and 1 each have a 50% chance.</p>
 <p class="mfq-note">This browser toy is a first step toward a real wooden busy board. The real toy could use turning knobs and two small screens. This version runs on your computer, not on quantum hardware.</p>
 </div>
 </div>
@@ -134,7 +134,7 @@ const theta=Math.acos(clamp(z))*r2d;
 const phi=Math.hypot(x,y)>1e-8?((Math.atan2(y,x)*r2d+360)%360):phaseMemory;
 const p0=clamp((1+z)/2),p1=1-p0;
 balance.value=Math.round(theta);phase.value=Math.round(phi);
-el("mfq-theta").textContent=Math.round(theta)+"°";el("mfq-phi").textContent=Math.round(phi)+"°";
+el("mfq-chance1").textContent=Math.round(p1*100)+"%";el("mfq-phi").textContent=Math.round(phi)+"°";
 [[p0,0],[p1,1]].forEach(([p,i])=>{
 const radius=96*Math.sqrt(p);
 el("mfq-circle"+i).setAttribute("r",radius);
@@ -145,7 +145,7 @@ line.setAttribute("y2",110-(active?radius*Math.cos(a):0));
 line.style.visibility=active?"visible":"hidden";
 });
 }
-balance.addEventListener("input",()=>{setFromAngles(Number(balance.value),Number(phase.value));info.textContent="Probability mix changed. Check the circles."});
+balance.addEventListener("input",()=>{setFromAngles(Number(balance.value),Number(phase.value));info.textContent="Chance of 1 changed. Check the circles."});
 phase.addEventListener("input",()=>{setFromAngles(Number(balance.value),Number(phase.value));info.textContent="Relative phase changed. Watch the |1⟩ hand."});
 root.querySelectorAll("[data-gate]").forEach(button=>button.addEventListener("click",()=>{
 const a=x,b=y,c=z,g=button.dataset.gate;
