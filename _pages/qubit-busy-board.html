@@ -138,6 +138,31 @@ author_profile: false
  .qbb-readouts{grid-template-columns:1fr}
 }
 
+
+/* The Jekyll single-article wrapper is narrow even on large desktop screens.
+   Center the interactive instrument in the viewport instead of that column. */
+.qbb{
+  position:relative;
+  left:50%;
+  transform:translateX(-50%);
+  width:min(1160px,calc(100vw - 40px));
+  max-width:none;
+  margin:0;
+}
+.qbb-grid{grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr)}
+.qbb-view-wrap{max-width:none}
+.qbb-display{max-width:min(100%,440px)}
+.qbb-view-help{max-width:440px}
+@media(max-width:1050px){
+  .qbb{width:calc(100vw - 28px)}
+  .qbb-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .qbb{width:calc(100vw - 16px)}
+}
+/* When the user prefers a large zoom level, avoid clipping. */
+.qbb-panel,.qbb-view-wrap,.qbb-controls,.qbb-state-controls{min-width:0}
+
 </style>
 
 <div class="qbb" id="qubit-busy-board">
