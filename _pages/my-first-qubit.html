@@ -40,6 +40,54 @@ author_profile: false
 .mfq-note{color:#74614b;font-size:.88rem}
 .mfq button:focus-visible,.mfq input:focus-visible{outline:4px solid #203f68;outline-offset:4px}
 @media(max-width:520px){.mfq-board{border-width:8px}.mfq-screen{padding:10px}.mfq-knob{padding:10px}.mfq-controls{gap:9px}.mfq-knob label{font-size:.94rem}.mfq-gates{gap:7px}.mfq-bottom{gap:8px}.mfq-bottom button{font-size:.93rem}}
+
+/* Give the circle-notation instrument room outside Jekyll's narrow article column. */
+.mfq{position:relative;left:50%;transform:translateX(-50%);width:min(1040px,calc(100vw - 32px));max-width:none;margin:0}
+.mfq-board,.mfq-screen,.mfq-display,.mfq-controls,.mfq-knob,.mfq-gates,.mfq-bottom{min-width:0}
+.mfq-knob input{max-width:100%}
+@media(min-width:1051px){
+ .mfq header{padding:5px 0 12px}
+ .mfq header p{font-size:.94rem;line-height:1.35;margin:4px auto}
+ .mfq-board{display:grid;grid-template-columns:minmax(0,1.14fr) minmax(0,.86fr);gap:10px 20px;padding:14px 20px;border-width:9px;border-radius:28px;align-items:center}
+ .mfq-brand{grid-column:1/-1;margin:0;font-size:.76rem}
+ .mfq-screen{grid-column:1;grid-row:2 / span 3;display:flex;flex-direction:column;justify-content:center;padding:14px}
+ .mfq-display{width:100%;gap:12px}
+ .mfq-state svg{max-width:200px}
+ .mfq-state span{font-size:1rem}
+ .mfq-outcome{margin-top:10px}
+ .mfq-controls{grid-column:2;grid-row:2;gap:10px;margin:0}
+ .mfq-knob{border-width:3px;padding:9px 7px;border-radius:12px}
+ .mfq-knob label{font-size:.85rem}
+ .mfq-knob strong{font-size:.95rem}
+ .mfq-knob input{margin:7px 0}
+ .mfq-knob p{font-size:.75rem;line-height:1.25}
+ .mfq-gates{grid-column:2;grid-row:3;gap:9px;margin:0}
+ .mfq-gate{min-height:55px;border-width:4px;font-size:1.7rem}
+ .mfq-bottom{grid-column:2;grid-row:4;gap:9px;margin:0}
+ .mfq-bottom button{min-height:47px;font-size:.88rem;border-width:3px}
+ .mfq-info{grid-column:1/-1;margin:2px 0 0;font-size:.92rem}
+ .mfq-explain{grid-column:1/-1;margin-top:10px}
+}
+@media(max-width:1050px){.mfq{width:calc(100vw - 28px)}}
+@media(max-width:520px){
+ .mfq{width:calc(100vw - 16px)}
+ .mfq-board{padding:10px;border-radius:22px}
+ .mfq-brand{font-size:.72rem;letter-spacing:.07em;margin-bottom:9px}
+ .mfq-screen{border-width:4px}
+ .mfq-state svg{max-width:180px}
+ .mfq-state span{font-size:.94rem}
+ .mfq-outcome{margin-top:10px}
+ .mfq-controls{margin-top:12px}
+ .mfq-knob{border-width:3px;padding:8px 6px}
+ .mfq-knob label{font-size:.79rem}
+ .mfq-knob p{font-size:.72rem}
+ .mfq-gates{gap:7px;margin-top:13px}
+ .mfq-gate{min-height:44px;border-width:3px;font-size:1.35rem}
+ .mfq-bottom{gap:8px;margin-top:14px}
+ .mfq-bottom button{min-height:50px;font-size:.85rem;border-width:3px}
+ .mfq-info{font-size:.91rem;margin:11px 0 0}
+}
+
 </style>
 <div class="mfq" id="my-first-qubit">
 <header><p class="qt-kicker">The Quantum Turtle · Quantum Play Lab</p><h1>My First Qubit</h1><p>Two glowing circles, two knobs, and real quantum rules. Turn a knob to make any pure qubit state.</p></header>
@@ -53,8 +101,8 @@ author_profile: false
 <div class="mfq-outcome" aria-label="Measurement indicator lights"><span class="mfq-lamp-group"><span class="mfq-lamp" id="mfq-lamp0"></span>0</span><span class="mfq-lamp-group"><span class="mfq-lamp" id="mfq-lamp1"></span>1</span></div>
 </div>
 <div class="mfq-controls">
-<div class="mfq-knob"><label for="mfq-balance">BALANCE · θ</label><input type="range" id="mfq-balance" min="0" max="180" step="1" value="0"/><strong id="mfq-theta">0°</strong><p>Choose how much 0 and 1</p></div>
-<div class="mfq-knob"><label for="mfq-phase">PHASE · φ</label><input type="range" id="mfq-phase" min="0" max="360" step="1" value="0"/><strong id="mfq-phi">0°</strong><p>Turn the second clock hand</p></div>
+<div class="mfq-knob"><label for="mfq-balance">PROBABILITY MIX · θ</label><input type="range" id="mfq-balance" min="0" max="180" step="1" value="0"/><strong id="mfq-theta">0°</strong><p>Sets the chances of 0 and 1</p></div>
+<div class="mfq-knob"><label for="mfq-phase">RELATIVE PHASE · φ</label><input type="range" id="mfq-phase" min="0" max="360" step="1" value="0"/><strong id="mfq-phi">0°</strong><p>Turn the second clock hand</p></div>
 </div>
 <div class="mfq-gates" aria-label="Quantum gate buttons"><button type="button" class="mfq-gate x" data-gate="X">X</button><button type="button" class="mfq-gate h" data-gate="H">H</button><button type="button" class="mfq-gate z" data-gate="Z">Z</button><button type="button" class="mfq-gate y" data-gate="Y">Y</button></div>
 <div class="mfq-bottom"><button type="button" class="mfq-measure" id="mfq-measure">● MEASURE</button><button type="button" class="mfq-reset" id="mfq-reset">↺ RESET</button></div>
@@ -62,9 +110,9 @@ author_profile: false
 </div>
 <div class="mfq-explain">
 <h2>How the two knobs work</h2>
-<p><strong>Balance</strong> changes the relative probability of the two outcomes, from all 0 to all 1. <strong>Phase</strong> rotates the clock hand for the |1⟩ amplitude, showing its phase relative to the |0⟩ amplitude. The |0⟩ hand is the fixed reference. At the poles, the relative phase is physically irrelevant.</p>
+<p><strong>Probability Mix (θ)</strong> controls how likely each outcome is by changing the magnitudes of the two quantum amplitudes. <strong>Relative Phase (φ)</strong> rotates the clock hand for the |1⟩ amplitude, showing its phase relative to the |0⟩ amplitude. The |0⟩ hand is the fixed reference. At the poles, the relative phase is physically irrelevant.</p>
 <p>Filled <em>area</em>, not radius, represents the probability. Together the two controls can express every <strong>pure</strong> single-qubit state, but not arbitrary mixed states.</p>
-<p>Try <strong>H → Z → H → MEASURE</strong> from |0⟩: the answer is always 1. Or turn BALANCE to 90° and see that the outcomes have equal probability.</p>
+<p>Try <strong>H → Z → H → MEASURE</strong> from |0⟩: the answer is always 1. Or set PROBABILITY MIX to 90° and see that the outcomes have equal probability.</p>
 <p class="mfq-note">Interactive concept for a potential physical busy board. In a real toy, the sliders would become robust rotary encoders and the circles could be displays behind protected windows. This is a classical simulator, not quantum hardware.</p>
 </div>
 </div>
@@ -94,7 +142,7 @@ line.setAttribute("y2",110-(active?radius*Math.cos(a):0));
 line.style.visibility=active?"visible":"hidden";
 });
 }
-balance.addEventListener("input",()=>{setFromAngles(Number(balance.value),Number(phase.value));info.textContent="Balance changed!"});
+balance.addEventListener("input",()=>{setFromAngles(Number(balance.value),Number(phase.value));info.textContent="Probability mix changed!"});
 phase.addEventListener("input",()=>{setFromAngles(Number(balance.value),Number(phase.value));info.textContent="Relative phase changed!"});
 root.querySelectorAll("[data-gate]").forEach(button=>button.addEventListener("click",()=>{
 const a=x,b=y,c=z,g=button.dataset.gate;
