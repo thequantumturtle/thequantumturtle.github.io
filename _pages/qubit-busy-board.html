@@ -200,7 +200,7 @@ function setAngles(t,p){
  x=Math.sin(T)*Math.cos(P);y=Math.sin(T)*Math.sin(P);z=Math.cos(T);
  phaseMemory=(p%360+360)%360;clearLamps();render();
 }
-// Rodrigues' rotation: the intermediate states remain on the correct gate orbit.
+/* Rodrigues' rotation: the intermediate states remain on the correct gate orbit. */
 function rotate(v,a,t){
  const co=Math.cos(t),si=Math.sin(t),dot=a[0]*v[0]+a[1]*v[1]+a[2]*v[2];
  return [
