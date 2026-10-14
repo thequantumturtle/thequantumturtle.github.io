@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "My First Qubit: Circle Notation Busy Board"
+title: "My First Qubit"
 permalink: /learn/my-first-qubit/
 author_profile: false
 ---
@@ -92,9 +92,9 @@ author_profile: false
 .mfq-simulator-link a{font-weight:800;color:#2f4a38}
 </style>
 <div class="mfq" id="my-first-qubit">
-<header><p class="qt-kicker">The Quantum Turtle · Quantum Play Lab</p><h1>My First Qubit</h1><p>Two glowing circles, two knobs, and real quantum rules. Turn a knob to make any pure qubit state.</p></header>
+<header><p class="qt-kicker">The Quantum Turtle · Quantum Play Lab</p><h1>My First Qubit</h1><p>Two circles show one qubit. Move the sliders, press a gate, and see what changes.</p></header>
 <div class="mfq-board">
-<div class="mfq-brand">MY FIRST QUBIT · PLAY WITH LIGHT</div>
+<div class="mfq-brand">QUANTUM PLAY LAB · CIRCLE NOTATION</div>
 <div class="mfq-screen">
 <div class="mfq-display">
 <div class="mfq-state"><svg viewBox="0 0 220 220" role="img" aria-label="Circle for amplitude zero"><circle cx="110" cy="110" r="96" fill="#e2d6be" stroke="#927b5b" stroke-width="4"/><circle cx="110" cy="110" r="96" fill="none" stroke="#fcf6e8" stroke-width="3"/><circle id="mfq-circle0" cx="110" cy="110" r="96" fill="#5d9ed0"/><line id="mfq-hand0" x1="110" y1="110" x2="110" y2="14" stroke="#293f4c" stroke-width="6" stroke-linecap="round"/><circle cx="110" cy="110" r="5" fill="#293f4c"/></svg><span>|0⟩ · <span id="mfq-p0">100%</span></span></div>
@@ -103,20 +103,20 @@ author_profile: false
 <div class="mfq-outcome" aria-label="Measurement indicator lights"><span class="mfq-lamp-group"><span class="mfq-lamp" id="mfq-lamp0"></span>0</span><span class="mfq-lamp-group"><span class="mfq-lamp" id="mfq-lamp1"></span>1</span></div>
 </div>
 <div class="mfq-controls">
-<div class="mfq-knob"><label for="mfq-balance">PROBABILITY MIX · θ</label><input type="range" id="mfq-balance" min="0" max="180" step="1" value="0"/><strong id="mfq-theta">0°</strong><p>Sets the chances of 0 and 1</p></div>
-<div class="mfq-knob"><label for="mfq-phase">RELATIVE PHASE · φ</label><input type="range" id="mfq-phase" min="0" max="360" step="1" value="0"/><strong id="mfq-phi">0°</strong><p>Turn the second clock hand</p></div>
+<div class="mfq-knob"><label for="mfq-balance">PROBABILITY MIX · θ</label><input type="range" id="mfq-balance" min="0" max="180" step="1" value="0"/><strong id="mfq-theta">0°</strong><p>Set the chances of 0 and 1</p></div>
+<div class="mfq-knob"><label for="mfq-phase">RELATIVE PHASE · φ</label><input type="range" id="mfq-phase" min="0" max="360" step="1" value="0"/><strong id="mfq-phi">0°</strong><p>Turn the |1⟩ clock hand</p></div>
 </div>
 <div class="mfq-gates" aria-label="Quantum gate buttons"><button type="button" class="mfq-gate x" data-gate="X">X</button><button type="button" class="mfq-gate h" data-gate="H">H</button><button type="button" class="mfq-gate z" data-gate="Z">Z</button><button type="button" class="mfq-gate y" data-gate="Y">Y</button></div>
 <div class="mfq-bottom"><button type="button" class="mfq-measure" id="mfq-measure">● MEASURE</button><button type="button" class="mfq-reset" id="mfq-reset">↺ RESET</button></div>
-<p class="mfq-info" aria-live="polite" id="mfq-info">Start at |0⟩. Turn either knob!</p>
+<p class="mfq-info" aria-live="polite" id="mfq-info">Start at |0⟩. Try a slider or gate!</p>
 </div>
 <div class="mfq-explain">
-<p class="mfq-simulator-link">Want to see the same qubit in three dimensions? <a href="/learn/qubit-busy-board/">Explore the interactive Bloch sphere →</a></p>
-<h2>How the two knobs work</h2>
-<p><strong>Probability Mix (θ)</strong> controls how likely each outcome is by changing the magnitudes of the two quantum amplitudes. <strong>Relative Phase (φ)</strong> rotates the clock hand for the |1⟩ amplitude, showing its phase relative to the |0⟩ amplitude. The |0⟩ hand is the fixed reference. At the poles, the relative phase is physically irrelevant.</p>
-<p>Filled <em>area</em>, not radius, represents the probability. Together the two controls can express every <strong>pure</strong> single-qubit state, but not arbitrary mixed states.</p>
-<p>Try <strong>H → Z → H → MEASURE</strong> from |0⟩: the answer is always 1. Or set PROBABILITY MIX to 90° and see that the outcomes have equal probability.</p>
-<p class="mfq-note">Interactive concept for a potential physical busy board. In a real toy, the sliders would become robust rotary encoders and the circles could be displays behind protected windows. This is a classical simulator, not quantum hardware.</p>
+<p class="mfq-simulator-link">Ready for the next step? <a href="/learn/qubit-busy-board/">Try the 3D Bloch sphere →</a></p>
+<h2>How the two sliders work</h2>
+<p><strong>Probability Mix (θ)</strong> sets the chances of measuring 0 or 1. Watch the circles grow and shrink. <strong>Relative Phase (φ)</strong> turns the clock hand in the |1⟩ circle. The |0⟩ hand stays still so you can compare them. When either circle is empty, changing the phase has no effect on the qubit.</p>
+<p>Each circle’s filled <em>area</em> shows the chance of that result. The sliders can make any <strong>pure qubit state</strong>. A pure state is one state we can describe with these two controls. They do not show mixed states.</p>
+<p><strong>Try it:</strong> Start at |0⟩. Press <strong>H → Z → H → MEASURE</strong>. You will get 1. Or set Probability Mix to 90°. Now 0 and 1 each have a 50% chance.</p>
+<p class="mfq-note">This browser toy is a first step toward a real wooden busy board. The real toy could use turning knobs and two small screens. This version runs on your computer, not on quantum hardware.</p>
 </div>
 </div>
 <script>
@@ -145,8 +145,8 @@ line.setAttribute("y2",110-(active?radius*Math.cos(a):0));
 line.style.visibility=active?"visible":"hidden";
 });
 }
-balance.addEventListener("input",()=>{setFromAngles(Number(balance.value),Number(phase.value));info.textContent="Probability mix changed!"});
-phase.addEventListener("input",()=>{setFromAngles(Number(balance.value),Number(phase.value));info.textContent="Relative phase changed!"});
+balance.addEventListener("input",()=>{setFromAngles(Number(balance.value),Number(phase.value));info.textContent="Probability mix changed. Check the circles."});
+phase.addEventListener("input",()=>{setFromAngles(Number(balance.value),Number(phase.value));info.textContent="Relative phase changed. Watch the |1⟩ hand."});
 root.querySelectorAll("[data-gate]").forEach(button=>button.addEventListener("click",()=>{
 const a=x,b=y,c=z,g=button.dataset.gate;
 if(g==="X"){x=a;y=-b;z=-c}
@@ -162,7 +162,7 @@ x=0;y=0;z=one?-1:1;clearLamps();
 el("mfq-lamp"+(one?1:0)).classList.add(one?"on1":"on0");
 render();info.textContent="Measured "+(one?"1":"0")+"!";
 });
-el("mfq-reset").addEventListener("click",()=>{x=0;y=0;z=1;phaseMemory=0;clearLamps();render();info.textContent="Ready! Back at |0⟩."});
+el("mfq-reset").addEventListener("click",()=>{x=0;y=0;z=1;phaseMemory=0;clearLamps();render();info.textContent="Back at |0⟩. Try another gate!"});
 render();
 })();
 </script>
