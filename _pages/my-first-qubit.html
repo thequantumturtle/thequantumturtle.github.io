@@ -101,6 +101,19 @@ author_profile: false
 
 .mfq-equation{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-variant-numeric:tabular-nums;letter-spacing:-.035em;line-height:1.45;overflow-wrap:normal;white-space:normal}
 @media(max-width:520px){.mfq-equation{font-size:clamp(.66rem,2.5vw,.9rem);letter-spacing:-.04em}}
+
+/* Shared Quantum Play Lab footer language: experiment card, then explanation. */
+.mfq-guide{margin-top:1.4rem;padding:1.2rem 1.4rem;border-left:4px solid #4c9e72;background:#f8edd5;border-radius:3px;line-height:1.55}
+.mfq-guide h2{font-size:1.25rem;margin:0 0 .4rem;color:#33483c}
+.mfq-guide ol{margin:.6rem 0;padding-left:1.3rem}
+.mfq-guide li{margin:.3rem 0}
+.mfq-guide p{margin:.55rem 0 0}
+.mfq-guide a{color:#2f4a38;font-weight:700}
+.mfq-explain{margin-top:30px;line-height:1.7}
+.mfq-explain h2{font-size:1.25rem;color:#493a2e;margin-bottom:12px}
+.mfq-explain p{margin:0 0 1.05rem}
+.mfq-explain .mfq-note{text-align:center;color:#74614b;font-size:.88rem;margin:1.1rem auto 0;max-width:45rem}
+@media(max-width:520px){.mfq-guide{padding:1rem}.mfq-explain{margin-top:25px}}
 </style>
 <div class="mfq" id="my-first-qubit">
 <header><p class="qt-kicker">The Quantum Turtle · Quantum Play Lab</p><h1>My First Qubit</h1><p>Two circles show one qubit. Move the sliders, press a gate, and see what changes.</p></header>
@@ -128,14 +141,22 @@ author_profile: false
 </details>
 <p class="mfq-info" aria-live="polite" id="mfq-info">Start at |0⟩. Try a slider or gate!</p>
 </div>
-<div class="mfq-explain">
-<p class="mfq-simulator-link">Ready for the next step? <a href="/learn/qubit-busy-board/">Try the 3D Bloch sphere →</a></p>
-<h2>How the two sliders work</h2>
-<p><strong>Chance of 1 (θ)</strong> sets how likely you are to measure 1. Watch the circles grow and shrink. <strong>Relative Phase (φ)</strong> turns the clock hand in the |1⟩ circle. The |0⟩ hand stays still so you can compare them. When either circle is empty, changing the phase has no effect on the qubit.</p>
-<p>Each circle’s filled <em>area</em> shows the chance of that result. The sliders can show any <strong>pure state</strong> of one qubit. A mixed state needs a different model.</p>
-<p><strong>Try it:</strong> Start at |0⟩. Press <strong>H → Z → H → MEASURE</strong>. You will get 1. Or set Chance of 1 to 50%. Now 0 and 1 each have a 50% chance.</p>
-<p class="mfq-note">This browser toy is a first step toward a real wooden busy board. The real toy could use turning knobs and two small screens. This version runs on your computer, not on quantum hardware.</p>
-</div>
+<section class="mfq-guide" aria-label="Try these experiments">
+<h2>Try this first</h2>
+<ol>
+<li>Start at <strong>|0⟩</strong>. The blue circle is full.</li>
+<li>Press <strong>H</strong>. Both circles show a 50% chance.</li>
+<li>Press <strong>Z</strong>. The |1⟩ hand turns, but the chances stay the same.</li>
+<li>Press <strong>H</strong> again, then <strong>Measure</strong>. You will get 1.</li>
+</ol>
+<p>Ready for the next step? <a href="/learn/qubit-busy-board/">Try the 3D Bloch sphere →</a></p>
+</section>
+<section class="mfq-explain">
+<h2>What the board shows</h2>
+<p>Two circles show one qubit. Each circle's filled <em>area</em> shows the chance of measuring that result. <strong>Chance of 1 (θ)</strong> makes one circle grow as the other shrinks. <strong>Relative Phase (φ)</strong> turns the clock hand in the |1⟩ circle. The |0⟩ hand stays still so you can compare them. When either circle is empty, changing the phase does not change the state.</p>
+<p>These sliders can show any <strong>pure state</strong> of one qubit. A mixed state needs a different model.</p>
+<p class="mfq-note">This browser toy is a first step toward a real wooden busy board. The real toy could use turning knobs and two small screens. It runs on your computer, not on quantum hardware.</p>
+</section>
 </div>
 <script>
 (function(){

@@ -314,6 +314,17 @@ author_profile: false
 
 .qbb-equation{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-variant-numeric:tabular-nums;letter-spacing:-.035em;line-height:1.4;display:block;width:100%;text-align:center;overflow-wrap:normal;white-space:normal}
 @media(max-width:600px){.qbb-equation{font-size:clamp(.63rem,2.35vw,.79rem);letter-spacing:-.045em}}
+
+/* Match the companion toy's learning card and closing explanation. */
+.qbb-guide{line-height:1.55}
+.qbb-guide h2{color:#33483c}
+.qbb-guide p{margin:.55rem 0 0}
+.qbb-guide a{font-weight:700}
+.qbb-explain{margin-top:30px;line-height:1.7}
+.qbb-explain h2{font-size:1.25rem;margin-bottom:12px}
+.qbb-explain p{margin:0 0 1.05rem}
+.qbb-explain .qbb-meta{text-align:center;color:#74614b;font-size:.88rem;margin:1.1rem auto 0;max-width:45rem}
+@media(max-width:600px){.qbb-guide{padding:1rem}.qbb-explain{margin-top:25px}}
 </style>
 
 <div class="qbb" id="qubit-busy-board">
@@ -409,7 +420,7 @@ author_profile: false
   <section class="qbb-explain">
     <h2>What the board shows</h2>
     <p>This board shows one qubit as an arrow inside a sphere. The arrow tells you its state. <strong>X</strong>, <strong>Y</strong>, and <strong>Z</strong> turn the arrow around different axes. <strong>H</strong> turns it around a slanted axis. Each gate follows the correct path. Drag the sphere to see the arrow from a new angle. This changes your view, not the qubit. <strong>Chance of 1 (θ)</strong> moves the arrow between the top and bottom. <strong>Relative Phase (φ)</strong> turns it around the middle. At the top or bottom, changing the phase does not change the state.</p>
-    <p><strong>Try it:</strong> Start at |0⟩. Press H, then Measure. You may get 0 or 1. Each has a 50% chance. After you measure, the qubit stays at that result until you change it with a gate or slider.</p>
+    <p>Measure a qubit to get 0 or 1. The result depends on its chances. After you measure, the qubit stays at that result until you change it with a gate or slider.</p>
     <p class="qbb-meta">This is a model of one qubit. It runs in your browser, not on a quantum computer.</p>
   </section>
 </div>
