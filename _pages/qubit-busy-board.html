@@ -305,6 +305,12 @@ author_profile: false
  .qbb-controls>.qbb-btn:not(.qbb-measure) small{font-size:.45rem}
 }
 
+
+.qbb-state-equation{display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;column-gap:12px;row-gap:3px;margin-top:8px;padding:7px 9px;background:#f6ecd5;border:2px solid #a98257;border-radius:10px;text-align:center}
+.qbb-equation-label{font-weight:800;font-size:.8rem}
+.qbb-equation{font-size:clamp(.78rem,1.7vw,1rem);font-weight:700;overflow-wrap:anywhere;font-family:Georgia,"Times New Roman",serif}
+.qbb-state-equation small{font-size:.68rem;color:#665641}
+@media(max-width:600px){.qbb-state-equation{margin-top:5px;padding:5px 6px;gap:2px 7px}.qbb-equation{font-size:.79rem}.qbb-equation-label{font-size:.72rem}}
 </style>
 
 <div class="qbb" id="qubit-busy-board">
@@ -381,6 +387,11 @@ author_profile: false
     </div>
     <p class="qbb-status" id="qbb-message" aria-live="polite" aria-atomic="true">Ready! Press X to flip the qubit.</p>
     <p class="qbb-meta" id="qbb-state">The qubit starts at |0⟩.</p>
+    <div class="qbb-state-equation" aria-label="Live quantum state">
+      <span class="qbb-equation-label">Your qubit's state</span>
+      <output id="qbb-equation" class="qbb-equation" aria-label="Quantum state equation">|ψ⟩ = 1.00|0⟩ + 0|1⟩</output>
+      <small>Coefficients rounded to two decimals. θ = <output id="qbb-angle">0°</output>.</small>
+    </div>
   </div>
   <section class="qbb-guide" aria-label="Try these experiments">
     <h2>Try this first</h2>
@@ -451,6 +462,21 @@ svg.addEventListener("pointerup",()=>{drag=null;});
 svg.addEventListener("pointercancel",()=>{drag=null;});
 el("qbb-view-reset").addEventListener("click",()=>{yaw=.55;pitch=.34;frame3d();});
 
+
+function stateEquation(){
+ const p0=Math.max(0,Math.min(1,(1+z)/2)),p1=1-p0;
+ const a=Math.sqrt(p0),m=Math.sqrt(p1);
+ const angle=Math.hypot(x,y)>1e-8?Math.atan2(y,x):0;
+ const re=m*Math.cos(angle),im=m*Math.sin(angle);
+ const fmt=v=>(Math.abs(v)<.005?0:Math.abs(v)).toFixed(2);
+ let tail;
+ if(m<.005)tail=" + 0|1⟩";
+ else if(Math.abs(im)<.005)tail=(re<0?" − ":" + ")+fmt(re)+"|1⟩";
+ else if(Math.abs(re)<.005)tail=(im<0?" − ":" + ")+fmt(im)+"i|1⟩";
+ else tail=" + ("+(re<0?"−":"")+fmt(re)+(im<0?" − ":" + ")+fmt(im)+"i)|1⟩";
+ return "|ψ⟩ = "+fmt(a)+"|0⟩"+tail;
+}
+
 function render(){
  const p0=clip((1+z)/2),p1=1-p0;
  const t=Math.acos(clip(z))/rad,p=Math.hypot(x,y)>1e-8?(Math.atan2(y,x)/rad+360)%360:phaseMemory;
@@ -459,6 +485,8 @@ function render(){
  el("qbb-p0").textContent=Math.round(p0*100)+"%";el("qbb-p1").textContent=Math.round(p1*100)+"%";
  el("qbb-fill0").style.width=(p0*100)+"%";el("qbb-fill1").style.width=(p1*100)+"%";
  frame3d();
+ el("qbb-equation").textContent=stateEquation();
+ el("qbb-angle").textContent=Math.round(t)+"°";
  el("qbb-state").textContent="Bloch vector: ("+[x,y,z].map(v=>(Math.abs(v)<1e-10?0:v).toFixed(2)).join(", ")+")";
 }
 function setVector(v){[x,y,z]=v;render();}
