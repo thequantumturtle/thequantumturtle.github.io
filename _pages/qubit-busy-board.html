@@ -349,12 +349,12 @@ author_profile: false
     </div>
     <section class="qbb-state-controls" aria-labelledby="qbb-state-controls-title">
       <h2 id="qbb-state-controls-title">Choose a qubit state</h2>
-      <p>Use two sliders to point the arrow anywhere on the sphere. Probability Mix sets the chances of 0 and 1. Relative Phase turns the arrow around the sphere.</p>
+      <p>Use two sliders to point the arrow anywhere on the sphere. Chance of 1 sets how often you may measure 1. Relative Phase turns the arrow around the sphere.</p>
       <div class="qbb-sliders">
         <label class="qbb-slider" for="qbb-theta">
-          <span>Probability Mix · θ <output id="qbb-theta-value" for="qbb-theta">0°</output></span>
+          <span>Chance of 1 <output id="qbb-chance1" for="qbb-theta">0%</output></span>
           <input type="range" id="qbb-theta" min="0" max="180" step="1" value="0">
-          <small>Top |0⟩ → middle → bottom |1⟩</small>
+          <small>Left: 0% · Right: 100% chance of 1</small>
         </label>
         <label class="qbb-slider" for="qbb-phi">
           <span>Relative Phase · φ <output id="qbb-phi-value" for="qbb-phi">0°</output></span>
@@ -394,7 +394,7 @@ author_profile: false
   </section>
   <section class="qbb-explain">
     <h2>What the board shows</h2>
-    <p>This board shows one qubit as an arrow inside a sphere. The arrow tells you its state. <strong>X</strong>, <strong>Y</strong>, and <strong>Z</strong> turn the arrow around different axes. <strong>H</strong> turns it around a slanted axis. Each gate follows the correct path. Drag the sphere to see the arrow from a new angle. This changes your view, not the qubit. <strong>Probability Mix (θ)</strong> moves the arrow between the top and bottom. <strong>Relative Phase (φ)</strong> turns it around the middle. At the top or bottom, changing the phase does not change the state.</p>
+    <p>This board shows one qubit as an arrow inside a sphere. The arrow tells you its state. <strong>X</strong>, <strong>Y</strong>, and <strong>Z</strong> turn the arrow around different axes. <strong>H</strong> turns it around a slanted axis. Each gate follows the correct path. Drag the sphere to see the arrow from a new angle. This changes your view, not the qubit. <strong>Chance of 1 (θ)</strong> moves the arrow between the top and bottom. <strong>Relative Phase (φ)</strong> turns it around the middle. At the top or bottom, changing the phase does not change the state.</p>
     <p><strong>Try it:</strong> Start at |0⟩. Press H, then Measure. You may get 0 or 1. Each has a 50% chance. After you measure, the qubit stays at that result until you change it with a gate or slider.</p>
     <p class="qbb-meta">This is a model of one qubit. It runs in your browser, not on a quantum computer.</p>
   </section>
@@ -455,7 +455,7 @@ function render(){
  const p0=clip((1+z)/2),p1=1-p0;
  const t=Math.acos(clip(z))/rad,p=Math.hypot(x,y)>1e-8?(Math.atan2(y,x)/rad+360)%360:phaseMemory;
  theta.value=Math.round(t);phi.value=Math.round(p);
- el("qbb-theta-value").textContent=Math.round(t)+"°";el("qbb-phi-value").textContent=Math.round(p)+"°";
+ el("qbb-chance1").textContent=Math.round(p1*100)+"%";el("qbb-phi-value").textContent=Math.round(p)+"°";
  el("qbb-p0").textContent=Math.round(p0*100)+"%";el("qbb-p1").textContent=Math.round(p1*100)+"%";
  el("qbb-fill0").style.width=(p0*100)+"%";el("qbb-fill1").style.width=(p1*100)+"%";
  frame3d();
@@ -511,7 +511,7 @@ function measure(){
   setBusy(false);status.textContent="Measured "+(one?"1":"0")+"! The qubit is now in state |"+(one?"1":"0")+"⟩.";
  });
 }
-theta.addEventListener("input",()=>{setAngles(Number(theta.value),Number(phi.value));status.textContent="Probability mix changed. Check the chances of 0 and 1.";});
+theta.addEventListener("input",()=>{setAngles(Number(theta.value),Number(phi.value));status.textContent="Chance of 1 changed. Check the result bars.";});
 phi.addEventListener("input",()=>{setAngles(Number(theta.value),Number(phi.value));status.textContent="Relative phase changed. Watch the arrow turn.";});
 const presets={zero:[0,0],one:[180,0],plus:[90,0],minus:[90,180],"plus-i":[90,90],"minus-i":[90,270]};
 root.querySelectorAll("[data-state]").forEach(b=>b.addEventListener("click",()=>{if(busy)return;const [t,p]=presets[b.dataset.state];setAngles(t,p);status.textContent="Prepared "+b.textContent+".";}));
