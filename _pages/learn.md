@@ -26,17 +26,17 @@ author_profile: false
 </style>
 <div class="qt-home qt-subpage qt-play">
   <section class="qt-play-hero">
-    <p class="qt-kicker">The Quantum Turtle · Learning Lab</p>
-    <h1>Quantum ideas you can play with.</h1>
-    <p class="qt-lede">Interactive experiments and approachable resources for curious minds. Start with a qubit, press a gate, and see what happens.</p>
+    <p class="qt-kicker">The Quantum Turtle · Quantum Play Lab</p>
+    <h1>Learn quantum ideas by playing.</h1>
+    <p class="qt-lede">Try a quantum idea for yourself. Start with one qubit, press a gate, and see what happens.</p>
   </section>
 
   <section class="qt-play-feature" aria-labelledby="first-qubit-title">
     <div>
-      <p class="qt-play-feature__tag">Featured interactive experiment</p>
+      <p class="qt-play-feature__tag">Start here · Circle Notation</p>
       <h2 id="first-qubit-title">My First Qubit</h2>
-      <p>What if quantum computing could feel like a hands-on toy? Explore a single qubit with two circles, controls for balance and phase, colorful quantum gates, and measurement.</p>
-      <p>The browser version is an interactive concept for a physical learning toy I'm prototyping.</p>
+      <p>See one qubit in two circles. Use the sliders to change its chances of 0 and 1. Press a gate, then measure the result.</p>
+      <p>This browser toy is an early model for a real wooden learning toy.</p>
       <div class="qt-play-feature__actions">
         <a class="qt-button qt-button--primary" href="/learn/my-first-qubit/">Play with My First Qubit →</a>
         <a class="qt-button qt-button--quiet" href="#more-experiments">More experiments ↓</a>
@@ -58,25 +58,25 @@ author_profile: false
     <div class="qt-section__heading">
       <p class="qt-kicker">Explore further</p>
       <h2>More ways to learn</h2>
-      <p>Move from the circle representation to the Bloch sphere, or take an experiment into the classroom.</p>
+      <p>Start with two circles. Then try the 3D Bloch sphere or a class activity.</p>
     </div>
     <div class="qt-play-resources">
       <a class="qt-play-resource" href="/learn/qubit-busy-board/">
         <span class="qt-meta">Interactive simulator</span>
         <h3>Bloch Sphere Busy Board</h3>
-        <p>See how the same qubit behaves on the Bloch sphere. Explore gates, superposition, phase, and measurement.</p>
+        <p>See the same qubit as an arrow in a 3D sphere. Turn the sphere, try the gates, and check the chances of 0 or 1.</p>
         <span class="qt-play-resource__link">Explore the Bloch sphere ↗</span>
       </a>
       <a class="qt-play-resource" href="/resources/bb84-classroom-worksheet/">
         <span class="qt-meta">Classroom activity</span>
         <h3>BB84 Quantum Key Distribution</h3>
-        <p>A printable, guided group activity about quantum measurement, basis choices, and eavesdropping.</p>
+        <p>Print this class activity to explore quantum keys, measurement, and how to spot someone listening in.</p>
         <span class="qt-play-resource__link">Open classroom worksheet ↗</span>
       </a>
     </div>
     <div class="qt-play-more">
       <p class="qt-kicker">Looking for university courses?</p>
-      <p>Find complete materials for Programming Quantum Computers, Quantum Machine Learning, and previous semesters in the <a href="/teaching/">CMU course catalog →</a></p>
+      <p>Find lessons and course notes in the <a href="/teaching/">CMU course catalog →</a>.</p>
     </div>
   </section>
 </div>
