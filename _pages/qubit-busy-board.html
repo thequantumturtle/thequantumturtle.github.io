@@ -80,6 +80,64 @@ author_profile: false
 .qbb-view-help{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:.5rem;margin:.75rem auto 0;max-width:450px;font-size:.8rem;color:#554b3b}
 .qbb-view-help button{cursor:pointer;border:1px solid #a98257;border-radius:8px;background:#f9edd5;color:#554b3b;padding:.4rem .7rem;font-weight:800}
 .qbb-view-help button:focus-visible{outline:3px solid #203f68}
+
+/* Responsive board: respect the article column rather than viewport alone. */
+.qbb{width:100%;min-width:0}
+.qbb-panel,.qbb-grid,.qbb-view-wrap,.qbb-controls,.qbb-state-controls,.qbb-sliders,.qbb-readouts{min-width:0}
+.qbb-panel{width:100%;max-width:100%}
+.qbb-display{max-width:min(100%,420px)}
+.qbb-sphere{height:auto}
+.qbb-view-help{max-width:420px}
+.qbb-controls{width:100%;min-width:0}
+.qbb-btn{min-width:0;aspect-ratio:auto;font-size:clamp(1.8rem,4vw,2.55rem)}
+.qbb-measure{font-size:clamp(1.05rem,3vw,1.45rem)}
+.qbb-slider{min-width:0}
+.qbb-slider span{flex-wrap:wrap}
+.qbb-slider input{max-width:100%}
+/* Jekyll's main article is narrower than the viewport on desktop. */
+@media(max-width:1050px){
+ .qbb-grid{grid-template-columns:1fr;gap:14px}
+ .qbb-view-wrap{width:100%;max-width:440px;margin:auto}
+ .qbb-controls{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:10px 0}
+ .qbb-btn{min-height:82px;border-width:5px;font-size:2rem}
+ .qbb-btn small{font-size:.63rem}
+ .qbb-measure{grid-column:1/3;min-height:60px;border-radius:18px;font-size:1.05rem}
+ .qbb-reset{grid-column:3/5;min-height:60px}
+ .qbb-display{max-width:370px}
+ .qbb-view-help{max-width:370px}
+}
+@media(max-width:600px){
+ .qbb-head{padding:.3rem 0 1rem}
+ .qbb-head h1{font-size:clamp(1.7rem,7vw,2.4rem)}
+ .qbb-head p{font-size:.95rem}
+ .qbb-panel{padding:12px;border-width:7px;border-radius:23px}
+ .qbb-brand{font-size:.72rem;letter-spacing:.08em;margin:0 0 10px}
+ .qbb-screw{width:11px;height:11px}
+ .qbb-screw:before{width:7px;top:4px;left:1px}
+ .qbb-tl{top:7px;left:7px}.qbb-tr{top:7px;right:7px}.qbb-bl{bottom:7px;left:7px}.qbb-br{bottom:7px;right:7px}
+ .qbb-display{width:min(100%,310px);padding:8px}
+ .qbb-display:before{inset:13px}
+ .qbb-view-help{justify-content:center;text-align:center;font-size:.75rem}
+ .qbb-controls{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;padding:6px 2px}
+ .qbb-btn{min-height:76px;border-width:5px;font-size:2rem}
+ .qbb-measure,.qbb-reset{grid-column:1/-1;min-height:58px}
+ .qbb-measure{font-size:1.15rem}
+ .qbb-state-controls{margin-top:14px;padding:10px;border-width:3px;border-radius:14px}
+ .qbb-readouts{gap:10px;margin-top:14px}
+ .qbb-light-panel{min-width:0;border-width:3px}
+ .qbb-light-panel h3{font-size:.85rem}
+ .qbb-status{font-size:1rem}
+ .qbb-presets{gap:.4rem}
+ .qbb-presets button{padding:.35rem .62rem}
+}
+@media(max-width:360px){
+ .qbb-panel{padding:8px;border-width:5px}
+ .qbb-display{width:min(100%,270px)}
+ .qbb-controls{gap:8px}
+ .qbb-btn{min-height:68px}
+ .qbb-readouts{grid-template-columns:1fr}
+}
+
 </style>
 
 <div class="qbb" id="qubit-busy-board">
