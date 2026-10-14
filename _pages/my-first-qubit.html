@@ -98,6 +98,9 @@ author_profile: false
 .mfq-equation{display:block;overflow-wrap:anywhere;font-family:Georgia,"Times New Roman",serif;font-size:1.01rem;font-weight:700;padding:8px;background:#fff8e9;border-radius:8px}
 .mfq-math .mfq-math-note{color:#665641;font-size:.76rem}
 @media(max-width:520px){.mfq-math{margin-top:9px;padding:6px 9px}.mfq-equation{font-size:.9rem}}
+
+.mfq-equation{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-variant-numeric:tabular-nums;letter-spacing:-.035em;line-height:1.45;overflow-wrap:normal;white-space:normal}
+@media(max-width:520px){.mfq-equation{font-size:clamp(.66rem,2.5vw,.9rem);letter-spacing:-.04em}}
 </style>
 <div class="mfq" id="my-first-qubit">
 <header><p class="qt-kicker">The Quantum Turtle · Quantum Play Lab</p><h1>My First Qubit</h1><p>Two circles show one qubit. Move the sliders, press a gate, and see what changes.</p></header>
@@ -120,8 +123,8 @@ author_profile: false
 <summary>See the math</summary>
 <p>Both circles show one state:</p>
 <p class="mfq-formula">|ψ⟩ = a|0⟩ + b|1⟩</p>
-<output id="mfq-equation" class="mfq-equation" aria-label="Live quantum state equation">|ψ⟩ = 1.00|0⟩ + 0|1⟩</output>
-<p class="mfq-math-note">The numbers may include <em>i</em>, which shows phase. Values are rounded. θ = <output id="mfq-angle">0°</output>.</p>
+<output id="mfq-equation" class="mfq-equation" aria-label="Live quantum state equation">|ψ⟩ = (1.00 + 0.00i)|0⟩ + (0.00 + 0.00i)|1⟩</output>
+<p class="mfq-math-note">Each coefficient shows its real and imaginary parts, even when zero. Values are rounded. θ = <output id="mfq-angle">0°</output>.</p>
 </details>
 <p class="mfq-info" aria-live="polite" id="mfq-info">Start at |0⟩. Try a slider or gate!</p>
 </div>
@@ -150,13 +153,9 @@ function stateEquation(){
  const a=Math.sqrt(p0),m=Math.sqrt(p1);
  const angle=Math.hypot(x,y)>1e-8?Math.atan2(y,x):0;
  const re=m*Math.cos(angle),im=m*Math.sin(angle);
- const fmt=v=>(Math.abs(v)<.005?0:Math.abs(v)).toFixed(2);
- let tail;
- if(m<.005)tail=" + 0|1⟩";
- else if(Math.abs(im)<.005)tail=(re<0?" − ":" + ")+fmt(re)+"|1⟩";
- else if(Math.abs(re)<.005)tail=(im<0?" − ":" + ")+fmt(im)+"i|1⟩";
- else tail=" + ("+(re<0?"−":"")+fmt(re)+(im<0?" − ":" + ")+fmt(im)+"i)|1⟩";
- return "|ψ⟩ = "+fmt(a)+"|0⟩"+tail;
+ const num=v=>(Math.abs(v)<.005?0:Math.abs(v)).toFixed(2);
+ const complex=(real,imag)=>"("+(real<-.005?"−":"")+num(real)+(imag<-.005?" − ":" + ")+num(imag)+"i)";
+ return "|ψ⟩ = "+complex(a,0)+"|0⟩ + "+complex(re,im)+"|1⟩";
 }
 
 function render(){
