@@ -208,6 +208,60 @@ author_profile: false
   .qbb-btn{min-width:0}
 }
 
+
+/* Phone-sized instrument: less vertical scrolling, without tiny touch targets. */
+@media(max-width:600px){
+ .qbb-head{padding:0 0 .55rem}
+ .qbb-head h1{margin:.15rem 0;font-size:clamp(1.55rem,6.2vw,2rem)}
+ .qbb-head p{font-size:.86rem;line-height:1.3;margin:.28rem auto}
+ .qbb-panel{padding:9px;border-width:6px;border-radius:20px}
+ .qbb-brand{font-size:.68rem;margin:0 0 5px}
+ .qbb-grid{gap:7px}
+ .qbb-display{width:min(100%,220px);max-width:220px;padding:7px}
+ .qbb-display:before{inset:12px}
+ .qbb-view-help{gap:5px;margin:4px auto 0;justify-content:center}
+ .qbb-view-help span{font-size:.69rem}
+ .qbb-view-help button{font-size:.7rem;padding:4px 8px;min-height:32px}
+ .qbb-controls{grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;padding:2px 0}
+ .qbb-btn{min-height:51px;max-height:55px;min-width:0;font-size:1.45rem;border-width:3px;box-shadow:0 3px 0 #5e4e41,0 5px 6px #624f394d}
+ .qbb-btn small{font-size:.54rem;letter-spacing:0}
+ .qbb-measure{grid-column:1/3;min-height:48px;max-height:none;font-size:.87rem;border-radius:12px}
+ .qbb-reset{grid-column:3/5;min-height:48px;font-size:.72rem;border-width:2px;border-radius:12px;padding:3px}
+ .qbb-state-controls{margin-top:9px;padding:8px;border-width:2px}
+ .qbb-state-controls h2{font-size:1rem;margin:0 0 2px}
+ .qbb-state-controls>p{font-size:.75rem;line-height:1.32;margin:0 0 7px}
+ .qbb-sliders{gap:7px}
+ .qbb-slider{padding:6px 8px;border-width:1px;border-radius:10px;font-size:.8rem}
+ .qbb-slider input{margin:5px 0 1px;min-height:26px}
+ .qbb-slider small{font-size:.68rem}
+ .qbb-presets{margin-top:7px;gap:5px}
+ .qbb-presets>span{font-size:.74rem}
+ .qbb-presets button{font-size:.8rem;padding:5px 9px;min-height:35px}
+ .qbb-readouts{grid-template-columns:repeat(2,minmax(0,1fr));margin-top:8px;gap:7px}
+ .qbb-light-panel{border-width:2px;border-radius:11px;padding:6px 4px}
+ .qbb-light-panel h3{font-size:.69rem;line-height:1.2;margin:0 0 5px}
+ .qbb-lights{gap:14px}
+ .qbb-lamp{width:27px;height:27px;border-width:3px}
+ .qbb-led{font-size:.77rem}
+ .qbb-probabilities{gap:5px;font-size:.69rem}
+ .qbb-bar{height:9px;margin-top:3px}
+ .qbb-status{margin:7px 0 0;font-size:.83rem;min-height:1.2em}
+ .qbb-meta{margin:3px 0 0;font-size:.7rem}
+}
+@media(max-width:380px){
+ .qbb-display{width:min(100%,195px)}
+ .qbb-panel{padding:7px;border-width:5px}
+ .qbb-sliders{grid-template-columns:1fr}
+ .qbb-readouts{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .qbb-controls{gap:5px}
+ .qbb-btn{font-size:1.3rem}
+ .qbb-measure{font-size:.78rem}
+ .qbb-reset{font-size:.68rem}
+}
+@media(min-width:381px) and (max-width:600px){
+ .qbb-sliders{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
 </style>
 
 <div class="qbb" id="qubit-busy-board">
