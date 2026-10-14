@@ -63,9 +63,9 @@ author_profile: false
     <div class="qt-play-resources">
       <a class="qt-play-resource" href="/learn/qubit-busy-board/">
         <span class="qt-meta">Interactive simulator</span>
-        <h3>Bloch Sphere Busy Board</h3>
-        <p>See the same qubit as an arrow in a 3D sphere. Turn the sphere, try the gates, and check the chances of 0 or 1.</p>
-        <span class="qt-play-resource__link">Explore the Bloch sphere ↗</span>
+        <h3>The Bloch Sphere</h3>
+        <p>Explore quantum states in 3D. Turn the sphere, try the gates, and check the chances of 0 or 1.</p>
+        <span class="qt-play-resource__link">Explore The Bloch Sphere ↗</span>
       </a>
       <a class="qt-play-resource" href="/resources/bb84-classroom-worksheet/">
         <span class="qt-meta">Classroom activity</span>
