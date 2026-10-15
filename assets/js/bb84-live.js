@@ -11,6 +11,16 @@ const randomBit = () => crypto.getRandomValues(new Uint8Array(1))[0] & 1;
 const randomBasis = () => randomBit() ? "+" : "×";
 const newRoom = () => Array.from(crypto.getRandomValues(new Uint8Array(16)), x => x.toString(16).padStart(2,"0")).join("");
 const validRoom = (x) => /^[a-f0-9]{32}$/.test(x);
+function parseRoom(value) {
+ const input = String(value || "").trim();
+ if (validRoom(input.toLowerCase())) return input.toLowerCase();
+ try {
+  const url = new URL(input);
+  if (url.origin !== location.origin || !/^\/learn\/bb84\/?$/.test(url.pathname)) return "";
+  const code = (url.searchParams.get("room") || "").toLowerCase();
+  return validRoom(code) ? code : "";
+ } catch (e) { return ""; }
+}
 const message = (s, warn = false) => { $("live-status").textContent = s; $("live-status").className = "status" + (warn ? " warn" : ""); };
 const show = (id, yes = true) => $(id).classList.toggle("hidden", !yes);
 const setText = (id, text) => { $(id).textContent = text; };
@@ -143,7 +153,7 @@ function render(bits, aliceBases, bases, results) {
  show("live-results");$("live-results").scrollIntoView({behavior:"smooth",block:"nearest"});
 }
 $("live-create").addEventListener("click",()=>begin("alice",newRoom()));
-$("live-join").addEventListener("click",()=>begin("bob",$("live-room-code").value.trim().toLowerCase()));
+$("live-join").addEventListener("click",()=>begin("bob",parseRoom($("live-room-code").value)));
 $("live-plus").addEventListener("click",()=>choose("+"));
 $("live-cross").addEventListener("click",()=>choose("×"));
 $("live-leave").addEventListener("click",()=>{teardown();message("You left the room. Create or join a new experiment.");history.replaceState(null,"",location.pathname);});
@@ -152,6 +162,6 @@ $("live-copy").addEventListener("click",async()=>{
  catch(e){message("Select and copy the room link manually.",true);}
 });
 const query = new URLSearchParams(location.search).get("room");
-if(query && validRoom(query)){ $("live-room-code").value=query; message("You have a room invitation. Click Join as Bob to connect."); }
+if(query && validRoom(query.toLowerCase())){ $("live-room-code").value=query.toLowerCase(); message("You have a room invitation. Click Join as Bob to connect."); }
 window.addEventListener("pagehide",()=>{if(channel&&client)client.removeChannel(channel);});
 })();
