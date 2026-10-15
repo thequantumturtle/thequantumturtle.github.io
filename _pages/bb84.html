@@ -42,7 +42,7 @@ author_profile: false
  <p>Create a room, send Bob the link, and measure one qubit at a time. Both screens update automatically. No Zoom-chat copying or account needed.</p>
  <div id="live-join-controls" class="live-cols">
    <div class="live-block"><h3>Alice · Create a room</h3><p>Prepare private random qubits and invite another person.</p><label><input type="checkbox" id="live-eve"> Let Eve listen (intercept-resend)</label><p><button type="button" id="live-create">Create a live room →</button></p></div>
-   <div class="live-block"><h3>Bob · Join a room</h3><label for="live-room-code">Paste your invitation's room code</label><input class="live-input" id="live-room-code" placeholder="32-character room code" autocomplete="off" autocapitalize="off" spellcheck="false"><button type="button" id="live-join">Join as Bob →</button><p class="hint">Following Alice's link fills in the room code.</p></div>
+   <div class="live-block"><h3>Bob · Join a room</h3><label for="live-room-code">Paste Alice's invitation link or room code</label><input class="live-input" id="live-room-code" placeholder="Paste invitation URL or room code" autocomplete="off" autocapitalize="off" spellcheck="false"><button type="button" id="live-join">Join as Bob →</button><p class="hint">You can paste the entire link. Opening it also fills in the room code.</p></div>
  </div>
  <div id="live-status" class="status live-status-area" role="status" aria-live="polite">Create a room or join an invitation.</div>
  <div id="live-alice-ready" class="hidden live-block">
