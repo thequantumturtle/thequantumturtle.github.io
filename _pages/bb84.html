@@ -21,9 +21,52 @@ author_profile: false
 .bb84 .qubit-journey{display:flex;align-items:center;justify-content:center;gap:.8rem;padding:1rem;margin:.8rem 0;border:1px dashed #aab8a8;border-radius:10px;background:#faf8ef}.bb84 .qubit-journey .orb{width:72px;height:72px;border-radius:50%;border:4px solid #86b6b7;background:radial-gradient(circle at 35% 30%,#fff,#d0eced 55%,#92c3c4);display:grid;place-items:center;color:#22505a;font-size:1.65rem;font-weight:800;box-shadow:0 5px 16px #284c4940}.bb84 .qubit-journey .orb.locked{background:radial-gradient(circle at 35% 30%,#fff,#e9e7d8 55%,#c9c5af);border-color:#acac99;color:#55594f}.bb84 .qubit-journey .path{height:3px;flex:1;max-width:170px;background:repeating-linear-gradient(90deg,#6c9e91 0 8px,transparent 8px 15px);position:relative}.bb84 .qubit-journey .path:after{content:"›";position:absolute;right:-8px;top:-17px;font-size:25px;color:#477f6d}.bb84 .qubit-journey .who{text-align:center;font-size:.8rem;font-weight:750}.bb84 .explain{background:#fffaf0;padding:1rem;border-radius:8px}.bb84 .explain summary{font-weight:750;cursor:pointer;color:#28533c}.bb84 .result-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.7rem;margin:1rem 0}.bb84 .result-stats>div{background:#fffaf0;border:1px solid #d7ddcf;border-radius:8px;padding:.8rem;text-align:center}.bb84 .result-stats strong{display:block;font-size:clamp(1.3rem,3vw,2rem);color:#315f48}.bb84 .result-stats span{font-size:.8rem;color:#55665e}
 @media(max-width:590px){.bb84 .state-demo{gap:.35rem}.bb84 .state-tile{padding:.45rem .15rem}.bb84 .state-tile small{font-size:.65rem}.bb84 .result-stats{gap:.35rem}.bb84 .result-stats>div{padding:.5rem .2rem}}
 @media(prefers-reduced-motion:reduce){.bb84 #progress-fill{transition:none}}
+
+.bb84 .live-header{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.bb84 .live-tag{background:#dceadd;color:#315a41;padding:.3rem .65rem;font-weight:750;font-size:.76rem;letter-spacing:.04em;border-radius:20px}
+.bb84 .live-cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem}
+.bb84 .live-room-link{display:block;overflow-wrap:anywhere;padding:.75rem;background:white;border:1px solid #d5d8cc;border-radius:6px;font-family:ui-monospace,monospace;font-size:.83rem;margin:.4rem 0 .8rem}
+.bb84 .live-block{border:1px solid #d8d8cc;border-radius:10px;background:#fbfaf5;padding:1rem}
+.bb84 .live-block p{margin-top:.4rem}
+.bb84 .live-input{display:block;width:100%;font-family:ui-monospace,monospace;border:1px solid #95aa99;background:white;color:#293f35;padding:.65rem;border-radius:5px;margin:.5rem 0;min-height:44px}
+.bb84 #live-result-table{overflow:auto}.bb84 #live-result-table table{min-width:580px}
+.bb84 .live-status-area{margin-top:1.1rem}
+@media(max-width:640px){.bb84 .live-cols{grid-template-columns:1fr}.bb84 .live-block button{width:100%}}
 </style>
 <div class="bb84" id="bb84-app">
 <header><p class="step">The Quantum Turtle · Quantum Play Lab</p><h1>Make a secret key with BB84.</h1><p class="intro">Play Alice and Bob to discover quantum key distribution. Pick measurement bases, compare results, and see what happens when Eve listens in.</p></header>
+
+<section class="panel" id="live-lab" aria-labelledby="live-heading">
+ <div class="live-header"><p class="step">Play together · Real-time classroom experiment</p><span class="live-tag">NEW · LIVE ROOMS</span></div>
+ <h2 id="live-heading">Alice and Bob, on two screens</h2>
+ <p>Create a room, send Bob the link, and measure one qubit at a time. Both screens update automatically. No Zoom-chat copying or account needed.</p>
+ <div id="live-join-controls" class="live-cols">
+   <div class="live-block"><h3>Alice · Create a room</h3><p>Prepare private random qubits and invite another person.</p><label><input type="checkbox" id="live-eve"> Let Eve listen (intercept-resend)</label><p><button type="button" id="live-create">Create a live room →</button></p></div>
+   <div class="live-block"><h3>Bob · Join a room</h3><label for="live-room-code">Paste your invitation's room code</label><input class="live-input" id="live-room-code" placeholder="32-character room code" autocomplete="off" autocapitalize="off" spellcheck="false"><button type="button" id="live-join">Join as Bob →</button><p class="hint">Following Alice's link fills in the room code.</p></div>
+ </div>
+ <div id="live-status" class="status live-status-area" role="status" aria-live="polite">Create a room or join an invitation.</div>
+ <div id="live-alice-ready" class="hidden live-block">
+   <h3>Alice · Your room is ready</h3><p>Share this link with Bob:</p>
+   <span id="live-room-link" class="live-room-link"></span><button type="button" id="live-copy">Copy invitation link</button>
+   <p><strong id="live-alice-progress">0 / 16 measurements</strong></p>
+   <p class="hint">Your bit and basis choices stay in this tab until the final reveal. Keep it open while Bob measures. Anyone with the room link can observe classroom messages; this is not secure QKD.</p>
+ </div>
+ <div id="live-bob-ready" class="hidden live-block">
+   <h3>Bob · Measure qubit <span id="live-bob-round">1</span> of 16</h3><p>Your basis choices determine what you can learn. Alice's preparation remains hidden until the end.</p>
+   <p id="live-bob-feedback" class="status">Waiting for Alice.</p>
+   <div class="choice"><button type="button" id="live-plus" disabled>+<small style="display:block;color:inherit;font-size:.7rem">Standard</small></button><button type="button" id="live-cross" disabled>×<small style="display:block;color:inherit;font-size:.7rem">Diagonal</small></button></div>
+   <p><strong id="live-bob-progress">0 / 16 measured</strong></p>
+ </div>
+ <div id="live-results" class="hidden">
+   <h3>Compare the results</h3><p><strong id="live-kept"></strong> · <strong id="live-errors"></strong></p>
+   <div id="live-result-table" class="board"></div>
+   <h3>Sifted bits (not a secure key)</h3><p class="key" id="live-key"></p>
+   <p class="hint">This idealized lesson reveals all bits to teach the protocol. Real QKD needs an authenticated classical channel, real quantum transmission, sampling, error correction and privacy amplification.</p>
+ </div>
+ <div class="controls" style="margin-top:1rem"><button type="button" id="live-leave" class="secondary" disabled>Leave room</button></div>
+ <p class="hint">Live rooms use Supabase Realtime public broadcasts. Room links are hard to guess but are not authentication. Don't use this exercise for secrets or real keys. If live connections fail, use the solo or Zoom-chat exercise below.</p>
+</section>
+
 <section class="panel" aria-labelledby="state-map-heading"><p class="step">A qubit can carry a 0 or a 1 in two different bases</p><h2 id="state-map-heading">Meet the four BB84 states</h2><p>Blue states use the + basis. Orange states use the × basis. Alice picks one. Bob chooses which basis to measure.</p>
 <div class="state-demo" id="state-demo">
 <div class="state-tile" data-basis="plus"><svg viewBox="0 0 100 100" role="img" aria-label="North-pointing arrow for state zero"><circle cx="50" cy="50" r="40" fill="#e5f4f4" stroke="#397b9c" stroke-width="3"/><path d="M50 72V27m-12 13 12-13 12 13" fill="none" stroke="#225a77" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg><strong>|0⟩</strong><small>+ basis · bit 0</small></div>
@@ -76,3 +119,5 @@ async function copy(id){try{await navigator.clipboard.writeText($(id).value);sta
 $("solo").onclick=()=>setMode("solo");$("alice").onclick=()=>setMode("alice");$("bob").onclick=()=>setMode("bob");$("prepare").onclick=prepare;$("copy-out").onclick=()=>copy("outgoing");$("copy-result").onclick=()=>copy("out-result");$("copy-final").onclick=()=>copy("alice-final");$("load").onclick=()=>{try{const x=decode($("incoming").value,"invite");startBob(x.session)}catch(e){status(e.message,true)}};$("plus").onclick=()=>selectBase("+");$("cross").onclick=()=>selectBase("×");$("next").onclick=advance;$("review").onclick=aliceReview;$("finish").onclick=bobReview;$("again").onclick=()=>{setMode(mode);window.scrollTo({top:0,behavior:"smooth"})};setMode("solo");
 })();
 </script>
+<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script defer src="/assets/js/bb84-live.js"></script>
