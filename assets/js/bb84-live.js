@@ -151,11 +151,6 @@ $("live-copy").addEventListener("click",async()=>{
  try{await navigator.clipboard.writeText($("live-room-link").textContent);message("Room link copied. Send it to Bob.");}
  catch(e){message("Select and copy the room link manually.",true);}
 });
-$("live-restart").addEventListener("click",async()=>{
- if(role!=="alice"||state!=="ready")return;
- prepare();await transmit("restart",{});
- message("New experiment prepared. Ask Bob to reload the room link to start again.");
-});
 const query = new URLSearchParams(location.search).get("room");
 if(query && validRoom(query)){ $("live-room-code").value=query; message("You have a room invitation. Click Join as Bob to connect."); }
 window.addEventListener("pagehide",()=>{if(channel&&client)client.removeChannel(channel);});
