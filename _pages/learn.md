@@ -67,11 +67,11 @@ author_profile: false
         <p>Explore quantum states in 3D. Turn the sphere, try the gates, and check the chances of 0 or 1.</p>
         <span class="qt-play-resource__link">Explore The Bloch Sphere ↗</span>
       </a>
-      <a class="qt-play-resource" href="/resources/bb84-classroom-worksheet/">
-        <span class="qt-meta">Classroom activity</span>
-        <h3>BB84 Quantum Key Distribution</h3>
-        <p>Print this class activity to explore quantum keys, measurement, and how to spot someone listening in.</p>
-        <span class="qt-play-resource__link">Open classroom worksheet ↗</span>
+      <a class="qt-play-resource" href="/learn/bb84/">
+        <span class="qt-meta">Interactive experiment · Solo or two people</span>
+        <h3>BB84 Quantum Key Lab</h3>
+        <p>Play Alice and Bob. Prepare qubits, compare bases, build a shared key, and test what happens when Eve listens in.</p>
+        <span class="qt-play-resource__link">Play the BB84 experiment ↗</span>
       </a>
     </div>
     <div class="qt-play-more">
