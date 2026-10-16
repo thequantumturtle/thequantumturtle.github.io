@@ -1,0 +1,18 @@
+name: Live qubit diagnosis
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'tests/diagnose_live_qubit.py'
+      - '.github/workflows/qubit-live-diagnosis.yml'
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install playwright
+      - run: python -m playwright install chromium --with-deps
+      - run: python tests/diagnose_live_qubit.py
