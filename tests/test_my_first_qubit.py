@@ -36,7 +36,7 @@ with sync_playwright() as p:
 
     # X from a pole: watch the state grow, not just the final result.
     page.locator('[data-gate="X"]').click()
-    page.wait_for_timeout(100)
+    page.wait_for_function("document.getElementById('mfq-p1').textContent !== '0%'", timeout=1500)
     p1_during = page.locator("#mfq-p1").inner_text()
     print("DEBUG", {"p1": p1_during, "errors": errors,
         "status": page.locator("#mfq-info").inner_text(),
