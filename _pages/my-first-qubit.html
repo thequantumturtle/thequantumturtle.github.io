@@ -128,7 +128,7 @@ author_profile: false
 </div>
 <div class="mfq-controls">
 <div class="mfq-knob"><label for="mfq-balance">CHANCE OF 1</label><input type="range" id="mfq-balance" min="0" max="180" step="1" value="0"/><strong id="mfq-chance1">0%</strong><p>Left: 0% · Right: 100% chance of 1</p></div>
-<div class="mfq-knob"><label for="mfq-phase">RELATIVE PHASE · φ</label><input type="range" id="mfq-phase" min="0" max="360" step="1" value="0"/><strong id="mfq-phi">Undefined</strong><p>Difference between the two clock hands; undefined if a circle is empty</p></div>
+<div class="mfq-knob"><label for="mfq-phase">PHASE SETTING · φ</label><input type="range" id="mfq-phase" min="0" max="360" step="1" value="0"/><strong id="mfq-phi">0°</strong><p>Sets the difference between the clock hands</p></div>
 </div>
 <div class="mfq-gates" aria-label="Quantum gate buttons"><button type="button" class="mfq-gate x" data-gate="X">X</button><button type="button" class="mfq-gate h" data-gate="H">H</button><button type="button" class="mfq-gate z" data-gate="Z">Z</button><button type="button" class="mfq-gate y" data-gate="Y">Y</button></div>
 <div class="mfq-bottom"><button type="button" class="mfq-measure" id="mfq-measure">● MEASURE</button><button type="button" class="mfq-reset" id="mfq-reset">↺ RESET</button></div>
@@ -153,7 +153,7 @@ author_profile: false
 </section>
 <section class="mfq-explain">
 <h2>What the board shows</h2>
-<p>Two circles show one qubit. Each circle's filled <em>area</em> shows the chance of measuring that result. <strong>Chance of 1 (θ)</strong> makes one circle grow as the other shrinks. <strong>Relative Phase (φ)</strong> sets the difference between the hands when you move the slider. Each hand shows the phase of its complex amplitude. Only the difference between the hands changes measurement behavior. When both hands rotate together, that is global phase, which does not affect measurement results. When a circle is empty, its phase is undefined.</p>
+<p>Two circles show one qubit. Each circle's filled <em>area</em> shows the chance of measuring that result. <strong>Chance of 1 (θ)</strong> makes one circle grow as the other shrinks. <strong>Relative Phase (φ)</strong> sets the difference between the hands when you move the slider. Each hand shows the phase of its complex amplitude. Only the difference between the hands changes measurement behavior. When both hands rotate together, that is global phase, which does not affect measurement results. When a circle is empty, its clock hand has no direction. The phase setting stays saved until both circles have a size. Mathematically, relative phase is undefined when either amplitude is zero.</p>
 <p>These sliders can show any <strong>pure state</strong> of one qubit. A mixed state needs a different model.</p>
 <p class="mfq-note">This browser toy is a first step toward a real wooden busy board. The real toy could use turning knobs and two small screens. It runs on your computer, not on quantum hardware.</p>
 </section>
@@ -235,7 +235,7 @@ function render(){
  el("mfq-equation").textContent=stateEquation();
  el("mfq-angle").textContent=Math.round(theta)+"°";
  el("mfq-chance1").textContent=Math.round(p1*100)+"%";
- el("mfq-phi").textContent=hasRelativePhase?Math.round(relative)+"°":"Undefined";
+ el("mfq-phi").textContent=Math.round(relative)+"°";
  [[p0,alpha,0],[p1,beta,1]].forEach(([p,handAngle,i])=>{
    const radius=96*Math.sqrt(p);
    el("mfq-circle"+i).setAttribute("r",radius);
