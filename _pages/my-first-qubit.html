@@ -195,7 +195,7 @@ function applyPauli(g,v){
  return v;
 }
 function gateState(g,initial,t){
- // U(t)=cos(t/2)I - i sin(t/2) G; G is X,Y,Z or H.
+ /* U(t)=cos(t/2)I - i sin(t/2) G; G is X,Y,Z or H. */
  const transformed=applyPauli(g,initial);
  const c=Math.cos(t/2),q=Math.sin(t/2);
  return initial.map((u,i)=>add(scale(u,c),negI(scale(transformed[i],q))));
@@ -246,8 +246,8 @@ function render(){
 function setAngles(theta,relative){
  if(busy)return;
  const old=amplitudes;
- // Preserve the current global phase when manipulating an otherwise
- // physical (relative-phase / probability) control.
+ /* Preserve the current global phase when manipulating an otherwise */
+ /* physical (relative-phase / probability) control. */
  const global=norm2(old[0])>1e-12?arg(old[0]):norm2(old[1])>1e-12?arg(old[1]):0;
  const t=theta*d2r,phi=relative*d2r;
  const ref=complex(Math.cos(global),Math.sin(global));
@@ -275,8 +275,8 @@ function collapse(target,duration,done){
  const component=initial[target],p=Math.sqrt(norm2(component));
  const phaseTarget=p>1e-10?scale(component,1/p):complex(1);
  const final=target===0?[phaseTarget,complex(0)]:[complex(0),phaseTarget];
- // A measurement is not a unitary rotation; this is only a visual
- // transition to the sampled post-measurement state.
+ /* A measurement is not a unitary rotation; this is only a visual */
+ /* transition to the sampled post-measurement state. */
  animate(duration,t=>{
    setState(initial.map((u,i)=>add(scale(u,1-t),scale(final[i],t))));
  },()=>{setState(final);done();});
