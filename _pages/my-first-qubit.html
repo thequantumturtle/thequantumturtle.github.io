@@ -114,6 +114,10 @@ author_profile: false
 .mfq-explain p{margin:0 0 1.05rem}
 .mfq-explain .mfq-note{text-align:center;color:#74614b;font-size:.88rem;margin:1.1rem auto 0;max-width:45rem}
 @media(max-width:520px){.mfq-guide{padding:1rem}.mfq-explain{margin-top:25px}}
+.mfq-prototype{margin-top:1.4rem;padding:1.2rem 1.4rem;border:1px solid #d4bd96;border-radius:13px;background:#fcf5e8;color:#443726}
+.mfq-prototype h2{font-size:1.24rem;margin:0 0 .4rem}
+.mfq-prototype p{line-height:1.55;margin:.4rem 0}
+.mfq-prototype a{color:#285d53;font-weight:750;text-underline-offset:3px}
 </style>
 <div class="mfq" id="my-first-qubit">
 <header><p class="qt-kicker">The Quantum Turtle · Quantum Play Lab</p><h1>My First Qubit</h1><p>Two circles show one qubit. Move the sliders, press a gate, and see what changes.</p></header>
@@ -156,6 +160,11 @@ author_profile: false
 <p>Two circles show one qubit. Each circle's filled <em>area</em> shows the chance of measuring that result. <strong>Chance of 1 (θ)</strong> makes one circle grow as the other shrinks. <strong>Relative Phase (φ)</strong> sets the difference between the hands when you move the slider. Each hand shows the phase of its complex amplitude. Only the difference between the hands changes measurement behavior. When both hands rotate together, that is global phase, which does not affect measurement results. When a circle is empty, its clock hand has no direction. The phase setting stays saved until both circles have a size. Mathematically, relative phase is undefined when either amplitude is zero.</p>
 <p>These sliders can show any <strong>pure state</strong> of one qubit. A mixed state needs a different model.</p>
 <p class="mfq-note">This browser toy is a first step toward a real wooden busy board. The real toy could use turning knobs and two small screens. It runs on your computer, not on quantum hardware.</p>
+</section>
+<section class="mfq-prototype" aria-labelledby="mfq-physical-title">
+<h2 id="mfq-physical-title">From screen to real life</h2>
+<p>We're building a physical My First Qubit with real controls and two round displays. The first electronics prototype is underway.</p>
+<p><a href="/work/building-my-first-qubit/" id="mfq-prototype-link">Follow the physical prototype →</a></p>
 </section>
 </div>
 <script>
@@ -327,6 +336,7 @@ render();
    if(target.matches("[data-gate]"))track("qubit_gate_applied",{gate:target.dataset.gate});
    else if(target.id==="mfq-measure")track("qubit_measured");
    else if(target.id==="mfq-reset")track("qubit_reset");
+   else if(target.id==="mfq-prototype-link")track("prototype_link_clicked",{destination:"/work/building-my-first-qubit/"});
    else if(target.matches('a[href*="/learn/"]'))track("qubit_next_lesson",{destination:target.getAttribute("href")});
    
  });
