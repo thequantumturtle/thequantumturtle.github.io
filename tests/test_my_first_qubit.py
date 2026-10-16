@@ -37,6 +37,11 @@ with sync_playwright() as p:
     page.locator('[data-gate="X"]').click()
     page.wait_for_timeout(100)
     p1_during = page.locator("#mfq-p1").inner_text()
+    print("DEBUG", {"p1": p1_during, "errors": errors,
+        "status": page.locator("#mfq-info").inner_text(),
+        "script_count": page.locator("script").count(),
+        "initial_state": page.locator("#mfq-equation").inner_text(),
+        "is_disabled": page.locator('[data-gate="X"]').is_disabled()}, flush=True)
     assert p1_during != "0%", "X animation did not start"
     page.wait_for_function("!document.querySelector('[data-gate=\"X\"]').disabled", timeout=5000)
     assert page.locator("#mfq-p1").inner_text() == "100%"
