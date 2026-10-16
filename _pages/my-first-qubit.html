@@ -336,6 +336,7 @@ render();
    if(target.matches("[data-gate]"))track("qubit_gate_applied",{gate:target.dataset.gate});
    else if(target.id==="mfq-measure")track("qubit_measured");
    else if(target.id==="mfq-reset")track("qubit_reset");
+   else if(target.id==="mfq-prototype-link")track("prototype_link_clicked",{destination:"/work/building-my-first-qubit/"});
    else if(target.matches('a[href*="/learn/"]'))track("qubit_next_lesson",{destination:target.getAttribute("href")});
    
  });
