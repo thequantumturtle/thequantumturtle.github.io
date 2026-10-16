@@ -3,69 +3,61 @@ layout: archive
 title: "17-620: Quantum Machine Learning"
 type: "Fall Semester"
 venue: "Carnegie Mellon University"
-date: 2026-08-24
-# location: "City, Country"
+date: 2026-10-20
 ---
 
-Mondays and Wednesdays (5:00pm to 6:20pm @ 3SC 265)
-### Instructors:
-[Daniel Justice](https://thequantumturtle.github.io/) & [Rita Singh](http://mlsp.cs.cmu.edu/people/rsingh/index.html)
+**Fall 2026 · Second-half mini-course**  
+**Tuesdays and Thursdays, 8:00–9:20 AM**  
+**First class: Tuesday, October 20, 2026**
 
-## Important Links
-Canvas: TBD  
-Piazza: TBD
+### Instructors
+[Daniel Justice](https://thequantumturtle.github.io/) and [Rita Singh](http://mlsp.cs.cmu.edu/people/rsingh/index.html)
 
-## Location
-Class room is at 3SC 265. The class is in person. I encourage you to come to class. Remote access details, if needed, will be posted later.
+## Course access
+- **Canvas:** Link coming soon. Assignments, grades, and course announcements will be available there.
+- **Piazza:** Link coming soon. Use Piazza for questions and class discussion once it opens.
+- **Classroom:** Please check the official course listing for the current room. In-person attendance is expected; any remote arrangements will be shared by the instructors.
 
-## Course Goals
-Students having already gain familiarity with current universal gate quantum computing tools and technology will expand their knowledge to using Quantum Computing for Machine Learning algorithms.
-
-## Materials
-Course materials, assignments, and announcements will be posted here and/or on Canvas.
-
-#### Main Book:
-- [Practical Quantum Machine Learning and Quantum Optimization](https://www.amazon.com/Practical-Quantum-Machine-Learning-Optimization/dp/1804613835)  
-  We will be working mostly out of this book.
-
-#### Extra Reading:
-- [Machine Learning with Quantum Computers](https://link.springer.com/book/10.1007/978-3-030-83098-4)
-- [Gentle Book](http://mmrc.amss.cas.cn/tlb/201702/W020170224608150244118.pdf)  
-  A very computer science take on quantum computers. A good read if you are hoping to do research.
-
-## Grading
-90% Homeworks/Quizzes, 10% Participation.
-
-## Quizzes
-Each week a quiz will be given. The worst one will not be counted.
+## What you will learn
+This course explores how quantum computers can support machine learning. We will build on basic quantum computing concepts, explore ways to represent data with quantum circuits, and work with quantum and hybrid quantum-classical learning methods.
 
 ## Prerequisites
-Python, Jupyter Notebooks, Linear Algebra
+You should be comfortable with Python, Jupyter notebooks, and linear algebra. You do **not** need prior knowledge of quantum mechanics.
 
-Students will **not** need an understanding of quantum mechanics.
+## Course materials
+We will post class resources here and in Canvas as the course begins.
 
-**Note**: The syllabus is subject to occasional change. This is especially the case in the latter half of the semester once your professors have become comfortable with the group's overall skill level. Adequate notice will be given.
+### Main textbook
+- [Practical Quantum Machine Learning and Quantum Optimization](https://www.amazon.com/Practical-Quantum-Machine-Learning-Optimization/dp/1804613835). We will use this book for much of the course.
 
-## Basic course structure
+### Additional reading
+- [Machine Learning with Quantum Computers](https://link.springer.com/book/10.1007/978-3-030-83098-4)
+- [A Gentle Introduction to Quantum Computing](http://mmrc.amss.cas.cn/tlb/201702/W020170224608150244118.pdf)
 
-This course is a Mini-Course (Half Semester) taking place in the second half of the Fall semester. Due to this being a mini, we will do our best to skirt into a new topic each and every day. 
+## Grading
+- **Homework and quizzes:** 90%
+- **Participation:** 10%
 
-## Schedule
+We plan to give a quiz each week and drop the lowest quiz score. We will confirm deadlines and details in Canvas.
 
-[**Day 1**](/courses/2026-Fall-17620/syllabus/1-Introduction): Introduction  
-[**Day 2**](/courses/2026-Fall-17620/syllabus/2-Pennylane): Introduction to Pennylane  
-[**Day 3**](/courses/2026-Fall-17620/syllabus/3-Foundations-ML-QC): Foundational Concepts of ML & QC  
-[**Day 4**](/courses/2026-Fall-17620/syllabus/4-QC-Algos-ML-Basics): QC Algos Relevant for ML - Basics  
-[**Day 5**](/courses/2026-Fall-17620/syllabus/5-Data-Encoding): Data Encoding  
-[**Day 6**](/courses/2026-Fall-17620/syllabus/6-Classical-SVM-NN): SVMs and NNs - Classical Focus  
-[**Day 7**](/courses/2026-Fall-17620/syllabus/7-Hybrid-QC-ML): Hybrid Quantum-Classical Algos for ML  
-[**Day 8**](/courses/2026-Fall-17620/syllabus/8-QML-Optimization-Sampling): QML for Optimization and Sampling Problems  
-[**Day 9**](/courses/2026-Fall-17620/syllabus/9-QSVM-Practical): QSVMS Practical  
-[**Day 10**](/courses/2026-Fall-17620/syllabus/10-QNN-Practical): QNNs Practical  
-[**Day 11**](/courses/2026-Fall-17620/syllabus/11-Guest): Guest Lecture  
-[**Day 12**](/courses/2026-Fall-17620/syllabus/12-Thanksgiving): **Thanksgiving**  
-[**Day 13**](/courses/2026-Fall-17620/syllabus/13-Q-Means): Q-Means  
-[**Day 14**](/courses/2026-Fall-17620/syllabus/14-Quantum-Decoders): Quantum Decoders  
+## Class format and schedule
+This course meets during the second half of the fall semester. We will explore a new topic in most class meetings.
 
+**Opening week:** Tuesday, October 20 and Thursday, October 22. The remaining lecture dates and teaching assignments are being coordinated. The topic order below is **tentative** and may change as we assess the class's progress. We will announce updates before they take effect.
 
-<!-- *Schedule with assignments, readings, etc. can be found [here](schedule.html)* -->
+1. [Introduction](/courses/2026-Fall-17620/syllabus/1-Introduction)
+2. [Getting started with PennyLane](/courses/2026-Fall-17620/syllabus/2-Pennylane)
+3. [Foundations of machine learning and quantum computing](/courses/2026-Fall-17620/syllabus/3-Foundations-ML-QC)
+4. [Quantum algorithms for machine learning](/courses/2026-Fall-17620/syllabus/4-QC-Algos-ML-Basics)
+5. [Encoding data in quantum states](/courses/2026-Fall-17620/syllabus/5-Data-Encoding)
+6. [Classical support vector machines and neural networks](/courses/2026-Fall-17620/syllabus/6-Classical-SVM-NN)
+7. [Hybrid quantum-classical learning](/courses/2026-Fall-17620/syllabus/7-Hybrid-QC-ML)
+8. [Optimization and sampling](/courses/2026-Fall-17620/syllabus/8-QML-Optimization-Sampling)
+9. [Quantum support vector machines: practice](/courses/2026-Fall-17620/syllabus/9-QSVM-Practical)
+10. [Quantum neural networks: practice](/courses/2026-Fall-17620/syllabus/10-QNN-Practical)
+11. [Guest lecture (tentative)](/courses/2026-Fall-17620/syllabus/11-Guest)
+12. [Thanksgiving week: schedule to be confirmed](/courses/2026-Fall-17620/syllabus/12-Thanksgiving)
+13. [Quantum clustering and q-means](/courses/2026-Fall-17620/syllabus/13-Q-Means)
+14. [Quantum decoders](/courses/2026-Fall-17620/syllabus/14-Quantum-Decoders)
+
+**Note:** This outline may change. We will give students notice of changes to topics, assignments, or meeting plans.
