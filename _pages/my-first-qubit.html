@@ -164,7 +164,39 @@ author_profile: false
 const root=document.getElementById("my-first-qubit");if(!root)return;
 const el=id=>document.getElementById(id);
 const d2r=Math.PI/180,r2d=180/Math.PI,clamp=n=>Math.max(-1,Math.min(1,n));
-let x=0,y=0,z=1,phaseMemory=0;
+let x=0,y=0,z=1,phaseMemory=0,busy=false;
+const reducedMotion=window.matchMedia("(prefers-reduced-motion: reduce)");
+const controls=Array.from(root.querySelectorAll("button,input"));
+function setBusy(value){busy=value;controls.forEach(control=>{control.disabled=value;});}
+function rotate(v,a,t){
+ const c=Math.cos(t),sn=Math.sin(t),dot=a[0]*v[0]+a[1]*v[1]+a[2]*v[2];
+ return [
+  v[0]*c+(a[1]*v[2]-a[2]*v[1])*sn+a[0]*dot*(1-c),
+  v[1]*c+(a[2]*v[0]-a[0]*v[2])*sn+a[1]*dot*(1-c),
+  v[2]*c+(a[0]*v[1]-a[1]*v[0])*sn+a[2]*dot*(1-c)
+ ];
+}
+function animate(duration,update,done){
+ if(reducedMotion.matches){update(1);done();return;}
+ const start=performance.now();
+ function frame(now){
+  const progress=Math.min(1,Math.max(0,(now-start)/duration));
+  update(progress*progress*(3-2*progress));
+  if(progress<1)requestAnimationFrame(frame);else done();
+ }
+ requestAnimationFrame(frame);
+}
+function setVector(v){[x,y,z]=v;render();}
+function rememberPhase(){if(Math.hypot(x,y)>1e-8)phaseMemory=(Math.atan2(y,x)*r2d+360)%360;}
+function animateTo(target,duration,done){
+ const start=[x,y,z],dot=clamp(start[0]*target[0]+start[1]*target[1]+start[2]*target[2]);
+ const cross=[start[1]*target[2]-start[2]*target[1],start[2]*target[0]-start[0]*target[2],start[0]*target[1]-start[1]*target[0]];
+ const length=Math.hypot(...cross);
+ const axis=length>1e-8?cross.map(v=>v/length):Math.abs(start[0])<.9?[0,-start[2],start[1]]:[-start[1],start[0],0];
+ const norm=Math.hypot(...axis),unit=axis.map(v=>v/norm),angle=Math.acos(dot);
+ animate(duration,t=>setVector(rotate(start,unit,angle*t)),()=>{setVector(target);rememberPhase();done();});
+}
+
 const balance=el("mfq-balance"),phase=el("mfq-phase"),info=el("mfq-info");
 function setFromAngles(t,p){const T=t*d2r,P=p*d2r;x=Math.sin(T)*Math.cos(P);y=Math.sin(T)*Math.sin(P);z=Math.cos(T);phaseMemory=p%360;if(phaseMemory<0)phaseMemory+=360;clearLamps();render()}
 function clearLamps(){el("mfq-lamp0").className="mfq-lamp";el("mfq-lamp1").className="mfq-lamp"}
@@ -196,24 +228,36 @@ line.setAttribute("y2",110-(active?radius*Math.cos(a):0));
 line.style.visibility=active?"visible":"hidden";
 });
 }
-balance.addEventListener("input",()=>{setFromAngles(Number(balance.value),Number(phase.value));info.textContent="Chance of 1 changed. Check the circles."});
-phase.addEventListener("input",()=>{setFromAngles(Number(balance.value),Number(phase.value));info.textContent="Relative phase changed. Watch the |1⟩ hand."});
+balance.addEventListener("input",()=>{if(busy)return;setFromAngles(Number(balance.value),Number(phase.value));info.textContent="Chance of 1 changed. Check the circles.";});
+phase.addEventListener("input",()=>{if(busy)return;setFromAngles(Number(balance.value),Number(phase.value));info.textContent="Relative phase changed. Watch the |1⟩ hand.";});
+const axes={X:[1,0,0],Y:[0,1,0],Z:[0,0,1],H:[Math.SQRT1_2,0,Math.SQRT1_2]};
 root.querySelectorAll("[data-gate]").forEach(button=>button.addEventListener("click",()=>{
-const a=x,b=y,c=z,g=button.dataset.gate;
-if(g==="X"){x=a;y=-b;z=-c}
-else if(g==="Y"){x=-a;y=b;z=-c}
-else if(g==="Z"){x=-a;y=-b;z=c}
-else if(g==="H"){x=c;y=-b;z=a}
-if(Math.hypot(x,y)>1e-8)phaseMemory=(Math.atan2(y,x)*r2d+360)%360;
-clearLamps();render();info.textContent=g+" gate applied!";
+ if(busy)return;
+ const gate=button.dataset.gate,axis=axes[gate],start=[x,y,z];
+ if(!axis)return;
+ clearLamps();setBusy(true);info.textContent=gate+" gate: watch the circles and hands move.";
+ animate(720,t=>setVector(rotate(start,axis,Math.PI*t)),()=>{
+  setVector(rotate(start,axis,Math.PI));rememberPhase();setBusy(false);
+  info.textContent=gate+" gate applied!";
+ });
 }));
 el("mfq-measure").addEventListener("click",()=>{
-const one=Math.random()<(1-z)/2;
-x=0;y=0;z=one?-1:1;clearLamps();
-el("mfq-lamp"+(one?1:0)).classList.add(one?"on1":"on0");
-render();info.textContent="Measured "+(one?"1":"0")+"!";
+ if(busy)return;
+ const one=Math.random()<(1-z)/2,target=[0,0,one?-1:1];
+ clearLamps();setBusy(true);info.textContent="Measuring the qubit…";
+ animateTo(target,460,()=>{
+  el("mfq-lamp"+(one?1:0)).classList.add(one?"on1":"on0");
+  setBusy(false);info.textContent="Measured "+(one?"1":"0")+"!";
+ });
 });
-el("mfq-reset").addEventListener("click",()=>{x=0;y=0;z=1;phaseMemory=0;clearLamps();render();info.textContent="Back at |0⟩. Try another gate!"});
+el("mfq-reset").addEventListener("click",()=>{
+ if(busy)return;
+ clearLamps();setBusy(true);info.textContent="Returning to |0⟩…";
+ animateTo([0,0,1],460,()=>{
+  phaseMemory=0;render();setBusy(false);
+  info.textContent="Back at |0⟩. Try another gate!";
+ });
+});
 render();
 })();
 
