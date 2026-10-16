@@ -40,7 +40,7 @@ with sync_playwright() as p:
     print("DEBUG", {"p1": p1_during, "errors": errors,
         "status": page.locator("#mfq-info").inner_text(),
         "script_count": page.locator("script").count(),
-        "initial_state": page.locator("#mfq-equation").inner_text(),
+        "initial_state": page.locator("#mfq-equation").text_content(),
         "is_disabled": page.locator('[data-gate="X"]').is_disabled()}, flush=True)
     if errors:
         scripts = page.locator("script").all_text_contents()
@@ -53,8 +53,8 @@ with sync_playwright() as p:
     page.wait_for_function("!document.querySelector('[data-gate=\"X\"]').disabled", timeout=5000)
     assert page.locator("#mfq-p1").inner_text() == "100%"
     # X should retain the -i global phase, not silently rephase |1> to +1.
-    print("X_STATE_EQUATION", repr(page.locator("#mfq-equation").inner_text()), flush=True)
-    assert "(0.00 − 1.00i)|1⟩" in page.locator("#mfq-equation").inner_text()
+    print("X_STATE_EQUATION", repr(page.locator("#mfq-equation").text_content()), flush=True)
+    assert "(0.00 − 1.00i)|1⟩" in page.locator("#mfq-equation").text_content()
     assert page.locator("#mfq-hand0").evaluate("el => el.style.visibility") == "hidden"
     assert page.locator("#mfq-hand1").evaluate("el => el.style.visibility") == "visible"
 
@@ -66,8 +66,8 @@ with sync_playwright() as p:
     assert page.locator("#mfq-p1").inner_text() == "50%"
     # A full H rotation ends in -i|+>: both hands turn from their
     # initial orientations, but their phase difference stays zero.
-    assert "(0.00 − 0.71i)|0⟩" in page.locator("#mfq-equation").inner_text()
-    assert "(0.00 − 0.71i)|1⟩" in page.locator("#mfq-equation").inner_text()
+    assert "(0.00 − 0.71i)|0⟩" in page.locator("#mfq-equation").text_content()
+    assert "(0.00 − 0.71i)|1⟩" in page.locator("#mfq-equation").text_content()
     assert page.locator("#mfq-phi").inner_text() == "0°"
     press("Z")
     assert page.locator("#mfq-p1").inner_text() == "50%"
