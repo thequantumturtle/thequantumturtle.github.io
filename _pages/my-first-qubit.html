@@ -128,7 +128,7 @@ author_profile: false
 </div>
 <div class="mfq-controls">
 <div class="mfq-knob"><label for="mfq-balance">CHANCE OF 1</label><input type="range" id="mfq-balance" min="0" max="180" step="1" value="0"/><strong id="mfq-chance1">0%</strong><p>Left: 0% · Right: 100% chance of 1</p></div>
-<div class="mfq-knob"><label for="mfq-phase">RELATIVE PHASE · φ</label><input type="range" id="mfq-phase" min="0" max="360" step="1" value="0"/><strong id="mfq-phi">0°</strong><p>Turn the |1⟩ clock hand</p></div>
+<div class="mfq-knob"><label for="mfq-phase">RELATIVE PHASE · φ</label><input type="range" id="mfq-phase" min="0" max="360" step="1" value="0"/><strong id="mfq-phi">0°</strong><p>Difference between the two clock hands</p></div>
 </div>
 <div class="mfq-gates" aria-label="Quantum gate buttons"><button type="button" class="mfq-gate x" data-gate="X">X</button><button type="button" class="mfq-gate h" data-gate="H">H</button><button type="button" class="mfq-gate z" data-gate="Z">Z</button><button type="button" class="mfq-gate y" data-gate="Y">Y</button></div>
 <div class="mfq-bottom"><button type="button" class="mfq-measure" id="mfq-measure">● MEASURE</button><button type="button" class="mfq-reset" id="mfq-reset">↺ RESET</button></div>
@@ -137,7 +137,7 @@ author_profile: false
 <p>Both circles show one state:</p>
 <p class="mfq-formula">|ψ⟩ = a|0⟩ + b|1⟩</p>
 <output id="mfq-equation" class="mfq-equation" aria-label="Live quantum state equation">|ψ⟩ = (1.00 + 0.00i)|0⟩ + (0.00 + 0.00i)|1⟩</output>
-<p class="mfq-math-note">Each coefficient shows its real and imaginary parts, even when zero. Values are rounded. θ = <output id="mfq-angle">0°</output>.</p>
+<p class="mfq-math-note">Each coefficient shows its real and imaginary parts, even when zero. Both phases evolve during gates; global phase does not affect measurement. Values are rounded. θ = <output id="mfq-angle">0°</output>.</p>
 </details>
 <p class="mfq-info" aria-live="polite" id="mfq-info">Start at |0⟩. Try a slider or gate!</p>
 </div>
@@ -153,7 +153,7 @@ author_profile: false
 </section>
 <section class="mfq-explain">
 <h2>What the board shows</h2>
-<p>Two circles show one qubit. Each circle's filled <em>area</em> shows the chance of measuring that result. <strong>Chance of 1 (θ)</strong> makes one circle grow as the other shrinks. <strong>Relative Phase (φ)</strong> turns the clock hand in the |1⟩ circle. The |0⟩ hand stays still so you can compare them. When either circle is empty, changing the phase does not change the state.</p>
+<p>Two circles show one qubit. Each circle's filled <em>area</em> shows the chance of measuring that result. <strong>Chance of 1 (θ)</strong> makes one circle grow as the other shrinks. <strong>Relative Phase (φ)</strong> turns the clock hand in the |1⟩ circle. Both hands show the phase of their complex amplitudes. Only the difference between the hands changes measurement behavior. Their shared rotation is global phase. When a circle is empty, its phase is undefined.</p>
 <p>These sliders can show any <strong>pure state</strong> of one qubit. A mixed state needs a different model.</p>
 <p class="mfq-note">This browser toy is a first step toward a real wooden busy board. The real toy could use turning knobs and two small screens. It runs on your computer, not on quantum hardware.</p>
 </section>
@@ -161,103 +161,146 @@ author_profile: false
 <script>
 (function(){
 "use strict";
-const root=document.getElementById("my-first-qubit");if(!root)return;
-const el=id=>document.getElementById(id);
-const d2r=Math.PI/180,r2d=180/Math.PI,clamp=n=>Math.max(-1,Math.min(1,n));
-let x=0,y=0,z=1,phaseMemory=0,busy=false;
-const reducedMotion=window.matchMedia("(prefers-reduced-motion: reduce)");
+const root=document.getElementById("my-first-qubit");
+if(!root)return;
+const el=id=>document.getElementById(id),r2d=180/Math.PI,d2r=Math.PI/180;
+const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
+const complex=(re,im=0)=>({re,im});
+const add=(u,v)=>complex(u.re+v.re,u.im+v.im);
+const mul=(u,v)=>complex(u.re*v.re-u.im*v.im,u.re*v.im+u.im*v.re);
+const scale=(u,t)=>complex(u.re*t,u.im*t);
+const negI=u=>complex(u.im,-u.re);
+const norm2=u=>u.re*u.re+u.im*u.im;
+const arg=u=>Math.atan2(u.im,u.re);
+const angle=u=>((arg(u)*r2d)%360+360)%360;
+const phaseOf=(u,fallback)=>norm2(u)>1e-12?angle(u):fallback;
+const signedPi=Math.PI;
+let amplitudes=[complex(1),complex(0)],phaseMemory=0,busy=false;
+const balance=el("mfq-balance"),phase=el("mfq-phase"),info=el("mfq-info");
 const controls=Array.from(root.querySelectorAll("button,input"));
-function setBusy(value){busy=value;controls.forEach(control=>{control.disabled=value;});}
-function rotate(v,a,t){
- const c=Math.cos(t),sn=Math.sin(t),dot=a[0]*v[0]+a[1]*v[1]+a[2]*v[2];
- return [
-  v[0]*c+(a[1]*v[2]-a[2]*v[1])*sn+a[0]*dot*(1-c),
-  v[1]*c+(a[2]*v[0]-a[0]*v[2])*sn+a[1]*dot*(1-c),
-  v[2]*c+(a[0]*v[1]-a[1]*v[0])*sn+a[2]*dot*(1-c)
- ];
+const reducedMotion=window.matchMedia("(prefers-reduced-motion: reduce)");
+function setBusy(value){busy=value;controls.forEach(control=>control.disabled=value);}
+function clearLamps(){el("mfq-lamp0").className="mfq-lamp";el("mfq-lamp1").className="mfq-lamp";}
+function normalized(vector){
+ const n=Math.sqrt(norm2(vector[0])+norm2(vector[1]));
+ return n>1e-12?vector.map(u=>scale(u,1/n)):[complex(1),complex(0)];
+}
+function setState(vector){amplitudes=normalized(vector);render();}
+function applyPauli(g,v){
+ const [a,b]=v;
+ if(g==="X")return [b,a];
+ if(g==="Y")return [negI(b),mul(complex(0,1),a)];
+ if(g==="Z")return [a,scale(b,-1)];
+ if(g==="H")return [scale(add(a,b),Math.SQRT1_2),scale(add(a,scale(b,-1)),Math.SQRT1_2)];
+ return v;
+}
+function gateState(g,initial,t){
+ // U(t)=cos(t/2)I - i sin(t/2) G; G is X,Y,Z or H.
+ const transformed=applyPauli(g,initial);
+ const c=Math.cos(t/2),q=Math.sin(t/2);
+ return initial.map((u,i)=>add(scale(u,c),negI(scale(transformed[i],q))));
 }
 function animate(duration,update,done){
  if(reducedMotion.matches){update(1);done();return;}
  const start=performance.now();
  function frame(now){
-  const progress=Math.min(1,Math.max(0,(now-start)/duration));
-  update(progress*progress*(3-2*progress));
-  if(progress<1)requestAnimationFrame(frame);else done();
+   const fraction=clamp((now-start)/duration,0,1);
+   update(fraction*fraction*(3-2*fraction));
+   if(fraction<1)requestAnimationFrame(frame);else done();
  }
  requestAnimationFrame(frame);
 }
-function setVector(v){[x,y,z]=v;render();}
-function rememberPhase(){if(Math.hypot(x,y)>1e-8)phaseMemory=(Math.atan2(y,x)*r2d+360)%360;}
-function animateTo(target,duration,done){
- const start=[x,y,z],dot=clamp(start[0]*target[0]+start[1]*target[1]+start[2]*target[2]);
- const cross=[start[1]*target[2]-start[2]*target[1],start[2]*target[0]-start[0]*target[2],start[0]*target[1]-start[1]*target[0]];
- const length=Math.hypot(...cross);
- const axis=length>1e-8?cross.map(v=>v/length):Math.abs(start[0])<.9?[0,-start[2],start[1]]:[-start[1],start[0],0];
- const norm=Math.hypot(...axis),unit=axis.map(v=>v/norm),angle=Math.acos(dot);
- animate(duration,t=>setVector(rotate(start,unit,angle*t)),()=>{setVector(target);rememberPhase();done();});
+function displayNumber(value){return (Math.abs(value)<0.005?0:value).toFixed(2);}
+function displayComplex(v){
+ const sign=v.im<-.005?" − ":" + ";
+ return "("+displayNumber(v.re)+sign+displayNumber(v.im)+"i)";
 }
-
-const balance=el("mfq-balance"),phase=el("mfq-phase"),info=el("mfq-info");
-function setFromAngles(t,p){const T=t*d2r,P=p*d2r;x=Math.sin(T)*Math.cos(P);y=Math.sin(T)*Math.sin(P);z=Math.cos(T);phaseMemory=p%360;if(phaseMemory<0)phaseMemory+=360;clearLamps();render()}
-function clearLamps(){el("mfq-lamp0").className="mfq-lamp";el("mfq-lamp1").className="mfq-lamp"}
-
 function stateEquation(){
- const p0=Math.max(0,Math.min(1,(1+z)/2)),p1=1-p0;
- const a=Math.sqrt(p0),m=Math.sqrt(p1);
- const angle=Math.hypot(x,y)>1e-8?Math.atan2(y,x):0;
- const re=m*Math.cos(angle),im=m*Math.sin(angle);
- const num=v=>(Math.abs(v)<.005?0:Math.abs(v)).toFixed(2);
- const complex=(real,imag)=>"("+(real<-.005?"−":"")+num(real)+(imag<-.005?" − ":" + ")+num(imag)+"i)";
- return "|ψ⟩ = "+complex(a,0)+"|0⟩ + "+complex(re,im)+"|1⟩";
+ return "|ψ⟩ = "+displayComplex(amplitudes[0])+"|0⟩ + "+displayComplex(amplitudes[1])+"|1⟩";
 }
-
 function render(){
-const theta=Math.acos(clamp(z))*r2d;
-const phi=Math.hypot(x,y)>1e-8?((Math.atan2(y,x)*r2d+360)%360):phaseMemory;
-const p0=clamp((1+z)/2),p1=1-p0;
-balance.value=Math.round(theta);phase.value=Math.round(phi);
-el("mfq-equation").textContent=stateEquation();el("mfq-angle").textContent=Math.round(theta)+"°";
-el("mfq-chance1").textContent=Math.round(p1*100)+"%";el("mfq-phi").textContent=Math.round(phi)+"°";
-[[p0,0],[p1,1]].forEach(([p,i])=>{
-const radius=96*Math.sqrt(p);
-el("mfq-circle"+i).setAttribute("r",radius);
-el("mfq-p"+i).textContent=Math.round(p*100)+"%";
-const line=el("mfq-hand"+i);const a=(i?phi:0)*d2r;const active=p>1e-9;
-line.setAttribute("x2",110+(active?radius*Math.sin(a):0));
-line.setAttribute("y2",110-(active?radius*Math.cos(a):0));
-line.style.visibility=active?"visible":"hidden";
-
-
-});
+ const [a,b]=amplitudes;
+ const p0=clamp(norm2(a),0,1),p1=clamp(norm2(b),0,1);
+ const theta=2*Math.acos(Math.sqrt(p0))*r2d;
+ const alpha=phaseOf(a,0),beta=phaseOf(b,0);
+ const relative=p0>1e-10&&p1>1e-10?(beta-alpha+360)%360:phaseMemory;
+ if(p0>1e-10&&p1>1e-10)phaseMemory=relative;
+ balance.value=Math.round(theta);
+ phase.value=Math.round(relative);
+ el("mfq-equation").textContent=stateEquation();
+ el("mfq-angle").textContent=Math.round(theta)+"°";
+ el("mfq-chance1").textContent=Math.round(p1*100)+"%";
+ el("mfq-phi").textContent=Math.round(relative)+"°";
+ [[p0,alpha,0],[p1,beta,1]].forEach(([p,handAngle,i])=>{
+   const radius=96*Math.sqrt(p);
+   el("mfq-circle"+i).setAttribute("r",radius);
+   el("mfq-p"+i).textContent=Math.round(p*100)+"%";
+   const line=el("mfq-hand"+i);
+   const active=p>1e-10;
+   const r=handAngle*d2r;
+   line.setAttribute("x2",110+(active?radius*Math.sin(r):0));
+   line.setAttribute("y2",110-(active?radius*Math.cos(r):0));
+   line.style.visibility=active?"visible":"hidden";
+ });
 }
-balance.addEventListener("input",()=>{if(busy)return;setFromAngles(Number(balance.value),Number(phase.value));info.textContent="Chance of 1 changed. Check the circles.";});
-phase.addEventListener("input",()=>{if(busy)return;setFromAngles(Number(balance.value),Number(phase.value));info.textContent="Relative phase changed. Watch the |1⟩ hand.";});
-const axes={X:[1,0,0],Y:[0,1,0],Z:[0,0,1],H:[Math.SQRT1_2,0,Math.SQRT1_2]};
+function setAngles(theta,relative){
+ if(busy)return;
+ const old=amplitudes;
+ // Preserve the current global phase when manipulating an otherwise
+ // physical (relative-phase / probability) control.
+ const global=norm2(old[0])>1e-12?arg(old[0]):norm2(old[1])>1e-12?arg(old[1]):0;
+ const t=theta*d2r,phi=relative*d2r;
+ const ref=complex(Math.cos(global),Math.sin(global));
+ const offset=complex(Math.cos(phi),Math.sin(phi));
+ phaseMemory=(relative%360+360)%360;
+ clearLamps();
+ setState([scale(ref,Math.cos(t/2)),scale(mul(ref,offset),Math.sin(t/2))]);
+}
+balance.addEventListener("input",()=>{setAngles(Number(balance.value),Number(phase.value));info.textContent="Chance of 1 changed. Check the circles.";});
+phase.addEventListener("input",()=>{setAngles(Number(balance.value),Number(phase.value));info.textContent="Relative phase changed. Watch the clock hands.";});
 root.querySelectorAll("[data-gate]").forEach(button=>button.addEventListener("click",()=>{
  if(busy)return;
- const gate=button.dataset.gate,axis=axes[gate],start=[x,y,z];
- if(!axis)return;
- clearLamps();setBusy(true);info.textContent=gate+" gate: watch the circles and hands move.";
- animate(720,t=>setVector(rotate(start,axis,Math.PI*t)),()=>{
-  setVector(rotate(start,axis,Math.PI));rememberPhase();setBusy(false);
-  info.textContent=gate+" gate applied!";
+ const gate=button.dataset.gate;
+ if(!["X","Y","Z","H"].includes(gate))return;
+ const initial=amplitudes.map(u=>complex(u.re,u.im));
+ clearLamps();setBusy(true);
+ info.textContent=gate+" gate: watch both phases evolve.";
+ animate(720,t=>setState(gateState(gate,initial,Math.PI*t)),()=>{
+   setState(gateState(gate,initial,Math.PI));
+   setBusy(false);info.textContent=gate+" gate applied!";
  });
 }));
+function collapse(target,duration,done){
+ const initial=amplitudes.map(u=>complex(u.re,u.im));
+ const component=initial[target],p=Math.sqrt(norm2(component));
+ const phaseTarget=p>1e-10?scale(component,1/p):complex(1);
+ const final=target===0?[phaseTarget,complex(0)]:[complex(0),phaseTarget];
+ // A measurement is not a unitary rotation; this is only a visual
+ // transition to the sampled post-measurement state.
+ animate(duration,t=>{
+   setState(initial.map((u,i)=>add(scale(u,1-t),scale(final[i],t))));
+ },()=>{setState(final);done();});
+}
 el("mfq-measure").addEventListener("click",()=>{
  if(busy)return;
- const one=Math.random()<(1-z)/2,target=[0,0,one?-1:1];
+ const one=Math.random()<norm2(amplitudes[1]);
  clearLamps();setBusy(true);info.textContent="Measuring the qubit…";
- animateTo(target,460,()=>{
-  el("mfq-lamp"+(one?1:0)).classList.add(one?"on1":"on0");
-  setBusy(false);info.textContent="Measured "+(one?"1":"0")+"!";
+ collapse(one?1:0,460,()=>{
+   el("mfq-lamp"+(one?1:0)).classList.add(one?"on1":"on0");
+   setBusy(false);info.textContent="Measured "+(one?"1":"0")+"!";
  });
 });
 el("mfq-reset").addEventListener("click",()=>{
  if(busy)return;
  clearLamps();setBusy(true);info.textContent="Returning to |0⟩…";
- animateTo([0,0,1],460,()=>{
-  phaseMemory=0;render();setBusy(false);
-  info.textContent="Back at |0⟩. Try another gate!";
+ const initial=amplitudes.map(u=>complex(u.re,u.im));
+ const final=[complex(1),complex(0)];
+ animate(460,t=>{
+   const eased=initial.map((u,i)=>add(scale(u,1-t),scale(final[i],t)));
+   setState(eased);
+ },()=>{
+   phaseMemory=0;setState(final);setBusy(false);
+   info.textContent="Back at |0⟩. Try another gate!";
  });
 });
 render();
