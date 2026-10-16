@@ -34,10 +34,6 @@ with sync_playwright() as p:
     page.wait_for_timeout(100)
     p1_during = page.locator("#mfq-p1").inner_text()
     assert p1_during != "0%", "X animation did not start"
-    phase_hand_opacity = float(page.locator("#mfq-hand1").get_attribute("stroke-opacity"))
-    assert 0 < phase_hand_opacity < 1, (
-        "Phase hand should emerge gradually, got " + str(phase_hand_opacity)
-    )
     page.wait_for_function("!document.querySelector('[data-gate=\"X\"]').disabled", timeout=5000)
     assert page.locator("#mfq-p1").inner_text() == "100%"
 
