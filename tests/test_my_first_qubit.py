@@ -40,6 +40,10 @@ with sync_playwright() as p:
     assert p1_during != "0%", "X animation did not start"
     page.wait_for_function("!document.querySelector('[data-gate=\"X\"]').disabled", timeout=5000)
     assert page.locator("#mfq-p1").inner_text() == "100%"
+    # X should retain the -i global phase, not silently rephase |1> to +1.
+    assert "(0.00 − 1.00i)|1⟩" in page.locator("#mfq-equation").inner_text()
+    assert page.locator("#mfq-hand0").evaluate("el => el.style.visibility") == "hidden"
+    assert page.locator("#mfq-hand1").evaluate("el => el.style.visibility") == "visible"
 
     page.locator("#mfq-reset").click()
     page.wait_for_function("!document.querySelector('#mfq-reset').disabled", timeout=5000)
@@ -47,6 +51,11 @@ with sync_playwright() as p:
 
     press("H")
     assert page.locator("#mfq-p1").inner_text() == "50%"
+    # A full H rotation ends in -i|+>: both hands turn from their
+    # initial orientations, but their phase difference stays zero.
+    assert "(0.00 − 0.71i)|0⟩" in page.locator("#mfq-equation").inner_text()
+    assert "(0.00 − 0.71i)|1⟩" in page.locator("#mfq-equation").inner_text()
+    assert page.locator("#mfq-phi").inner_text() == "0°"
     press("Z")
     assert page.locator("#mfq-p1").inner_text() == "50%"
     assert page.locator("#mfq-phi").inner_text() == "180°"
