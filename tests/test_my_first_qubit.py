@@ -37,9 +37,26 @@ with sync_playwright() as p:
     page.locator('[data-gate="X"]').click()
     page.wait_for_timeout(100)
     p1_during = page.locator("#mfq-p1").inner_text()
+    print("DEBUG", {"p1": p1_during, "errors": errors,
+        "status": page.locator("#mfq-info").inner_text(),
+        "script_count": page.locator("script").count(),
+        "initial_state": page.locator("#mfq-equation").text_content(),
+        "is_disabled": page.locator('[data-gate="X"]').is_disabled()}, flush=True)
+    if errors:
+        scripts = page.locator("script").all_text_contents()
+        relevant = [script for script in scripts if "my-first-qubit" in script or "Privacy-conscious" in script]
+        print("BUILT_SCRIPT_DEBUG", [
+            {"length": len(script), "start": script[:180], "end": script[-350:]}
+            for script in relevant
+        ], flush=True)
     assert p1_during != "0%", "X animation did not start"
     page.wait_for_function("!document.querySelector('[data-gate=\"X\"]').disabled", timeout=5000)
     assert page.locator("#mfq-p1").inner_text() == "100%"
+    # X should retain the -i global phase, not silently rephase |1> to +1.
+    print("X_STATE_EQUATION", repr(page.locator("#mfq-equation").text_content()), flush=True)
+    assert "(0.00 − 1.00i)|1⟩" in page.locator("#mfq-equation").text_content()
+    assert page.locator("#mfq-hand0").evaluate("el => el.style.visibility") == "hidden"
+    assert page.locator("#mfq-hand1").evaluate("el => el.style.visibility") == "visible"
 
     page.locator("#mfq-reset").click()
     page.wait_for_function("!document.querySelector('#mfq-reset').disabled", timeout=5000)
@@ -47,6 +64,11 @@ with sync_playwright() as p:
 
     press("H")
     assert page.locator("#mfq-p1").inner_text() == "50%"
+    # A full H rotation ends in -i|+>: both hands turn from their
+    # initial orientations, but their phase difference stays zero.
+    assert "(0.00 − 0.71i)|0⟩" in page.locator("#mfq-equation").text_content()
+    assert "(0.00 − 0.71i)|1⟩" in page.locator("#mfq-equation").text_content()
+    assert page.locator("#mfq-phi").inner_text() == "0°"
     press("Z")
     assert page.locator("#mfq-p1").inner_text() == "50%"
     assert page.locator("#mfq-phi").inner_text() == "180°"
