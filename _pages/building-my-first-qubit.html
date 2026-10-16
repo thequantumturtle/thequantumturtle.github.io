@@ -1,0 +1,62 @@
+---
+layout: single
+title: "Building My First Qubit"
+permalink: /work/building-my-first-qubit/
+author_profile: false
+description: "Follow the early electronics prototype of My First Qubit, a physical quantum learning tool."
+---
+<style>
+.qubit-build{max-width:900px;margin:0 auto;color:#40382d;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+.qubit-build *{box-sizing:border-box}
+.qubit-build a{color:#285d53;text-underline-offset:3px;font-weight:650}
+.qubit-build .eyebrow{font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#80603e}
+.qubit-build .hero{padding:1.4rem 0 2rem}
+.qubit-build h1{font-size:clamp(2rem,5vw,3rem);color:#473723;line-height:1.12;margin:.5rem 0 1rem}
+.qubit-build h2{font-size:1.5rem;color:#354b3c;margin:0 0 .8rem}
+.qubit-build p{line-height:1.65}
+.qubit-build .lead{font-size:1.12rem;max-width:660px}
+.qubit-build .status{display:inline-block;background:#f4e9d4;border:1px solid #d2b88f;color:#604b32;padding:.4rem .75rem;border-radius:100px;font-weight:700;font-size:.85rem}
+.qubit-build .panel{border:1px solid #dfd3bf;border-radius:15px;padding:clamp(1rem,3vw,1.5rem);margin:1rem 0 2rem;background:#fffdf8}
+.qubit-build .gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1.5rem 0 2rem}
+.qubit-build figure{margin:0;background:#f8f1e4;border:1px solid #ded0b9;border-radius:13px;overflow:hidden}
+.qubit-build figure img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover}
+.qubit-build figcaption{padding:.7rem .85rem;font-size:.89rem;color:#52473b;line-height:1.45}
+.qubit-build .milestone{display:grid;grid-template-columns:2rem minmax(0,1fr);gap:.8rem;padding:1rem 0;border-bottom:1px solid #e8dfd1}
+.qubit-build .milestone:last-child{border:0}
+.qubit-build .number{width:2rem;height:2rem;border-radius:50%;background:#e7d5b5;color:#503d28;display:grid;place-items:center;font-weight:800}
+.qubit-build .milestone strong{display:block;margin:.15rem 0 .25rem}
+.qubit-build .milestone p{margin:0}
+.qubit-build .next{background:#eaf1e7;border-left:4px solid #5b9673;padding:1rem 1.25rem;margin:2rem 0;border-radius:0 12px 12px 0}
+.qubit-build .links{margin:2rem 0 3rem}
+@media(max-width:550px){.qubit-build .gallery{grid-template-columns:1fr}}
+</style>
+<article class="qubit-build">
+<header class="hero">
+<p class="eyebrow">The Quantum Turtle · Build Journal</p>
+<h1>Building My First Qubit</h1>
+<p class="lead">What if you could explore a qubit with real buttons, knobs, and two small screens? We're turning our <a href="/learn/my-first-qubit/">browser simulator</a> into a physical learning tool.</p>
+<p><span class="status">Early prototype · In development</span></p>
+</header>
+<section aria-labelledby="first-prototype">
+<h2 id="first-prototype">First, the displays</h2>
+<p>Our first bench prototype uses an ESP32 microcontroller, a breadboard, and two round LCDs. Both displays are connected, and we've started working on the graphics that will show one qubit's state.</p>
+<p>We're still developing the state displays and controls. This is a look at the build in progress, not a finished toy or a complete quantum simulator.</p>
+<!-- Prototype photos are added as repository assets; keep their captions factual. -->
+<div class="gallery">
+<figure><img src="/assets/images/my-first-qubit/prototype-wiring.jpg" alt="Breadboard prototype with ESP32, jumper wires, and two round displays showing different colors" loading="lazy"><figcaption>The first two-display breadboard setup.</figcaption></figure>
+<figure><img src="/assets/images/my-first-qubit/prototype-lit-screen.jpg" alt="Early electronics prototype with one illuminated circular screen and the other dark" loading="lazy"><figcaption>Testing the displays while building the qubit visualization.</figcaption></figure>
+</div>
+</section>
+<section class="panel" aria-labelledby="build-progress">
+<h2 id="build-progress">Where the build stands</h2>
+<div class="milestone"><span class="number">1</span><div><strong>Connect the electronics</strong><p>The ESP32 and two round screens are wired on the breadboard.</p></div></div>
+<div class="milestone"><span class="number">2</span><div><strong>Develop the state displays</strong><p>We're working on the circles and clock hands that will represent the qubit's amplitudes and phases.</p></div></div>
+<div class="milestone"><span class="number">3</span><div><strong>Add physical controls</strong><p>Next, we'll connect inputs for quantum gates, phase, measurement, and reset.</p></div></div>
+<div class="milestone"><span class="number">4</span><div><strong>Build the enclosure</strong><p>The long-term idea is a sturdy wooden learning instrument with the electronics safely protected.</p></div></div>
+</section>
+<section class="next" aria-labelledby="why-build">
+<h2 id="why-build">Why make it physical?</h2>
+<p>Quantum computing can feel abstract. The goal is to give learners something they can touch while they explore what a quantum gate does and how measurement works.</p>
+</section>
+<div class="links"><p><a href="/learn/my-first-qubit/">Try My First Qubit in your browser →</a></p><p><a href="/learn/qubit-busy-board/">Explore the Bloch Sphere →</a></p></div>
+</article>
