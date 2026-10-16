@@ -53,6 +53,7 @@ with sync_playwright() as p:
     page.wait_for_function("!document.querySelector('[data-gate=\"X\"]').disabled", timeout=5000)
     assert page.locator("#mfq-p1").inner_text() == "100%"
     # X should retain the -i global phase, not silently rephase |1> to +1.
+    print("X_STATE_EQUATION", repr(page.locator("#mfq-equation").inner_text()), flush=True)
     assert "(0.00 − 1.00i)|1⟩" in page.locator("#mfq-equation").inner_text()
     assert page.locator("#mfq-hand0").evaluate("el => el.style.visibility") == "hidden"
     assert page.locator("#mfq-hand1").evaluate("el => el.style.visibility") == "visible"
