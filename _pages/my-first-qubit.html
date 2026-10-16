@@ -195,10 +195,13 @@ function applyPauli(g,v){
  return v;
 }
 function gateState(g,initial,t){
- /* U(t)=cos(t/2)I - i sin(t/2) G; G is X,Y,Z or H. */
+ /* Smooth interpolation U(t)=exp(i t/2)[cos(t/2)I-i sin(t/2)G].
+    U(0)=I and U(pi)=G exactly, including the amplitude phases.
+    The scalar phase is a chosen display convention, not an observable. */
  const transformed=applyPauli(g,initial);
  const c=Math.cos(t/2),q=Math.sin(t/2);
- return initial.map((u,i)=>add(scale(u,c),negI(scale(transformed[i],q))));
+ const phase=complex(Math.cos(t/2),Math.sin(t/2));
+ return initial.map((u,i)=>mul(phase,add(scale(u,c),negI(scale(transformed[i],q)))));
 }
 function animate(duration,update,done){
  if(reducedMotion.matches){update(1);done();return;}
