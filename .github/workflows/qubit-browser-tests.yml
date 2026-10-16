@@ -1,0 +1,19 @@
+name: Qubit browser regression
+on:
+  pull_request:
+    paths:
+      - '_pages/my-first-qubit.html'
+      - 'tests/test_my_first_qubit.py'
+      - '.github/workflows/qubit-browser-tests.yml'
+  workflow_dispatch:
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install playwright
+      - run: python -m playwright install chromium --with-deps
+      - run: python tests/test_my_first_qubit.py
