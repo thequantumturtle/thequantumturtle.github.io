@@ -54,9 +54,9 @@ with sync_playwright() as p:
     page.wait_for_function("!document.querySelector('[data-gate=\"X\"]').disabled", timeout=5000)
     assert page.locator("#mfq-p1").inner_text() == "100%"
     assert page.locator("#mfq-phi").inner_text() == "Undefined"
-    # X should retain the -i global phase, not silently rephase |1> to +1.
+    # The completed X operator must produce +|1>, not -i|1>.
     print("X_STATE_EQUATION", repr(page.locator("#mfq-equation").text_content()), flush=True)
-    assert "(0.00 − 1.00i)|1⟩" in page.locator("#mfq-equation").text_content()
+    assert "(1.00 + 0.00i)|1⟩" in page.locator("#mfq-equation").text_content()
     assert page.locator("#mfq-hand0").evaluate("el => el.style.visibility") == "hidden"
     assert page.locator("#mfq-hand1").evaluate("el => el.style.visibility") == "visible"
 
@@ -66,10 +66,9 @@ with sync_playwright() as p:
 
     press("H")
     assert page.locator("#mfq-p1").inner_text() == "50%"
-    # A full H rotation ends in -i|+>: both hands turn from their
-    # initial orientations, but their phase difference stays zero.
-    assert "(0.00 − 0.71i)|0⟩" in page.locator("#mfq-equation").text_content()
-    assert "(0.00 − 0.71i)|1⟩" in page.locator("#mfq-equation").text_content()
+    # H|0> is exactly |+>, with no artificial global phase.
+    assert "(0.71 + 0.00i)|0⟩" in page.locator("#mfq-equation").text_content()
+    assert "(0.71 + 0.00i)|1⟩" in page.locator("#mfq-equation").text_content()
     assert page.locator("#mfq-phi").inner_text() == "0°"
     press("Z")
     assert page.locator("#mfq-p1").inner_text() == "50%"
@@ -97,6 +96,20 @@ with sync_playwright() as p:
        el.dispatchEvent(new Event("change", {bubbles:true}));
     }""")
     assert page.locator("#mfq-phi").inner_text() == "90°"
+    # Exact operator identities, including global phase.
+    page.locator("#mfq-reset").click()
+    page.wait_for_function("!document.querySelector('#mfq-reset').disabled", timeout=5000)
+    press("H")
+    press("H")
+    assert page.locator("#mfq-equation").text_content() == "|ψ⟩ = (1.00 + 0.00i)|0⟩ + (0.00 + 0.00i)|1⟩"
+    assert page.locator("#mfq-phi").inner_text() == "Undefined"
+    press("X")
+    press("X")
+    assert page.locator("#mfq-equation").text_content() == "|ψ⟩ = (1.00 + 0.00i)|0⟩ + (0.00 + 0.00i)|1⟩"
+    press("H")
+    press("X")
+    assert page.locator("#mfq-equation").text_content() == "|ψ⟩ = (0.71 + 0.00i)|0⟩ + (0.71 + 0.00i)|1⟩"
+    assert page.locator("#mfq-phi").inner_text() == "0°"
     for gate in ["X", "Y", "Z", "H"]:
         press(gate)
     assert all(not page.locator(selector).is_disabled() for selector in
