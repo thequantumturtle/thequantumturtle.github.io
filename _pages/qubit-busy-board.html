@@ -558,4 +558,33 @@ el("qbb-measure").addEventListener("click",measure);
 el("qbb-reset").addEventListener("click",()=>{if(busy)return;x=0;y=0;z=1;phaseMemory=0;clearLamps();render();status.textContent="Back at |0⟩. Try another gate!";});
 render();
 })();
+
+/* Privacy-conscious Quantum Play Lab engagement analytics.
+   Events contain only simulator actions, never amplitudes or visitor data. */
+(function(){
+ const simulator="bloch_sphere";
+ function track(action,extra){
+   if(typeof window.gtag!=="function")return;
+   window.gtag("event",action,Object.assign({simulator:simulator},extra||{}));
+ }
+ const board=document.getElementById("qubit-busy-board");
+ if(!board)return;
+ board.addEventListener("click",function(event){
+   const target=event.target.closest("button,a,summary");
+   if(!target||!board.contains(target))return;
+   if(target.matches("[data-gate]"))track("qubit_gate_applied",{gate:target.dataset.gate});
+   else if(target.id==="qbb-measure")track("qubit_measured");
+   else if(target.id==="qbb-reset")track("qubit_reset");
+   else if(target.matches('a[href*="/learn/"]'))track("qubit_next_lesson",{destination:target.getAttribute("href")});
+   else if(target.matches("[data-state]"))track("qubit_preset_selected",{preset:target.dataset.state});
+ });
+ const sliders=["qbb-theta","qbb-phi"];
+ sliders.forEach(function(id){
+   const slider=document.getElementById(id);
+   if(slider)slider.addEventListener("change",function(){
+     track("qubit_slider_changed",{control:id.endsWith("phase")||id.endsWith("phi")?"relative_phase":"chance_of_one"});
+   });
+ });
+ 
+})();
 </script>
