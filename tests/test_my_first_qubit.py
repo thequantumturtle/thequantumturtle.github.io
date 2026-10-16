@@ -27,7 +27,7 @@ with sync_playwright() as p:
     page.wait_for_timeout(80)
     assert page.locator("#mfq-p0").inner_text() == "100%"
     assert page.locator("#mfq-p1").inner_text() == "0%"
-    assert page.locator("#mfq-phi").inner_text() == "Undefined"
+    assert page.locator("#mfq-phi").inner_text() == "0°"
 
     def press(gate):
         button = page.locator(f'[data-gate="{gate}"]')
@@ -53,7 +53,7 @@ with sync_playwright() as p:
     assert p1_during != "0%", "X animation did not start"
     page.wait_for_function("!document.querySelector('[data-gate=\"X\"]').disabled", timeout=5000)
     assert page.locator("#mfq-p1").inner_text() == "100%"
-    assert page.locator("#mfq-phi").inner_text() == "Undefined"
+    assert page.locator("#mfq-phi").inner_text() == "0°"
     # The completed X operator must produce +|1>, not -i|1>.
     print("X_STATE_EQUATION", repr(page.locator("#mfq-equation").text_content()), flush=True)
     assert "(1.00 + 0.00i)|1⟩" in page.locator("#mfq-equation").text_content()
@@ -75,7 +75,7 @@ with sync_playwright() as p:
     assert page.locator("#mfq-phi").inner_text() == "180°"
     press("H")
     assert page.locator("#mfq-p1").inner_text() == "100%"
-    assert page.locator("#mfq-phi").inner_text() == "Undefined"
+    assert page.locator("#mfq-phi").inner_text() == "0°"
 
     page.locator("#mfq-measure").click()
     page.wait_for_function("!document.querySelector('#mfq-measure').disabled", timeout=5000)
@@ -83,7 +83,7 @@ with sync_playwright() as p:
 
     page.locator("#mfq-reset").click()
     page.wait_for_function("!document.querySelector('#mfq-reset').disabled", timeout=5000)
-    assert page.locator("#mfq-phi").inner_text() == "Undefined"
+    assert page.locator("#mfq-phi").inner_text() == "0°"
     page.locator("#mfq-balance").evaluate("""el => {
        el.value = "90";
        el.dispatchEvent(new Event("input", {bubbles:true}));
@@ -102,7 +102,7 @@ with sync_playwright() as p:
     press("H")
     press("H")
     assert page.locator("#mfq-equation").text_content() == "|ψ⟩ = (1.00 + 0.00i)|0⟩ + (0.00 + 0.00i)|1⟩"
-    assert page.locator("#mfq-phi").inner_text() == "Undefined"
+    assert page.locator("#mfq-phi").inner_text() == "0°"
     press("X")
     press("X")
     assert page.locator("#mfq-equation").text_content() == "|ψ⟩ = (1.00 + 0.00i)|0⟩ + (0.00 + 0.00i)|1⟩"
