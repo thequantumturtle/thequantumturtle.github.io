@@ -12,6 +12,10 @@ if source.startswith("---"):
 html = "<!DOCTYPE html><html><head><meta charset='utf-8'></head><body>" + source + "</body></html>"
 out = Path("/tmp/qubit-browser-test.html")
 out.write_text(html, encoding="utf-8")
+built = Path("_site/learn/my-first-qubit/index.html")
+assert built.is_file(), "Expected GitHub Pages Jekyll output is missing"
+out = built.resolve()
+
 
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=True)
