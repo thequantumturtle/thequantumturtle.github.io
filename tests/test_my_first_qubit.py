@@ -137,4 +137,18 @@ with sync_playwright() as p:
     assert accessible.locator("#mfq-measure").is_enabled()
     accessible.close()
     print("PASS: phone viewport and reduced-motion browser checks")
+    # The physical build journal must be generated and link back to learning.
+    journal = Path("_site/work/building-my-first-qubit/index.html")
+    assert journal.exists(), "Missing build journal in generated Jekyll website"
+    for image in ["prototype-wiring.jpg", "prototype-lit-screen.jpg"]:
+        path = Path("_site/assets/images/my-first-qubit") / image
+        assert path.is_file() and path.stat().st_size > 1000, f"Missing photo: {path}"
+    journal_html = journal.read_text(encoding="utf-8")
+    assert 'Early prototype' in journal_html
+    assert '/learn/my-first-qubit/' in journal_html
+    assert journal_html.count('<figure>') == 2
+    simulator_html = out.read_text(encoding="utf-8")
+    assert '/work/building-my-first-qubit/' in simulator_html
+    assert 'prototype_link_clicked' in simulator_html
+    print("PASS: physical build journal, photos, links, and analytics hook")
     browser.close()
