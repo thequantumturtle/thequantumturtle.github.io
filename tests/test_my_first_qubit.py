@@ -42,6 +42,13 @@ with sync_playwright() as p:
         "script_count": page.locator("script").count(),
         "initial_state": page.locator("#mfq-equation").inner_text(),
         "is_disabled": page.locator('[data-gate="X"]').is_disabled()}, flush=True)
+    if errors:
+        scripts = page.locator("script").all_text_contents()
+        relevant = [script for script in scripts if "my-first-qubit" in script or "Privacy-conscious" in script]
+        print("BUILT_SCRIPT_DEBUG", [
+            {"length": len(script), "start": script[:180], "end": script[-350:]}
+            for script in relevant
+        ], flush=True)
     assert p1_during != "0%", "X animation did not start"
     page.wait_for_function("!document.querySelector('[data-gate=\"X\"]').disabled", timeout=5000)
     assert page.locator("#mfq-p1").inner_text() == "100%"
