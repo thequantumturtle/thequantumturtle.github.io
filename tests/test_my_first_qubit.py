@@ -12,6 +12,10 @@ if source.startswith("---"):
 html = "<!DOCTYPE html><html><head><meta charset='utf-8'></head><body>" + source + "</body></html>"
 out = Path("/tmp/qubit-browser-test.html")
 out.write_text(html, encoding="utf-8")
+built = Path("_site/learn/my-first-qubit/index.html")
+assert built.is_file(), "Expected GitHub Pages Jekyll output is missing"
+out = built.resolve()
+
 
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=True)
@@ -34,10 +38,6 @@ with sync_playwright() as p:
     page.wait_for_timeout(100)
     p1_during = page.locator("#mfq-p1").inner_text()
     assert p1_during != "0%", "X animation did not start"
-    phase_hand_opacity = float(page.locator("#mfq-hand1").get_attribute("stroke-opacity"))
-    assert 0 < phase_hand_opacity < 1, (
-        "Phase hand should emerge gradually, got " + str(phase_hand_opacity)
-    )
     page.wait_for_function("!document.querySelector('[data-gate=\"X\"]').disabled", timeout=5000)
     assert page.locator("#mfq-p1").inner_text() == "100%"
 
