@@ -77,4 +77,25 @@ with sync_playwright() as p:
                ["#mfq-measure", "#mfq-reset", "#mfq-phase", "#mfq-balance"])
     assert not errors, "JavaScript browser errors: " + repr(errors)
     print("PASS: Chromium X/H/Z/Y, measurement, reset, sliders, transitions, and no page errors")
+    # Phone-sized browser: all interactive controls must remain usable.
+    phone = browser.new_page(viewport={"width": 390, "height": 844})
+    phone_errors = []
+    phone.on("pageerror", lambda e: phone_errors.append(str(e)))
+    phone.goto(out.as_uri())
+    phone.locator('[data-gate="H"]').click()
+    phone.wait_for_function("!document.querySelector('[data-gate=\\\"H\\\"]').disabled", timeout=5000)
+    assert phone.locator("#mfq-p1").inner_text() == "50%"
+    phone.locator("#mfq-reset").click()
+    phone.wait_for_function("!document.querySelector('#mfq-reset').disabled", timeout=5000)
+    assert not phone_errors, repr(phone_errors)
+    phone.close()
+
+    # Reduced-motion preference must produce an immediate valid result.
+    accessible = browser.new_page(reduced_motion="reduce")
+    accessible.goto(out.as_uri())
+    accessible.locator('[data-gate="X"]').click()
+    assert accessible.locator("#mfq-p1").inner_text() == "100%"
+    assert accessible.locator("#mfq-measure").is_enabled()
+    accessible.close()
+    print("PASS: phone viewport and reduced-motion browser checks")
     browser.close()
