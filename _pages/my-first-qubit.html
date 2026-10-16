@@ -226,6 +226,9 @@ const line=el("mfq-hand"+i);const a=(i?phi:0)*d2r;const active=p>1e-9;
 line.setAttribute("x2",110+(active?radius*Math.sin(a):0));
 line.setAttribute("y2",110-(active?radius*Math.cos(a):0));
 line.style.visibility=active?"visible":"hidden";
+// Fade the newly defined phase hand in as its circle emerges from a pole.
+// This only affects display opacity, not the Bloch vector or gate trajectory.
+line.setAttribute("stroke-opacity", active ? String(Math.min(1,radius/36)) : "0");
 
 });
 }
