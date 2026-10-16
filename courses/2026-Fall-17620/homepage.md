@@ -14,7 +14,7 @@ date: 2026-10-20
 [Daniel Justice](https://thequantumturtle.github.io/) and [Rita Singh](http://mlsp.cs.cmu.edu/people/rsingh/index.html)
 
 ## Course access
-- **Canvas:** Link coming soon. Assignments, grades, and course announcements will be available there.
+- **Canvas:** [17-620 Canvas course](https://canvas.cmu.edu/courses/56017). Find assignments, grades, and course announcements there.
 - **Piazza:** [17-620 class discussion](https://piazza.com/class/mvbdanmie4m2bq/). Use Piazza to ask questions and discuss course material.
 - **Classroom:** Please check the official course listing for the current room. In-person attendance is expected.
 - **Zoom (when remote access is needed):** [Join the 17-620 Zoom meeting](https://cmu.zoom.us/j/99485025401?pwd=hZnubkqYkhjYeCsgh7WLrxlohq0hw5.1). The meeting is scheduled for Tuesdays and Thursdays at 8:00 AM Eastern, October 20 through December 3, 2026. The instructors will let students know when to join remotely.
