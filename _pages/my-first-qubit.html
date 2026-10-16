@@ -128,7 +128,7 @@ author_profile: false
 </div>
 <div class="mfq-controls">
 <div class="mfq-knob"><label for="mfq-balance">CHANCE OF 1</label><input type="range" id="mfq-balance" min="0" max="180" step="1" value="0"/><strong id="mfq-chance1">0%</strong><p>Left: 0% · Right: 100% chance of 1</p></div>
-<div class="mfq-knob"><label for="mfq-phase">RELATIVE PHASE · φ</label><input type="range" id="mfq-phase" min="0" max="360" step="1" value="0"/><strong id="mfq-phi">0°</strong><p>Difference between the two clock hands</p></div>
+<div class="mfq-knob"><label for="mfq-phase">RELATIVE PHASE · φ</label><input type="range" id="mfq-phase" min="0" max="360" step="1" value="0"/><strong id="mfq-phi">Undefined</strong><p>Difference between the two clock hands; undefined if a circle is empty</p></div>
 </div>
 <div class="mfq-gates" aria-label="Quantum gate buttons"><button type="button" class="mfq-gate x" data-gate="X">X</button><button type="button" class="mfq-gate h" data-gate="H">H</button><button type="button" class="mfq-gate z" data-gate="Z">Z</button><button type="button" class="mfq-gate y" data-gate="Y">Y</button></div>
 <div class="mfq-bottom"><button type="button" class="mfq-measure" id="mfq-measure">● MEASURE</button><button type="button" class="mfq-reset" id="mfq-reset">↺ RESET</button></div>
@@ -224,14 +224,15 @@ function render(){
  const p0=clamp(norm2(a),0,1),p1=clamp(norm2(b),0,1);
  const theta=2*Math.acos(Math.sqrt(p0))*r2d;
  const alpha=phaseOf(a,0),beta=phaseOf(b,0);
- const relative=p0>1e-10&&p1>1e-10?(beta-alpha+360)%360:phaseMemory;
- if(p0>1e-10&&p1>1e-10)phaseMemory=relative;
+ const hasRelativePhase=p0>1e-10&&p1>1e-10;
+ const relative=hasRelativePhase?(beta-alpha+360)%360:phaseMemory;
+ if(hasRelativePhase)phaseMemory=relative;
  balance.value=Math.round(theta);
  phase.value=Math.round(relative);
  el("mfq-equation").textContent=stateEquation();
  el("mfq-angle").textContent=Math.round(theta)+"°";
  el("mfq-chance1").textContent=Math.round(p1*100)+"%";
- el("mfq-phi").textContent=Math.round(relative)+"°";
+ el("mfq-phi").textContent=hasRelativePhase?Math.round(relative)+"°":"Undefined";
  [[p0,alpha,0],[p1,beta,1]].forEach(([p,handAngle,i])=>{
    const radius=96*Math.sqrt(p);
    el("mfq-circle"+i).setAttribute("r",radius);
