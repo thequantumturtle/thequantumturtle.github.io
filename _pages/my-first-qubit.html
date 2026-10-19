@@ -337,7 +337,7 @@ render();
  board.addEventListener("click",function(event){
    const target=event.target.closest("button,a,summary");
    if(!target||!board.contains(target))return;
-   if(target.matches("[data-gate]"))return; // Gate events fire only after the simulator accepts an operation.
+   if(target.matches("[data-gate]"))return;
    else if(target.id==="mfq-measure")track("qubit_measured");
    else if(target.id==="mfq-reset")track("qubit_reset");
    else if(target.id==="mfq-prototype-link")track("prototype_link_clicked",{destination:"/work/building-my-first-qubit/"});
