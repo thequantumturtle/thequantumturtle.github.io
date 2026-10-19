@@ -40,7 +40,7 @@ layout: default
 </style>
 <main id="main" class="course-page" role="main">
   <header class="course-page__header">
-    <div class="course-page__eyebrow">Carnegie Mellon University {% if page.course_term %}&middot; {{ page.course_term }}{% endif %}</div>
+    <div class="course-page__eyebrow">Carnegie Mellon University {% if page.course_term %}&middot; {{ page.course_term }}{% elsif page.type and page.date %}&middot; {{ page.type | escape }} {{ page.date | date: "%Y" }}{% endif %}</div>
     <h1 class="course-page__title">{{ page.title | escape }}</h1>
     {% if page.course_instructors %}
     <p class="course-page__instructors">
@@ -54,7 +54,7 @@ layout: default
       {% if page.course_meeting %}<div class="course-page__fact"><span class="course-page__fact-label">Meetings</span><span class="course-page__fact-value">{{ page.course_meeting | escape }}</span></div>{% endif %}
       {% if page.course_room %}<div class="course-page__fact"><span class="course-page__fact-label">Location</span><span class="course-page__fact-value">{{ page.course_room | escape }}</span></div>{% endif %}
       {% if page.course_dates %}<div class="course-page__fact"><span class="course-page__fact-label">Dates</span><span class="course-page__fact-value">{{ page.course_dates | escape }}</span></div>{% endif %}
-      {% if page.course_units %}<div class="course-page__fact"><span class="course-page__fact-label">Credits</span><span class="course-page__fact-value">{{ page.course_units | escape }}</span></div>{% endif %}
+      {% if page.course_units %}<div class="course-page__fact"><span class="course-page__fact-label">Units</span><span class="course-page__fact-value">{{ page.course_units | escape }}</span></div>{% endif %}
     </div>
     {% if page.course_links %}
     <nav class="course-page__links" aria-label="Course resources">
