@@ -1,5 +1,5 @@
 ---
-layout: archive
+layout: course
 title: "17-659: Generative AI for Quantum Computing and Machine Learning Software Implementations"
 type: "Summer Semester"
 venue: "Carnegie Mellon University"

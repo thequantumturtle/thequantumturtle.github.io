@@ -1,5 +1,5 @@
 ---
-layout: archive
+layout: course
 title: "17-620: Quantum Machine Learning"
 type: "Fall Semester"
 venue: "Carnegie Mellon University"

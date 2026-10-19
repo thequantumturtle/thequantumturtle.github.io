@@ -1,5 +1,5 @@
 ---
-layout: archive
+layout: course
 title: "11-860: Quantum Computing Lab: Self-Paced"
 type: "Spring Semester"
 venue: "Carnegie Mellon University"

@@ -1,5 +1,5 @@
 ---
-layout: archive
+layout: course
 title: "11-860: Quantum Computing, Cryptography, & Machine Learning Lab"
 type: "Spring Semester"
 venue: "Carnegie Mellon University"

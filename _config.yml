@@ -285,6 +285,14 @@ defaults:
       author_profile: true
       share: true
 
+  # All course pages and lesson materials share the course-first layout.
+  - scope:
+      path: "courses"
+    values:
+      layout: course
+      author_profile: false
+
+  # Current teaching materials retain their mini-specific semester labels.
   # Current course teaching materials use the dedicated, full-width course layout.
   - scope:
       path: "courses/2026-Fall-17617/syllabus"
