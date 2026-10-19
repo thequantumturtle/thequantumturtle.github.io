@@ -2,12 +2,15 @@
 title: Quantum State Space Explosion
 date: 2021-02-17 22:51:00 -0500
 description: How does a Quantum State Space explode compared to a Classical State Space?
+excerpt: "Explore how a quantum state grows with each added qubit and what that means for classical simulation."
+header:
+  teaser: nuclear-bomb-explosion.jpg
 img: #../images/nuclear-bomb-explosion.jpg # Add image post (optional)
 fig-caption: # Add figcaption (optional)
 tags: [Quantum Computers, Simulators]
 ---
 
-# ![Nuclear Bomb Explosion](../images/nuclear-bomb-explosion.jpg 'Nuclear Bomb Explosion')
+# ![Nuclear Bomb Explosion](/images/nuclear-bomb-explosion.jpg 'Nuclear Bomb Explosion')
 
 I often find that when people claim that Quantum Computers leverage an explosion in state space to outperform classical computers more questions are raised instead of answered.
 
