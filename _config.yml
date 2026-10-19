@@ -285,6 +285,18 @@ defaults:
       author_profile: true
       share: true
 
+  # Current course teaching materials use the dedicated, full-width course layout.
+  - scope:
+      path: "courses/2026-Fall-17617/syllabus"
+    values:
+      layout: course
+      course_term: "Mini-1 · Fall 2026"
+  - scope:
+      path: "courses/2026-Fall-17620/syllabus"
+    values:
+      layout: course
+      course_term: "Mini-2 · Fall 2026"
+
 
 # Sass/SCSS
 sass:
