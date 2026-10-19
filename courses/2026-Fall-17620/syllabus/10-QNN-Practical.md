@@ -1,16 +1,19 @@
 ---
 lecture: 10
-day: TBD
-title: QNNs Practical
+day: 2026-11-24
+title: "Quantum Hardware, Part 1: Qubit Modalities and the QPU"
 ---
 
-[Previous: QSVMS Practical](/courses/2026-Fall-17620/syllabus/9-QSVM-Practical/) | [Course homepage](/courses/2026-Fall-17620/homepage/) | [Next: Guest Lecture](/courses/2026-Fall-17620/syllabus/11-Guest/)
+**Lecture · Tuesday, November 24, 2026 · 8:00–9:20 AM · 3SC 265**
 
-### Summary
-We will build and train quantum neural network examples.
+[Previous: Variational Quantum Classifiers in PennyLane](/courses/2026-Fall-17620/syllabus/9-QSVM-Practical/) | [Course homepage](/courses/2026-Fall-17620/homepage/) | [Next: Noise, Error Mitigation, and the Limits of NISQ](/courses/2026-Fall-17620/syllabus/11-Guest/)
 
-### Before Class
-Read the relevant QNN material in [Practical Quantum Machine Learning and Quantum Optimization](https://www.amazon.com/Practical-Quantum-Machine-Learning-Optimization/dp/1804613835).
+## Session overview
 
-### Notes
-- Bring your computer to class.
+- Survey superconducting, trapped-ion, photonic, neutral-atom, silicon-spin, NV-center, topological, and emerging qubit modalities
+- Compare CPUs, GPUs, TPUs, and QPUs
+- Discuss energy considerations for quantum hardware
+
+## Course resources
+
+Visit [Canvas](https://canvas.cmu.edu/courses/56017) for assignments and course announcements, or use [Piazza](https://piazza.com/class/mvbdanmie4m2bq/) to ask questions.
