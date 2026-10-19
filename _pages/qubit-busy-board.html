@@ -576,7 +576,7 @@ render();
  board.addEventListener("click",function(event){
    const target=event.target.closest("button,a,summary");
    if(!target||!board.contains(target))return;
-   if(target.matches("[data-gate]"))return; // Gate events fire only after the simulator accepts an operation.
+   if(target.matches("[data-gate]"))return;
    else if(target.id==="qbb-measure")track("qubit_measured");
    else if(target.id==="qbb-reset")track("qubit_reset");
    else if(target.matches('a[href*="/learn/"]'))track("qubit_next_lesson",{destination:target.getAttribute("href")});
