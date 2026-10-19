@@ -11,7 +11,7 @@ date: 2026-10-20
 **October 20–December 3 · 3SC 265**
 
 ### Instructors
-[Daniel Justice](https://thequantumturtle.github.io/) and [Rita Singh](http://mlsp.cs.cmu.edu/people/rsingh/index.html)
+[Daniel Justice](https://thequantumturtle.github.io/) and [Rita Singh](https://www.lti.cs.cmu.edu/people/faculty/singh-rita.html)
 
 ## Course access
 - **Canvas:** [17-620 Canvas course](https://canvas.cmu.edu/courses/56017) for assignments, grades, and announcements.
