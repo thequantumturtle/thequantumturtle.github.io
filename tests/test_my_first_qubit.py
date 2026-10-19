@@ -44,6 +44,11 @@ with sync_playwright() as p:
             "status": page.locator("#mfq-info").inner_text(),
             "disabled": page.locator('[data-gate="X"]').is_disabled(),
             "p1": page.locator("#mfq-p1").inner_text(),
+            "script_checks": page.evaluate("""() => [...document.scripts].map((s,i) => {
+                if (!s.textContent.trim()) return {index:i, external:s.src};
+                try { new Function(s.textContent); return {index:i, ok:true, length:s.textContent.length}; }
+                catch(e) { return {index:i, error:e.message, length:s.textContent.length, tail:s.textContent.slice(-240)}; }
+            })"""),
         }, flush=True)
         raise
     p1_during = page.locator("#mfq-p1").inner_text()
