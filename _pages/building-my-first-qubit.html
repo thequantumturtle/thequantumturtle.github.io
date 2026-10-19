@@ -3,7 +3,8 @@ layout: single
 title: "Building My First Qubit"
 permalink: /work/building-my-first-qubit/
 author_profile: false
-description: "Follow the early electronics prototype of My First Qubit, a physical quantum learning tool."
+description: "Follow My First Qubit: two animated round displays, seven working buttons, and two knobs in a physical single-qubit simulator."
+last_modified_at: 2026-10-18
 ---
 <style>
 .qubit-build{max-width:900px;margin:0 auto;color:#40382d;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
@@ -35,24 +36,32 @@ description: "Follow the early electronics prototype of My First Qubit, a physic
 <p class="eyebrow">The Quantum Turtle · Build Journal</p>
 <h1>Building My First Qubit</h1>
 <p class="lead">What if you could explore a qubit with real buttons, knobs, and two small screens? We're turning our <a href="/learn/my-first-qubit/">browser simulator</a> into a physical learning tool.</p>
-<p><span class="status">Early prototype · In development</span></p>
+<p><span class="status">V0.2 · Working breadboard prototype</span></p>
+<p>Updated October 18, 2026 · <a href="/blog/my-first-qubit-breadboard/">Read the latest build update →</a></p>
 </header>
 <section aria-labelledby="first-prototype">
-<h2 id="first-prototype">First, the displays</h2>
-<p>Our first bench prototype uses an ESP32 microcontroller, a breadboard, and two round LCDs. Both displays are connected, and we've started working on the graphics that will show one qubit's state.</p>
-<p>We're still developing the state displays and controls. This is a look at the build in progress, not a finished toy or a complete quantum simulator.</p>
+<h2 id="first-prototype">The controls now work</h2>
+<p>Two round screens, seven buttons, and two knobs now work together on an ESP32-S3. Turn one knob to change probability balance and the other to change relative phase. Press X, Y, Z, or H to apply a gate, Measure to get an outcome, or Reset to start again. A seventh button cycles through three color schemes without changing the state.</p>
+<p>Each circle's filled area shows a measurement probability. Each hand shows its amplitude's phase. Together, the circles show one qubit. The board runs a classical simulation of a pure state, with gate animations that follow the browser version's math.</p>
+<p>This is a working bench prototype with exposed wiring, not a finished children's toy.</p>
 <!-- Prototype photos are added as repository assets; keep their captions factual. -->
 <div class="gallery">
-<figure><img src="/assets/images/my-first-qubit/prototype-wiring.jpg" alt="Breadboard prototype with ESP32, jumper wires, and two round displays showing different colors" loading="lazy"><figcaption>The first two-display breadboard setup.</figcaption></figure>
-<figure><img src="/assets/images/my-first-qubit/prototype-lit-screen.jpg" alt="Early electronics prototype with one illuminated circular screen and the other dark" loading="lazy"><figcaption>Testing the displays while building the qubit visualization.</figcaption></figure>
+<figure><img src="/assets/images/my-first-qubit/breadboard-controls-oct18.jpg" alt="Working breadboard prototype with two round state displays, seven tactile buttons, and two rotary encoders" width="768" height="1024" loading="lazy"><figcaption>October 18: the displays and physical controls work together.</figcaption></figure>
+<figure><img src="/assets/images/my-first-qubit/breadboard-reset-oct18.jpg" alt="Breadboard prototype showing a full left state circle and an empty right circle" width="768" height="1024" loading="lazy"><figcaption>Two circles represent one qubit. Filled area shows probability; hand direction shows phase.</figcaption></figure>
 </div>
 </section>
 <section class="panel" aria-labelledby="build-progress">
 <h2 id="build-progress">Where the build stands</h2>
-<div class="milestone"><span class="number">1</span><div><strong>Connect the electronics</strong><p>The ESP32 and two round screens are wired on the breadboard.</p></div></div>
-<div class="milestone"><span class="number">2</span><div><strong>Develop the state displays</strong><p>We're working on the circles and clock hands that will represent the qubit's amplitudes and phases.</p></div></div>
-<div class="milestone"><span class="number">3</span><div><strong>Add physical controls</strong><p>Next, we'll connect inputs for quantum gates, phase, measurement, and reset.</p></div></div>
-<div class="milestone"><span class="number">4</span><div><strong>Build the enclosure</strong><p>The long-term idea is a sturdy wooden learning instrument with the electronics safely protected.</p></div></div>
+<div class="milestone"><span class="number">1</span><div><strong>Electronics: working</strong><p>The ESP32 drives both round screens with independent reset pins.</p></div></div>
+<div class="milestone"><span class="number">2</span><div><strong>State displays: working</strong><p>Circles and hands show probabilities and phases. Gate animation follows the browser reference.</p></div></div>
+<div class="milestone"><span class="number">3</span><div><strong>Physical controls: working</strong><p>Seven buttons and two knobs are tested on the bench. Encoder reversals and probability end stops now behave as intended.</p></div></div>
+<div class="milestone"><span class="number">4</span><div><strong>Enclosure: next</strong><p>Plan the front panel, secure the controls, protect the screens, and replace temporary wiring. Longer bench tests remain.</p></div></div>
+</section>
+<section class="panel" aria-labelledby="tested-baseline">
+<h2 id="tested-baseline">A baseline we can build on</h2>
+<p>The V0.2 checkpoint records the working firmware, exact connections, tested behavior, and known limits. The knobs select discrete probability and phase settings. Brief button presses during an animation can still be missed.</p>
+<p><a href="https://github.com/thequantumturtle/my-first-qubit">Firmware, wiring, and milestone notes →</a></p>
+<p><a href="/blog/my-first-qubit-breadboard/">Read how the breadboard came to life →</a></p>
 </section>
 <section class="next" aria-labelledby="why-build">
 <h2 id="why-build">Why make it physical?</h2>
