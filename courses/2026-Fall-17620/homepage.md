@@ -54,6 +54,4 @@ All dates below are in **2026**. Classes meet from **8:00 to 9:20 AM Eastern** i
 | 11 | Tue, Dec 1 | **Lab 5** | **Noise, error mitigation, and the limits of NISQ.** Add depolarizing and readout noise to the Lab 4 classifier; test zero-noise extrapolation and measurement-error mitigation; compare ideal, noisy, mitigated, and classical results. |
 | 12 | Thu, Dec 3 | Lecture | **Quantum hardware, Part 2: Noise, error, and the NISQ era.** Decoherence, gate and readout errors, error mitigation versus correction, hardware benchmarks, resource and energy outlook, and course wrap-up. |
 
-**Lab 5 note:** Rita's draft also identifies **Quantum Kernel Methods** as an alternative for December 1. The schedule above uses the current *Noise, Error Mitigation, and the Limits of NISQ* plan. Any change will be announced in Canvas.
-
-**Schedule updates:** Topics and activities follow the Fall 2026 syllabus draft. Check Canvas for final assignments, deadlines, and any teaching or classroom changes.
+**Course updates:** We will post assignments, deadlines, and any schedule changes in Canvas.
