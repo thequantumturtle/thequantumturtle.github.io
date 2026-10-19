@@ -1,9 +1,10 @@
 ---
-layout: archive
+layout: course
 title: "17-617: Programming Quantum Computers"
 type: "Fall Semester"
 venue: "Carnegie Mellon University"
 date: 2026-08-24
+course_term: "Mini-1 · Fall 2026"
 ---
 
 Tuesdays and Thursdays (5:00pm to 6:20pm @ 3SC 265)  
