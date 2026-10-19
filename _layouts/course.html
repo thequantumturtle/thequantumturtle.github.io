@@ -8,7 +8,18 @@ layout: default
   .course-page__header { border-bottom: 1px solid #e6e8ea; padding-bottom: 1.5rem; margin-bottom: 2rem; }
   .course-page__eyebrow { color: #767b81; font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: .6rem; }
   .course-page__title { font-size: clamp(1.8rem, 4vw, 2.65rem); line-height: 1.18; letter-spacing: -.025em; margin: 0; }
+  .course-page__instructors { font-size: 1rem; margin: .75rem 0 0; color: #555c62; }
+  .course-page__instructors a { font-weight: 600; text-underline-offset: .15em; }
+  .course-page__summary { display: grid; grid-template-columns: minmax(0, 1fr) minmax(15rem, .7fr); gap: 1.25rem 2rem; padding: 1.25rem 0 1.5rem; border-bottom: 1px solid #e6e8ea; margin-bottom: 1.5rem; }
+  .course-page__facts { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; align-content: start; }
+  .course-page__fact { min-width: 12rem; }
+  .course-page__fact-label { color: #697078; font-size: .76rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; display: block; }
+  .course-page__fact-value { display: block; color: #42484e; line-height: 1.55; }
+  .course-page__links { display: flex; flex-wrap: wrap; gap: .5rem; align-content: start; }
+  .course-page__links a { display: inline-flex; align-items: center; padding: .4rem .75rem; border: 1px solid #dce1e5; border-radius: .35rem; font-weight: 600; font-size: .9rem; text-decoration: none; background: #fff; }
+  .course-page__links a:hover, .course-page__links a:focus { background: #f5f7f8; text-decoration: underline; }
   .course-page__content { font-size: 1rem; line-height: 1.75; }
+  .course-page__content > p { max-width: 72ch; }
   .course-page__content > h2 { margin-top: 2.25rem; padding-bottom: .4rem; border-bottom: 1px solid #ebebeb; }
   .course-page__content > h3 { margin-top: 1.5rem; }
   .course-page__content p, .course-page__content li { max-width: 85ch; }
@@ -21,6 +32,7 @@ layout: default
   .course-page__content tr:nth-child(even) td { background: #fafbfc; }
   @media (max-width: 640px) {
     .course-page { padding: 1.25rem 1rem 3rem; }
+    .course-page__summary { grid-template-columns: 1fr; gap: 1rem; }
     .course-page__content { font-size: .96rem; }
     .course-page__content table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
     .course-page__content th, .course-page__content td { padding: .55rem .65rem; min-width: 5rem; }
@@ -30,7 +42,27 @@ layout: default
   <header class="course-page__header">
     <div class="course-page__eyebrow">Carnegie Mellon University {% if page.course_term %}&middot; {{ page.course_term }}{% endif %}</div>
     <h1 class="course-page__title">{{ page.title | escape }}</h1>
+    {% if page.course_instructors %}
+    <p class="course-page__instructors">
+      {% for instructor in page.course_instructors %}{% unless forloop.first %} &middot; {% endunless %}{% if instructor.url %}<a href="{{ instructor.url | escape }}">{{ instructor.name | escape }}</a>{% else %}{{ instructor.name | escape }}{% endif %}{% endfor %}
+    </p>
+    {% endif %}
   </header>
+  {% if page.course_meeting or page.course_room or page.course_dates or page.course_units or page.course_links %}
+  <section class="course-page__summary" aria-label="Course information">
+    <div class="course-page__facts">
+      {% if page.course_meeting %}<div class="course-page__fact"><span class="course-page__fact-label">Meetings</span><span class="course-page__fact-value">{{ page.course_meeting | escape }}</span></div>{% endif %}
+      {% if page.course_room %}<div class="course-page__fact"><span class="course-page__fact-label">Location</span><span class="course-page__fact-value">{{ page.course_room | escape }}</span></div>{% endif %}
+      {% if page.course_dates %}<div class="course-page__fact"><span class="course-page__fact-label">Dates</span><span class="course-page__fact-value">{{ page.course_dates | escape }}</span></div>{% endif %}
+      {% if page.course_units %}<div class="course-page__fact"><span class="course-page__fact-label">Credits</span><span class="course-page__fact-value">{{ page.course_units | escape }}</span></div>{% endif %}
+    </div>
+    {% if page.course_links %}
+    <nav class="course-page__links" aria-label="Course resources">
+      {% for link in page.course_links %}<a href="{{ link.url | escape }}">{{ link.label | escape }}</a>{% endfor %}
+    </nav>
+    {% endif %}
+  </section>
+  {% endif %}
   <article class="course-page__content">
     {{ content }}
   </article>

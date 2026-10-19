@@ -5,20 +5,23 @@ type: "Fall Semester"
 venue: "Carnegie Mellon University"
 date: 2026-10-20
 course_term: "Mini-2 · Fall 2026"
+course_instructors:
+  - name: Daniel Justice
+    url: https://thequantumturtle.github.io/
+  - name: Rita Singh
+    url: https://www.lti.cs.cmu.edu/people/faculty/singh-rita.html
+course_meeting: "Tuesdays and Thursdays · 8:00–9:20 AM Eastern"
+course_room: "3SC 265 · In person"
+course_dates: "October 20–December 3, 2026"
+course_units: "6"
+course_links:
+  - label: Canvas
+    url: https://canvas.cmu.edu/courses/56017
+  - label: Piazza
+    url: https://piazza.com/class/mvbdanmie4m2bq/
+  - label: Zoom
+    url: https://cmu.zoom.us/j/99485025401?pwd=hZnubkqYkhjYeCsgh7WLrxlohq0hw5.1
 ---
-
-**Mini-2 · Fall 2026 · 6 units**  
-**Tuesdays and Thursdays, 8:00–9:20 AM Eastern**  
-**October 20–December 3 · 3SC 265**
-
-### Instructors
-[Daniel Justice](https://thequantumturtle.github.io/) and [Rita Singh](https://www.lti.cs.cmu.edu/people/faculty/singh-rita.html)
-
-## Course access
-- **Canvas:** [17-620 Canvas course](https://canvas.cmu.edu/courses/56017) for assignments, grades, and announcements.
-- **Piazza:** [17-620 discussion board](https://piazza.com/class/mvbdanmie4m2bq/) for questions and class discussion.
-- **Classroom:** 3SC 265. The course meets in person.
-- **Zoom (when needed):** [Join the course meeting](https://cmu.zoom.us/j/99485025401?pwd=hZnubkqYkhjYeCsgh7WLrxlohq0hw5.1). The instructors will announce any remote arrangements.
 
 ## About the course
 We will learn the foundations of quantum computing and apply them to machine learning. Along the way, we will use PennyLane to build circuits, encode data, study quantum clustering and classifiers, and test what happens when algorithms meet real, noisy quantum hardware.

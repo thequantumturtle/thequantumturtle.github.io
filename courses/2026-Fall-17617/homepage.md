@@ -5,10 +5,19 @@ type: "Fall Semester"
 venue: "Carnegie Mellon University"
 date: 2026-08-24
 course_term: "Mini-1 · Fall 2026"
+course_instructors:
+  - name: Daniel Justice
+    url: https://thequantumturtle.github.io/
+course_meeting: "Tuesdays and Thursdays · 5:00–6:20 PM Eastern"
+course_room: "3SC 265 · In person; remote access available"
+course_links:
+  - label: Canvas
+    url: https://canvas.cmu.edu/courses/56016
+  - label: Zoom
+    url: https://cmu.zoom.us/j/98482083797?pwd=tVjPUvbtm8rYe4Xnnbl29DHa5jbojd.1
+  - label: Quantum Simulator
+    url: https://oreilly-qc.github.io/
 ---
-
-Tuesdays and Thursdays (5:00pm to 6:20pm @ 3SC 265)  
-[Daniel Justice](https://thequantumturtle.github.io/)
 
 ## Want to learn quantum computing without taking a physics course?
 
@@ -21,15 +30,6 @@ During this mini, we will build and run quantum circuits while working through t
 Along the way, we will look at both the ideas behind these algorithms and what happens when we try to run them on today's quantum simulators and hardware.
 
 **Not sure if the course is for you? Come to the first class and try it.**
-
-## Important Links
-[Canvas](https://canvas.cmu.edu/courses/56016)  
-[Zoom](https://cmu.zoom.us/j/98482083797?pwd=tVjPUvbtm8rYe4Xnnbl29DHa5jbojd.1)  
-Piazza: TBD  
-[O'Reilly Quantum Simulator](https://oreilly-qc.github.io/)
-
-## Location
-Class room is at 3SC 265. The class is in person, and I encourage you to come to class. Students may also join remotely using the Zoom link above.
 
 ## Course Goals
 Students will learn to build, reason about, and run universal gate quantum programs using contemporary tools. By the end of the mini, students will be comfortable implementing several foundational quantum algorithms on simulators and current quantum hardware, and evaluating the gap between textbook algorithms and real machines.
