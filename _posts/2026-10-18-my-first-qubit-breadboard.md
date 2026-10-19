@@ -9,22 +9,38 @@ description: "A build update on My First Qubit, from animated state displays to 
 tags: [Quantum Computing, Circle Notation, My First Qubit, Making]
 ---
 
+<style>
+.mfq-demo{display:block;width:auto;max-width:100%;height:auto;max-height:460px;margin:0 auto;border-radius:12px}
+.mfq-photos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin:1.5rem 0}
+.mfq-photos figure{display:block;margin:0;min-width:0}
+.mfq-photos a{display:block}
+.mfq-photos img{display:block;width:auto;max-width:100%;height:auto;max-height:340px;margin:0 auto;border-radius:10px}
+.mfq-photos figcaption{font-size:.82em;line-height:1.5;margin-top:.6rem}
+@media(max-width:540px){.mfq-photos{grid-template-columns:1fr}.mfq-photos img{max-height:300px}.mfq-demo{max-height:420px}}
+</style>
+
 My First Qubit now works on the breadboard. I can turn a knob to change the chances of measuring 0 or 1, turn another to change phase, and press real buttons to apply quantum gates. Two small, round screens show what happens.
 
 It started as a question: could a child explore a qubit through something they could touch? The [browser simulator](/learn/my-first-qubit/) gave me a way to try the idea. This build puts those same ideas into physical controls.
 
 <figure>
-  <video controls playsinline preload="metadata" width="512" height="910" poster="/assets/images/my-first-qubit/breadboard-controls-oct18.jpg" aria-label="My First Qubit breadboard demonstration" aria-describedby="breadboard-demo-caption" style="display:block;width:100%;max-width:360px;height:auto;margin:0 auto;border-radius:12px;">
+  <video class="mfq-demo" controls playsinline preload="metadata" width="512" height="910" poster="/assets/images/my-first-qubit/breadboard-controls-oct18.jpg" aria-label="My First Qubit breadboard demonstration" aria-describedby="breadboard-demo-caption">
     <source src="/assets/images/my-first-qubit/breadboard-demo-oct18.mp4" type="video/mp4">
     <a href="/assets/images/my-first-qubit/breadboard-demo-oct18.mp4">Watch the breadboard demonstration.</a>
   </video>
   <figcaption id="breadboard-demo-caption">A 50-second bench demo: pressing the buttons and turning the knobs changes the circle sizes and phase hands. Use the player controls to start playback.</figcaption>
 </figure>
 
+<div class="mfq-photos">
 <figure>
-  <img src="/assets/images/my-first-qubit/breadboard-controls-oct18.jpg" alt="My First Qubit breadboard with two illuminated round state displays, an ESP32, tactile buttons, and two metal-shaft rotary encoders" width="768" height="1024" loading="lazy">
+  <a href="/assets/images/my-first-qubit/breadboard-controls-oct18.jpg" aria-label="Open the full prototype photo"><img src="/assets/images/my-first-qubit/breadboard-controls-oct18.jpg" alt="My First Qubit breadboard with two illuminated round state displays, an ESP32, tactile buttons, and two metal-shaft rotary encoders" width="768" height="1024" loading="lazy"></a>
   <figcaption>The working breadboard prototype, October 18, 2026. The wiring is still exposed, but the displays and controls now work together.</figcaption>
 </figure>
+<figure>
+  <a href="/assets/images/my-first-qubit/breadboard-reset-oct18.jpg" aria-label="Open the full state display photo"><img src="/assets/images/my-first-qubit/breadboard-reset-oct18.jpg" alt="The same breadboard prototype with the left state circle full and the right circle empty" width="768" height="1024" loading="lazy"></a>
+  <figcaption>A state with the left circle full and the right empty. Circle size and hand direction carry different parts of the state.</figcaption>
+</figure>
+</div>
 
 ## Two circles, one qubit
 
@@ -43,11 +59,6 @@ The prototype has seven buttons: X, Y, Z, H, Measure, Reset, and Colors. The fir
 Two rotary encoders control probability balance and relative phase. The balance knob makes one circle grow as the other shrinks. The phase knob changes the difference between the hands. These knobs let me explore many more states than the gate buttons alone.
 
 The screens also have three color schemes: Woodland, Garden, and Night. Changing colors leaves the qubit state alone. That small detour was fun, and it gives the board another simple interaction.
-
-<figure>
-  <img src="/assets/images/my-first-qubit/breadboard-reset-oct18.jpg" alt="The same breadboard prototype with the left state circle full and the right circle empty" width="768" height="1024" loading="lazy">
-  <figcaption>A state with the left circle full and the right empty. Circle size and hand direction carry different parts of the state.</figcaption>
-</figure>
 
 ## The small bugs taught us something
 
