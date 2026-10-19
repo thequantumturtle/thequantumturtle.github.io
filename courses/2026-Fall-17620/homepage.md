@@ -24,9 +24,7 @@ course_links:
 ---
 
 ## About the course
-We will learn the foundations of quantum computing and apply them to machine learning. Along the way, we will use PennyLane to build circuits, encode data, study quantum clustering and classifiers, and test what happens when algorithms meet real, noisy quantum hardware.
-
-The course includes **seven lectures and five labs**. Labs move from basic circuits to data encoding, real-device benchmarking, variational classifiers, and error mitigation.
+In seven lectures and five hands-on labs, we explore how quantum computing can support machine learning. Using PennyLane, we will build circuits, encode data, study quantum clustering and classifiers, benchmark real hardware, and examine how noise and error mitigation affect results.
 
 ## Course materials
 Course resources and assignments will be shared here and on Canvas.
