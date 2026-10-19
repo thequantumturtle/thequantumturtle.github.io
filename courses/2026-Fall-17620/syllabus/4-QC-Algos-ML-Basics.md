@@ -1,13 +1,19 @@
 ---
 lecture: 4
-day: TBD
-title: QC Algos Relevant for ML - Basics
+day: 2026-10-29
+title: "Data Encoding and Quantum k-means"
 ---
 
-[Previous: Foundational Concepts of ML & QC](/courses/2026-Fall-17620/syllabus/3-Foundations-ML-QC/) | [Course homepage](/courses/2026-Fall-17620/homepage/) | [Next: Data Encoding](/courses/2026-Fall-17620/syllabus/5-Data-Encoding/)
+**Lecture · Thursday, October 29, 2026 · 8:00–9:20 AM · 3SC 265**
 
-### Summary
-We will survey the quantum algorithmic ideas that most often appear in quantum machine learning, including state preparation, measurement, kernels, and variational circuits.
+[Previous: Quantum Computing Foundations, Part 2](/courses/2026-Fall-17620/syllabus/3-Foundations-ML-QC/) | [Course homepage](/courses/2026-Fall-17620/homepage/) | [Next: Perceptrons, MLPs, and Quantum Neural Networks](/courses/2026-Fall-17620/syllabus/5-Data-Encoding/)
 
-### Notes
-- Bring your computer to class.
+## Session overview
+
+- Encode classical features using amplitude, angle, and basis encoding
+- Examine the cost of loading data into quantum states
+- Study quantum k-means and assess its complexity claims
+
+## Course resources
+
+Visit [Canvas](https://canvas.cmu.edu/courses/56017) for assignments and course announcements, or use [Piazza](https://piazza.com/class/mvbdanmie4m2bq/) to ask questions.
