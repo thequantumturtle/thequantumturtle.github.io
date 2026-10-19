@@ -14,6 +14,14 @@ My First Qubit now works on the breadboard. I can turn a knob to change the chan
 It started as a question: could a child explore a qubit through something they could touch? The [browser simulator](/learn/my-first-qubit/) gave me a way to try the idea. This build puts those same ideas into physical controls.
 
 <figure>
+  <video controls playsinline preload="metadata" width="512" height="910" poster="/assets/images/my-first-qubit/breadboard-controls-oct18.jpg" aria-label="My First Qubit breadboard demonstration" aria-describedby="breadboard-demo-caption" style="display:block;width:100%;max-width:360px;height:auto;margin:0 auto;border-radius:12px;">
+    <source src="/assets/images/my-first-qubit/breadboard-demo-oct18.mp4" type="video/mp4">
+    <a href="/assets/images/my-first-qubit/breadboard-demo-oct18.mp4">Watch the breadboard demonstration.</a>
+  </video>
+  <figcaption id="breadboard-demo-caption">A 50-second bench demo: pressing the buttons and turning the knobs changes the circle sizes and phase hands. Use the player controls to start playback.</figcaption>
+</figure>
+
+<figure>
   <img src="/assets/images/my-first-qubit/breadboard-controls-oct18.jpg" alt="My First Qubit breadboard with two illuminated round state displays, an ESP32, tactile buttons, and two metal-shaft rotary encoders" width="768" height="1024" loading="lazy">
   <figcaption>The working breadboard prototype, October 18, 2026. The wiring is still exposed, but the displays and controls now work together.</figcaption>
 </figure>
