@@ -1,13 +1,20 @@
 ---
 lecture: 5
-day: TBD
-title: Data Encoding
+day: 2026-11-05
+title: "Perceptrons, MLPs, and Quantum Neural Networks"
 ---
 
-[Previous: QC Algos Relevant for ML - Basics](/courses/2026-Fall-17620/syllabus/4-QC-Algos-ML-Basics/) | [Course homepage](/courses/2026-Fall-17620/homepage/) | [Next: SVMs and NNs - Classical Focus](/courses/2026-Fall-17620/syllabus/6-Classical-SVM-NN/)
+**Lecture · Thursday, November 5, 2026 · 8:00–9:20 AM · 3SC 265**
 
-### Summary
-We will study how classical data can be encoded into quantum states and how encoding choices affect downstream models.
+[Previous: Data Encoding and Quantum k-means](/courses/2026-Fall-17620/syllabus/4-QC-Algos-ML-Basics/) | [Course homepage](/courses/2026-Fall-17620/homepage/) | [Next: Encoding and Quantum k-means](/courses/2026-Fall-17620/syllabus/6-Classical-SVM-NN/)
 
-### Notes
-- Bring your computer to class.
+## Session overview
+
+- Classical perceptrons and multilayer perceptrons
+- Hybrid classical–quantum models
+- Data re-uploading
+- Expressibility and entangling capability
+
+## Course resources
+
+Visit [Canvas](https://canvas.cmu.edu/courses/56017) for assignments and course announcements, or use [Piazza](https://piazza.com/class/mvbdanmie4m2bq/) to ask questions.
