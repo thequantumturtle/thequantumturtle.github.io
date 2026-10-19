@@ -1,5 +1,5 @@
 ---
-layout: archive
+layout: course
 title: "17-617: Programming Quantum Computers"
 type: "Fall Semester"
 venue: "Carnegie Mellon University"
