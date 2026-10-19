@@ -1,9 +1,10 @@
 ---
-layout: archive
+layout: course
 title: "17-620: Quantum Machine Learning"
 type: "Fall Semester"
 venue: "Carnegie Mellon University"
 date: 2026-10-20
+course_term: "Mini-2 · Fall 2026"
 ---
 
 **Mini-2 · Fall 2026 · 6 units**  

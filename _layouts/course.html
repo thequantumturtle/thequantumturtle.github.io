@@ -1,0 +1,37 @@
+---
+layout: default
+---
+
+<style>
+  /* Scoped presentation for university course pages. */
+  .course-page { max-width: 1040px; margin: 0 auto; padding: 2.5rem 1.5rem 5rem; }
+  .course-page__header { border-bottom: 1px solid #e6e8ea; padding-bottom: 1.5rem; margin-bottom: 2rem; }
+  .course-page__eyebrow { color: #767b81; font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; margin-bottom: .6rem; }
+  .course-page__title { font-size: clamp(1.8rem, 4vw, 2.65rem); line-height: 1.18; letter-spacing: -.025em; margin: 0; }
+  .course-page__content { font-size: 1rem; line-height: 1.75; }
+  .course-page__content > h2 { margin-top: 2.25rem; padding-bottom: .4rem; border-bottom: 1px solid #ebebeb; }
+  .course-page__content > h3 { margin-top: 1.5rem; }
+  .course-page__content p, .course-page__content li { max-width: 85ch; }
+  .course-page__content a { text-underline-offset: .13em; }
+  .course-page__content table { display: table; width: 100%; table-layout: auto; margin: 1.25rem 0; font-size: .91rem; border-collapse: collapse; }
+  .course-page__content th { background: #f4f5f6; text-align: left; }
+  .course-page__content th, .course-page__content td { padding: .72rem .8rem; border: 1px solid #dee1e4; vertical-align: top; overflow-wrap: break-word; }
+  .course-page__content th:first-child, .course-page__content td:first-child { white-space: nowrap; }
+  .course-page__content th:nth-child(2), .course-page__content td:nth-child(2) { white-space: nowrap; }
+  .course-page__content tr:nth-child(even) td { background: #fafbfc; }
+  @media (max-width: 640px) {
+    .course-page { padding: 1.25rem 1rem 3rem; }
+    .course-page__content { font-size: .96rem; }
+    .course-page__content table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .course-page__content th, .course-page__content td { padding: .55rem .65rem; min-width: 5rem; }
+  }
+</style>
+<main id="main" class="course-page" role="main">
+  <header class="course-page__header">
+    <div class="course-page__eyebrow">Carnegie Mellon University {% if page.course_term %}&middot; {{ page.course_term }}{% endif %}</div>
+    <h1 class="course-page__title">{{ page.title | escape }}</h1>
+  </header>
+  <article class="course-page__content">
+    {{ content }}
+  </article>
+</main>
