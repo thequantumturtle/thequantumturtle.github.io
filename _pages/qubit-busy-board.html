@@ -528,6 +528,7 @@ function animate(duration,frame,done){
 function gate(g){
  if(busy||!axes[g])return;
  const start=[x,y,z],axis=axes[g];
+ root.dispatchEvent(new CustomEvent("quantum:gate-applied",{detail:{gate:g}}));
  clearLamps();setBusy(true);
  status.textContent=g+" gate: turning the arrow around the "+names[g]+" axis…";
  animate(720,t=>setVector(rotate(start,axis,Math.PI*t)),()=>{
@@ -569,10 +570,13 @@ render();
  }
  const board=document.getElementById("qubit-busy-board");
  if(!board)return;
+ board.addEventListener("quantum:gate-applied",function(event){
+   track("qubit_gate_applied",{gate:event.detail.gate});
+ });
  board.addEventListener("click",function(event){
    const target=event.target.closest("button,a,summary");
    if(!target||!board.contains(target))return;
-   if(target.matches("[data-gate]"))track("qubit_gate_applied",{gate:target.dataset.gate});
+   if(target.matches("[data-gate]"))return;
    else if(target.id==="qbb-measure")track("qubit_measured");
    else if(target.id==="qbb-reset")track("qubit_reset");
    else if(target.matches('a[href*="/learn/"]'))track("qubit_next_lesson",{destination:target.getAttribute("href")});

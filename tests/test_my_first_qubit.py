@@ -144,7 +144,7 @@ with sync_playwright() as p:
         path = Path("_site/assets/images/my-first-qubit") / image
         assert path.is_file() and path.stat().st_size > 1000, f"Missing photo: {path}"
     journal_html = journal.read_text(encoding="utf-8")
-    assert 'Early prototype' in journal_html
+    assert 'Working breadboard prototype' in journal_html
     assert '/learn/my-first-qubit/' in journal_html
     assert journal_html.count('<figure>') == 2
     simulator_html = out.read_text(encoding="utf-8")
