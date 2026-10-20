@@ -26,6 +26,18 @@ course_links:
 ## About the course
 In seven lectures and five hands-on labs, we explore how quantum computing can support machine learning. Using PennyLane, we will build circuits, encode data, study quantum clustering and classifiers, benchmark real hardware, and examine how noise and error mitigation affect results.
 
+## Assessment
+
+The course includes **six quizzes** and **two homework assignments**. Grades are weighted as follows:
+
+| Component | Weight |
+|---|---:|
+| Six quizzes | 40% |
+| Two homework assignments | 50% |
+| Participation | 10% |
+
+Assignment instructions, due dates, and quizzes will be posted in [Canvas](https://canvas.cmu.edu/courses/56017).
+
 ## Course materials
 Course resources and assignments will be shared here and on Canvas.
 
