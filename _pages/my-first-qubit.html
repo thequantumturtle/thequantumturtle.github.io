@@ -277,16 +277,7 @@ root.querySelectorAll("[data-gate]").forEach(button=>button.addEventListener("cl
  const gate=button.dataset.gate;
  if(!["X","Y","Z","H"].includes(gate))return;
  const initial=amplitudes.map(u=>complex(u.re,u.im));
- clearLamps();
- // Match the physical prototype: X swaps amplitudes directly.
- // The generic Pauli animation adds a temporary quarter-turn to the
- // displayed phases, even for X eigenstates whose phase should not move.
- if(gate==="X"){
-   setState(applyPauli("X",initial));
-   info.textContent="X gate applied!";
-   return;
- }
- setBusy(true);
+ clearLamps();setBusy(true);
  info.textContent=gate+" gate: watch both phases evolve.";
  animate(720,t=>setState(gateState(gate,initial,Math.PI*t)),()=>{
    setState(gateState(gate,initial,Math.PI));
