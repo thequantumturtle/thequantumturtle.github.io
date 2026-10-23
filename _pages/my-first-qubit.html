@@ -194,17 +194,7 @@ function normalized(vector){
  const n=Math.sqrt(norm2(vector[0])+norm2(vector[1]));
  return n>1e-12?vector.map(u=>scale(u,1/n)):[complex(1),complex(0)];
 }
-// Rendering is observational: only completed state changes commit phase memory.
-function setState(vector,commitPhase=false){
- amplitudes=normalized(vector);
- if(commitPhase){
-   const [a,b]=amplitudes;
-   if(norm2(a)>1e-10&&norm2(b)>1e-10){
-     phaseMemory=(angle(b)-angle(a)+360)%360;
-   }
- }
- render();
-}
+function setState(vector){amplitudes=normalized(vector);render();}
 function applyPauli(g,v){
  const [a,b]=v;
  if(g==="X")return [b,a];
@@ -248,7 +238,7 @@ function render(){
  const alpha=phaseOf(a,0),beta=phaseOf(b,0);
  const hasRelativePhase=p0>1e-10&&p1>1e-10;
  const relative=hasRelativePhase?(beta-alpha+360)%360:phaseMemory;
- // Never update phaseMemory while drawing intermediate animation frames.
+ if(hasRelativePhase)phaseMemory=relative;
  balance.value=Math.round(theta);
  phase.value=Math.round(relative);
  el("mfq-equation").textContent=stateEquation();
@@ -290,8 +280,7 @@ root.querySelectorAll("[data-gate]").forEach(button=>button.addEventListener("cl
  clearLamps();setBusy(true);
  info.textContent=gate+" gate: watch both phases evolve.";
  animate(720,t=>setState(gateState(gate,initial,Math.PI*t)),()=>{
-   // Commit only the final gate state, not phases along its animation path.
-   setState(gateState(gate,initial,Math.PI),true);
+   setState(gateState(gate,initial,Math.PI));
    setBusy(false);info.textContent=gate+" gate applied!";
  });
 }));
