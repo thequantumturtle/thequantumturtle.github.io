@@ -67,6 +67,8 @@ with sync_playwright() as p:
     assert p1_during != "0%", "X animation did not start"
     page.wait_for_function("!document.querySelector('[data-gate=\"X\"]').disabled", timeout=5000)
     assert page.locator("#mfq-p1").inner_text() == "100%"
+    assert page.locator("#mfq-phi").inner_text() == "0°", "X at a pole must retain the phase setting"
+    assert page.locator("#mfq-phase").input_value() == "0"
     assert page.locator("#mfq-phi").inner_text() == page.locator("#mfq-phase").input_value() + "°"
     # The completed X operator must produce +|1>, not -i|1>.
     print("X_STATE_EQUATION", repr(page.locator("#mfq-equation").text_content()), flush=True)
