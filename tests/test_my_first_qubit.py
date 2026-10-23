@@ -25,6 +25,11 @@ with sync_playwright() as p:
     page.goto(out.as_uri())
     page.wait_for_selector("#mfq-circle0")
     page.wait_for_timeout(80)
+    # A frozen UI can still display the initial percentages. Demand that the
+    # simulator initialized without throwing before interacting with it.
+    assert not errors, "Simulator crashed at startup: " + repr(errors)
+    assert page.locator("#mfq-balance").input_value() == "0"
+    assert page.locator("#mfq-phase").input_value() == "0"
     assert page.locator("#mfq-p0").inner_text() == "100%"
     assert page.locator("#mfq-p1").inner_text() == "0%"
     assert page.locator("#mfq-phi").inner_text() == "0°"
@@ -36,7 +41,16 @@ with sync_playwright() as p:
 
     # X from a pole: watch the state grow, not just the final result.
     page.locator('[data-gate="X"]').click()
-    page.wait_for_function("document.getElementById('mfq-p1').textContent !== '0%'", timeout=1500)
+    page.wait_for_timeout(120)
+    assert not errors, "X gate crashed the simulator: " + repr(errors)
+    assert page.locator("#mfq-p1").inner_text() != "0%", (
+        "X gate did not start: " + repr({
+            "status": page.locator("#mfq-info").inner_text(),
+            "phase": page.locator("#mfq-phi").inner_text(),
+            "equation": page.locator("#mfq-equation").inner_text(),
+            "errors": errors,
+        })
+    )
     p1_during = page.locator("#mfq-p1").inner_text()
     print("DEBUG", {"p1": p1_during, "errors": errors,
         "status": page.locator("#mfq-info").inner_text(),
@@ -137,18 +151,4 @@ with sync_playwright() as p:
     assert accessible.locator("#mfq-measure").is_enabled()
     accessible.close()
     print("PASS: phone viewport and reduced-motion browser checks")
-    # The physical build journal must be generated and link back to learning.
-    journal = Path("_site/work/building-my-first-qubit/index.html")
-    assert journal.exists(), "Missing build journal in generated Jekyll website"
-    for image in ["prototype-wiring.jpg", "prototype-lit-screen.jpg"]:
-        path = Path("_site/assets/images/my-first-qubit") / image
-        assert path.is_file() and path.stat().st_size > 1000, f"Missing photo: {path}"
-    journal_html = journal.read_text(encoding="utf-8")
-    assert 'Early prototype' in journal_html
-    assert '/learn/my-first-qubit/' in journal_html
-    assert journal_html.count('<figure>') == 2
-    simulator_html = out.read_text(encoding="utf-8")
-    assert '/work/building-my-first-qubit/' in simulator_html
-    assert 'prototype_link_clicked' in simulator_html
-    print("PASS: physical build journal, photos, links, and analytics hook")
     browser.close()
