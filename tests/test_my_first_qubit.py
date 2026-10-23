@@ -25,6 +25,11 @@ with sync_playwright() as p:
     page.goto(out.as_uri())
     page.wait_for_selector("#mfq-circle0")
     page.wait_for_timeout(80)
+    # A frozen UI can still display the initial percentages. Demand that the
+    # simulator initialized without throwing before interacting with it.
+    assert not errors, "Simulator crashed at startup: " + repr(errors)
+    assert page.locator("#mfq-balance").input_value() == "0"
+    assert page.locator("#mfq-phase").input_value() == "0"
     assert page.locator("#mfq-p0").inner_text() == "100%"
     assert page.locator("#mfq-p1").inner_text() == "0%"
     assert page.locator("#mfq-phi").inner_text() == "0°"
@@ -36,7 +41,16 @@ with sync_playwright() as p:
 
     # X from a pole: watch the state grow, not just the final result.
     page.locator('[data-gate="X"]').click()
-    page.wait_for_function("document.getElementById('mfq-p1').textContent !== '0%'", timeout=1500)
+    page.wait_for_timeout(120)
+    assert not errors, "X gate crashed the simulator: " + repr(errors)
+    assert page.locator("#mfq-p1").inner_text() != "0%", (
+        "X gate did not start: " + repr({
+            "status": page.locator("#mfq-info").inner_text(),
+            "phase": page.locator("#mfq-phi").inner_text(),
+            "equation": page.locator("#mfq-equation").inner_text(),
+            "errors": errors,
+        })
+    )
     p1_during = page.locator("#mfq-p1").inner_text()
     print("DEBUG", {"p1": p1_during, "errors": errors,
         "status": page.locator("#mfq-info").inner_text(),
