@@ -39,6 +39,30 @@ with sync_playwright() as p:
         button.click()
         page.wait_for_function("!document.querySelector('[data-gate=\"X\"]').disabled", timeout=5000)
 
+    # Readouts and controls remain settled while the circles animate.
+    page.locator('[data-gate="H"]').click()
+    page.wait_for_timeout(170)
+    assert page.locator('[data-gate="H"]').is_disabled()
+    assert page.locator("#mfq-p1").inner_text() != "0%", "H animation stopped"
+    assert page.locator("#mfq-balance").input_value() == "0"
+    assert page.locator("#mfq-chance1").inner_text() == "0%"
+    assert page.locator("#mfq-phase").input_value() == "0"
+    assert page.locator("#mfq-phi").inner_text() == "0°"
+    page.wait_for_function("!document.querySelector('[data-gate=\\\"H\\\"]').disabled", timeout=5000)
+    assert page.locator("#mfq-balance").input_value() == "90"
+    assert page.locator("#mfq-chance1").inner_text() == "50%"
+    page.locator('[data-gate="Z"]').click()
+    page.wait_for_timeout(170)
+    assert page.locator('[data-gate="Z"]').is_disabled()
+    assert page.locator("#mfq-phase").input_value() == "0"
+    assert page.locator("#mfq-phi").inner_text() == "0°"
+    page.wait_for_function("!document.querySelector('[data-gate=\\\"Z\\\"]').disabled", timeout=5000)
+    assert page.locator("#mfq-phase").input_value() == "180"
+    assert page.locator("#mfq-phi").inner_text() == "180°"
+    page.locator("#mfq-reset").click()
+    page.wait_for_function("!document.querySelector('#mfq-reset').disabled", timeout=5000)
+    assert page.locator("#mfq-phase").input_value() == "0"
+
     # X from a pole: watch the state grow, not just the final result.
     page.locator('[data-gate="X"]').click()
     page.wait_for_timeout(120)
