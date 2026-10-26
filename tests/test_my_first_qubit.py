@@ -63,6 +63,17 @@ with sync_playwright() as p:
     page.wait_for_function("!document.querySelector('#mfq-reset').disabled", timeout=5000)
     assert page.locator("#mfq-phase").input_value() == "0"
 
+    # The balance knob represents theta, not a linearly scaled probability.
+    assert page.locator("#mfq-theta-setting").inner_text() == "θ = 0°"
+    for theta, chance in [(30, 7), (60, 25), (90, 50), (120, 75), (150, 93), (180, 100)]:
+        page.locator("#mfq-balance").fill(str(theta))
+        assert page.locator("#mfq-theta-setting").inner_text() == f"θ = {theta}°"
+        assert page.locator("#mfq-chance1").inner_text() == f"{chance}%"
+        assert page.locator("#mfq-p1").inner_text() == f"{chance}%"
+    page.locator("#mfq-reset").click()
+    page.wait_for_function("!document.querySelector('#mfq-reset').disabled", timeout=5000)
+    assert page.locator("#mfq-theta-setting").inner_text() == "θ = 0°"
+
     # X from a pole: watch the state grow, not just the final result.
     page.locator('[data-gate="X"]').click()
     page.wait_for_timeout(120)
