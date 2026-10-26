@@ -194,7 +194,18 @@ function normalized(vector){
  const n=Math.sqrt(norm2(vector[0])+norm2(vector[1]));
  return n>1e-12?vector.map(u=>scale(u,1/n)):[complex(1),complex(0)];
 }
-function setState(vector,rememberPhase=true){amplitudes=normalized(vector);render(rememberPhase);}
+function rememberDefinedPhase(){
+ const [a,b]=amplitudes;
+ if(norm2(a)>1e-10 && norm2(b)>1e-10){
+   phaseMemory=(angle(b)-angle(a)+360)%360;
+ }
+}
+function setState(vector){amplitudes=normalized(vector);render();}
+function commitState(vector){
+ amplitudes=normalized(vector);
+ rememberDefinedPhase();
+ render();
+}
 function applyPauli(g,v){
  const [a,b]=v;
  if(g==="X")return [b,a];
@@ -231,14 +242,13 @@ function displayComplex(v){
 function stateEquation(){
  return "|ψ⟩ = "+displayComplex(amplitudes[0])+"|0⟩ + "+displayComplex(amplitudes[1])+"|1⟩";
 }
-function render(rememberPhase=true){
+function render(){
  const [a,b]=amplitudes;
  const p0=clamp(norm2(a),0,1),p1=clamp(norm2(b),0,1);
  const theta=2*Math.acos(Math.sqrt(p0))*r2d;
  const alpha=phaseOf(a,0),beta=phaseOf(b,0);
  const hasRelativePhase=p0>1e-10&&p1>1e-10;
  const relative=hasRelativePhase?(beta-alpha+360)%360:phaseMemory;
- if(hasRelativePhase && rememberPhase)phaseMemory=relative;
  balance.value=Math.round(theta);
  phase.value=Math.round(relative);
  el("mfq-equation").textContent=stateEquation();
@@ -279,8 +289,8 @@ root.querySelectorAll("[data-gate]").forEach(button=>button.addEventListener("cl
  const initial=amplitudes.map(u=>complex(u.re,u.im));
  clearLamps();setBusy(true);
  info.textContent=gate+" gate: watch both phases evolve.";
- animate(720,t=>setState(gateState(gate,initial,Math.PI*t),false),()=>{
-   setState(gateState(gate,initial,Math.PI));
+ animate(720,t=>setState(gateState(gate,initial,Math.PI*t)),()=>{
+   commitState(gateState(gate,initial,Math.PI));
    setBusy(false);info.textContent=gate+" gate applied!";
  });
 }));

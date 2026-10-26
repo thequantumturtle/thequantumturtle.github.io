@@ -130,6 +130,31 @@ with sync_playwright() as p:
         press(gate)
     assert all(not page.locator(selector).is_disabled() for selector in
                ["#mfq-measure", "#mfq-reset", "#mfq-phase", "#mfq-balance"])
+    # Regression: gate animation must not commit intermediate phase.
+    page.locator("#mfq-reset").click()
+    page.wait_for_function("!document.querySelector('#mfq-reset').disabled", timeout=5000)
+    press("H")
+    page.locator("#mfq-phase").fill("90")
+    assert page.locator("#mfq-phi").inner_text() == "90°"
+    press("X")
+    assert page.locator("#mfq-phi").inner_text() == "270°"
+    press("X")
+    assert page.locator("#mfq-phi").inner_text() == "90°"
+
+    # Measurement collapses the state but must not overwrite the phase setting
+    # with its transient animation frames. Select outcome 0 deterministically.
+    page.evaluate("Math.random = () => 0.99")
+    page.locator("#mfq-measure").click()
+    page.wait_for_function("!document.querySelector('#mfq-measure').disabled", timeout=5000)
+    assert page.locator("#mfq-p0").inner_text() == "100%"
+    assert page.locator("#mfq-phi").inner_text() == "90°"
+    page.locator("#mfq-balance").fill("90")
+    assert page.locator("#mfq-p1").inner_text() == "50%"
+    assert page.locator("#mfq-phi").inner_text() == "90°"
+    page.locator("#mfq-reset").click()
+    page.wait_for_function("!document.querySelector('#mfq-reset').disabled", timeout=5000)
+    assert page.locator("#mfq-phi").inner_text() == "0°"
+
     assert not errors, "JavaScript browser errors: " + repr(errors)
     print("PASS: Chromium X/H/Z/Y, measurement, reset, sliders, transitions, and no page errors")
     # Phone-sized browser: all interactive controls must remain usable.
