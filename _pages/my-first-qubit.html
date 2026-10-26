@@ -249,12 +249,15 @@ function render(){
  const alpha=phaseOf(a,0),beta=phaseOf(b,0);
  const hasRelativePhase=p0>1e-10&&p1>1e-10;
  const relative=hasRelativePhase?(beta-alpha+360)%360:phaseMemory;
- balance.value=Math.round(theta);
- phase.value=Math.round(relative);
+ /* Controls describe the settled state while the hands and circles animate. */
+ if(!busy){
+   balance.value=Math.round(theta);
+   phase.value=Math.round(relative);
+   el("mfq-chance1").textContent=Math.round(p1*100)+"%";
+   el("mfq-phi").textContent=Math.round(relative)+"°";
+ }
  el("mfq-equation").textContent=stateEquation();
  el("mfq-angle").textContent=Math.round(theta)+"°";
- el("mfq-chance1").textContent=Math.round(p1*100)+"%";
- el("mfq-phi").textContent=Math.round(relative)+"°";
  [[p0,alpha,0],[p1,beta,1]].forEach(([p,handAngle,i])=>{
    const radius=96*Math.sqrt(p);
    el("mfq-circle"+i).setAttribute("r",radius);
@@ -291,7 +294,7 @@ root.querySelectorAll("[data-gate]").forEach(button=>button.addEventListener("cl
  info.textContent=gate+" gate: watch both phases evolve.";
  animate(720,t=>setState(gateState(gate,initial,Math.PI*t)),()=>{
    commitState(gateState(gate,initial,Math.PI));
-   setBusy(false);info.textContent=gate+" gate applied!";
+   setBusy(false);render();info.textContent=gate+" gate applied!";
  });
 }));
 function collapse(target,duration,done){
@@ -311,7 +314,7 @@ el("mfq-measure").addEventListener("click",()=>{
  clearLamps();setBusy(true);info.textContent="Measuring the qubit…";
  collapse(one?1:0,460,()=>{
    el("mfq-lamp"+(one?1:0)).classList.add(one?"on1":"on0");
-   setBusy(false);info.textContent="Measured "+(one?"1":"0")+"!";
+   setBusy(false);render();info.textContent="Measured "+(one?"1":"0")+"!";
  });
 });
 el("mfq-reset").addEventListener("click",()=>{
@@ -323,7 +326,7 @@ el("mfq-reset").addEventListener("click",()=>{
    const eased=initial.map((u,i)=>add(scale(u,1-t),scale(final[i],t)));
    setState(eased);
  },()=>{
-   phaseMemory=0;setState(final);setBusy(false);
+   phaseMemory=0;setState(final);setBusy(false);render();
    info.textContent="Back at |0⟩. Try another gate!";
  });
 });
