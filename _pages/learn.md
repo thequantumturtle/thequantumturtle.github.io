@@ -61,6 +61,12 @@ author_profile: false
       <p>Start with two circles. Then try the 3D Bloch sphere or a class activity.</p>
     </div>
     <div class="qt-play-resources">
+      <a class="qt-play-resource" href="/learn/quantum-gate-quest/">
+        <span class="qt-meta">Interactive game · Six challenges</span>
+        <h3>Quantum Gate Quest</h3>
+        <p>Use X, H, and Z to match target qubits. Discover superposition, phase, and interference one puzzle at a time.</p>
+        <span class="qt-play-resource__link">Play Quantum Gate Quest ↗</span>
+      </a>
       <a class="qt-play-resource" href="/learn/qubit-busy-board/">
         <span class="qt-meta">Interactive simulator</span>
         <h3>The Bloch Sphere</h3>
