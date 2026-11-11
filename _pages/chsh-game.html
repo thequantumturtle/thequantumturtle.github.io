@@ -1,0 +1,207 @@
+---
+layout: single
+title: "CHSH: Alice & Bob's Quantum Challenge"
+permalink: /learn/chsh-game/
+author_profile: false
+---
+<style>
+.chsh{max-width:1040px;margin:0 auto;color:#443829;font-family:system-ui,-apple-system,sans-serif}
+.chsh *{box-sizing:border-box}
+.chsh h1{margin:.35rem 0;color:#30493d;font-size:clamp(2rem,5vw,3rem)}
+.chsh-intro{max-width:780px;line-height:1.6}
+.chsh-board{background:#f7efdd;border:8px solid #a97444;box-shadow:0 9px 0 #8b5f39;border-radius:25px;padding:clamp(14px,3vw,28px)}
+.chsh-modes{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.chsh button,.chsh select{font:inherit}
+.chsh button{cursor:pointer;touch-action:manipulation}
+.chsh-modes button{border:2px solid #b99e79;background:#fff8ed;color:#3a3025;border-radius:12px;padding:10px 14px;font-weight:750}
+.chsh-modes button[aria-pressed="true"]{background:#365d49;color:white;border-color:#365d49}
+.chsh-instruction{line-height:1.55;margin:4px 0 16px}
+.chsh-rule{text-align:center;background:#fff9e9;border:2px solid #d8c7a7;border-radius:14px;padding:13px;font-size:1.1rem;font-weight:750;margin-bottom:16px}
+.chsh-rule strong{font-family:Georgia,serif;font-size:1.4rem}
+.chsh-players{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.chsh-player{background:#fffaf0;border:2px solid #c9b48e;border-radius:16px;padding:17px;min-width:0}
+.chsh-player h2{margin:0 0 6px;font-size:1.3rem}
+.chsh-player p{margin:5px 0 13px;color:#5f5141;font-size:.91rem}
+.chsh-bit{display:flex;align-items:center;justify-content:space-between;border-radius:12px;background:#efe2c9;padding:11px 13px;margin:8px 0;font-weight:800}
+.chsh-bit output{font-size:1.65rem;color:#214d4f}
+.chsh-config{margin-top:18px;padding:16px;border:1px solid #c9b48e;border-radius:15px;background:#fffaf0}
+.chsh-config h3{font-size:1.04rem;margin:0 0 9px}
+.chsh-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.chsh-config label{display:block;font-size:.9rem;font-weight:750;margin-bottom:5px}
+.chsh-choice{display:flex;align-items:center;justify-content:space-between;background:#f1e5d0;border-radius:10px;padding:9px 10px;gap:10px}
+.chsh-choice button{border:2px solid #8f7856;background:#fff;border-radius:8px;min-width:50px;min-height:39px;font-weight:850}
+.chsh-angle{display:flex;flex-direction:column;padding:8px;background:#f1e5d0;border-radius:10px}
+.chsh-angle input{width:100%;accent-color:#416b57}
+.chsh-angle output{font-variant-numeric:tabular-nums}
+.chsh-toolbar{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:20px 0 5px}
+.chsh-toolbar button{border:2px solid #786346;background:#fffaf0;border-radius:12px;padding:12px 17px;font-weight:850}
+.chsh-toolbar #chsh-round,.chsh-toolbar #chsh-batch{background:#3d7958;color:white;border-color:#3d7958}
+.chsh-results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin-top:16px}
+.chsh-result{background:#fffaf0;border:1px solid #c9b48e;border-radius:12px;padding:13px;text-align:center}
+.chsh-result span{font-size:.8rem;font-weight:750;color:#675744;display:block}
+.chsh-result strong{display:block;font-size:clamp(1.15rem,3vw,1.8rem);font-variant-numeric:tabular-nums}
+.chsh-results .chsh-result:first-child strong{color:#305e49}
+.chsh-chart{margin:16px 0 5px;background:#fffaf0;border-radius:13px;padding:16px}
+.chsh-chart-row{display:grid;grid-template-columns:160px 1fr 62px;gap:9px;align-items:center;margin:10px 0;font-size:.88rem;font-weight:750}
+.chsh-track{height:17px;background:#e0d7c6;border-radius:9px;overflow:hidden}
+.chsh-fill{height:100%;width:0;background:#4a8568;border-radius:9px}
+.chsh-fill.classical{background:#92714c}
+.chsh-fill.quantum{background:#648fbb}
+.chsh-status{text-align:center;min-height:2.8em;margin:14px 0 0;font-weight:760;line-height:1.5}
+.chsh-table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums;font-size:.9rem}
+.chsh-table td,.chsh-table th{padding:8px;border-bottom:1px solid #ddcfb4;text-align:center}
+.chsh-bottom{margin:20px 0 0;line-height:1.7}
+.chsh button:focus-visible,.chsh input:focus-visible{outline:4px solid #1a4b79;outline-offset:3px}
+@media(max-width:630px){.chsh-board{border-width:5px}.chsh-players,.chsh-grid{grid-template-columns:1fr}.chsh-results{gap:6px}.chsh-result{padding:9px 5px}.chsh-chart-row{grid-template-columns:105px 1fr 52px;font-size:.79rem}}
+</style>
+<div class="chsh" id="chsh">
+<p class="qt-kicker">The Quantum Turtle · Quantum Play Lab</p>
+<h1>Alice &amp; Bob's Quantum Challenge</h1>
+<p class="chsh-intro">Can two players beat the best classical strategy without talking? Play the CHSH game with classical answers or measurements on an entangled pair. Discover why entanglement changes the odds.</p>
+<div class="chsh-board">
+<div class="chsh-modes" role="group" aria-label="Select game mode">
+<button type="button" data-mode="classical" aria-pressed="true">Classical strategy</button>
+<button type="button" data-mode="quantum" aria-pressed="false">Quantum strategy</button>
+<button type="button" data-mode="challenge" aria-pressed="false">Find the advantage</button>
+</div>
+<p class="chsh-instruction" id="chsh-instruction">Alice and Bob agree on their answers before receiving random questions. During a round they cannot communicate.</p>
+<div class="chsh-rule">Win when <strong>a ⊕ b = x ∧ y</strong><div style="font-size:.85rem;font-weight:500;margin-top:5px">Answers must be the same, except when both questions are 1.</div></div>
+<div class="chsh-players">
+<section class="chsh-player" aria-label="Alice's question and answer"><h2>Alice</h2><p>Receives x and responds with a</p><div class="chsh-bit">Question x <output id="chsh-x">?</output></div><div class="chsh-bit">Answer a <output id="chsh-a">?</output></div></section>
+<section class="chsh-player" aria-label="Bob's question and answer"><h2>Bob</h2><p>Receives y and responds with b</p><div class="chsh-bit">Question y <output id="chsh-y">?</output></div><div class="chsh-bit">Answer b <output id="chsh-b">?</output></div></section>
+</div>
+<div class="chsh-config" id="chsh-classical">
+<h3>Agree on a strategy before the questions arrive</h3>
+<p class="chsh-instruction">Choose the bit each player returns for each possible question. There are 16 deterministic strategies; shared randomness cannot improve the 75% classical limit.</p>
+<div class="chsh-grid">
+<div class="chsh-choice"><label for="chsh-ca0">Alice: x = 0</label><button id="chsh-ca0" type="button" data-classical="a0" aria-label="Alice's answer when x is zero: 0">0</button></div>
+<div class="chsh-choice"><label for="chsh-ca1">Alice: x = 1</label><button id="chsh-ca1" type="button" data-classical="a1" aria-label="Alice's answer when x is one: 0">0</button></div>
+<div class="chsh-choice"><label for="chsh-cb0">Bob: y = 0</label><button id="chsh-cb0" type="button" data-classical="b0" aria-label="Bob's answer when y is zero: 0">0</button></div>
+<div class="chsh-choice"><label for="chsh-cb1">Bob: y = 1</label><button id="chsh-cb1" type="button" data-classical="b1" aria-label="Bob's answer when y is one: 0">0</button></div>
+</div>
+</div>
+<div class="chsh-config" id="chsh-quantum" hidden>
+<h3 id="chsh-angle-title">Choose the local measurement settings</h3>
+<p class="chsh-instruction">Alice and Bob share |Φ⁺⟩ = (|00⟩ + |11⟩)/√2. Each uses only their own question to choose a measurement angle. Different questions are sampled uniformly.</p>
+<div class="chsh-grid">
+<div class="chsh-angle"><label for="chsh-qa0">Alice: x = 0 · <output id="chsh-va0">0°</output></label><input id="chsh-qa0" data-angle="a0" type="range" min="-90" max="90" step="2.5" value="0"></div>
+<div class="chsh-angle"><label for="chsh-qa1">Alice: x = 1 · <output id="chsh-va1">45°</output></label><input id="chsh-qa1" data-angle="a1" type="range" min="-90" max="90" step="2.5" value="45"></div>
+<div class="chsh-angle"><label for="chsh-qb0">Bob: y = 0 · <output id="chsh-vb0">22.5°</output></label><input id="chsh-qb0" data-angle="b0" type="range" min="-90" max="90" step="2.5" value="22.5"></div>
+<div class="chsh-angle"><label for="chsh-qb1">Bob: y = 1 · <output id="chsh-vb1">-22.5°</output></label><input id="chsh-qb1" data-angle="b1" type="range" min="-90" max="90" step="2.5" value="-22.5"></div>
+</div>
+<div class="chsh-toolbar"><button type="button" id="chsh-optimal">Load optimal CHSH angles</button></div>
+</div>
+<div class="chsh-toolbar">
+<button type="button" id="chsh-round">Play one round</button>
+<button type="button" id="chsh-batch">Play 1,000 rounds</button>
+<button type="button" id="chsh-reset">Clear results</button>
+</div>
+<div class="chsh-results" aria-label="Winning statistics">
+<div class="chsh-result"><span>Actual wins</span><strong id="chsh-actual">—</strong><span id="chsh-count">0 rounds</span></div>
+<div class="chsh-result"><span>Predicted win rate</span><strong id="chsh-expected">75.00%</strong><span>Current strategy</span></div>
+<div class="chsh-result"><span>Best possible</span><strong id="chsh-bound">75.00%</strong><span id="chsh-bound-label">Classical limit</span></div>
+</div>
+<div class="chsh-chart">
+<div class="chsh-chart-row"><span>Observed</span><div class="chsh-track"><div id="chsh-observed-bar" class="chsh-fill"></div></div><output id="chsh-observed-value">—</output></div>
+<div class="chsh-chart-row"><span>Predicted</span><div class="chsh-track"><div id="chsh-predicted-bar" class="chsh-fill quantum"></div></div><output id="chsh-predicted-value">75.0%</output></div>
+<div class="chsh-chart-row"><span>Classical ceiling</span><div class="chsh-track"><div class="chsh-fill classical" style="width:75%"></div></div><span>75.0%</span></div>
+</div>
+<p class="chsh-status" role="status" aria-live="polite" id="chsh-status">Play a round to see Alice and Bob's questions and answers.</p>
+<details><summary>See the four question pairs</summary><table class="chsh-table"><thead><tr><th>x</th><th>y</th><th>Win rate for this pair</th><th>Rounds played</th></tr></thead><tbody id="chsh-pairs"></tbody></table></details>
+</div>
+<div class="chsh-bottom">
+<h2>What makes the quantum game different?</h2>
+<p>The referee chooses independent, uniformly random bits x and y. Alice and Bob cannot communicate after receiving them. A classical strategy can win at most <strong>75%</strong> of rounds on average. With shared entanglement and the right measurement settings, the maximum rises to <strong>cos²(π/8) ≈ 85.36%</strong> (Tsirelson's bound).</p>
+<p>For the entangled |Φ⁺⟩ state and real measurement angles α and β, the correlation is E = cos(2(α−β)). The game samples individual outcomes from those quantum probabilities. It does not predetermine a win, and finite samples can be above or below the theoretical limits. Changing settings clears prior results so the observed rate always refers to one strategy.</p>
+<p>This is a local browser simulation, not an experiment on quantum hardware. No account or physical separation is required: the game enforces the no-communication rule by generating each answer from only its local question and preselected strategy. <a href="/learn/">Explore more Quantum Play Lab activities</a>.</p>
+</div></div>
+<script>
+(function(){
+"use strict";
+const root=document.getElementById("chsh");if(!root)return;
+const el=id=>document.getElementById(id);
+let mode="classical";
+let classical={a0:0,a1:0,b0:0,b1:0};
+let quantum={a0:0,a1:45,b0:22.5,b1:-22.5};
+let wins=0,played=0,pairs=[{wins:0,played:0},{wins:0,played:0},{wins:0,played:0},{wins:0,played:0}];
+const optimum={a0:0,a1:45,b0:22.5,b1:-22.5};
+function correlation(x,y){
+ const a=quantum["a"+x],b=quantum["b"+y];
+ return Math.cos(2*(a-b)*Math.PI/180);
+}
+function probability(x,y){
+ if(mode==="classical")return ((classical["a"+x]^classical["b"+y])===(x&y))?1:0;
+ const e=correlation(x,y);
+ return (1+((x&y)?-e:e))/2;
+}
+function predicted(){let total=0;for(let x=0;x<2;x++)for(let y=0;y<2;y++)total+=probability(x,y);return total/4;}
+function pct(v,digits=1){return (100*v).toFixed(digits)+"%";}
+function reset(message){
+ wins=0;played=0;pairs.forEach(p=>{p.wins=0;p.played=0;});
+ ["chsh-x","chsh-y","chsh-a","chsh-b"].forEach(id=>el(id).textContent="?");el("chsh-status").textContent=message||"Results cleared. Try another round.";render();
+}
+function render(){
+ root.querySelectorAll("[data-mode]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.mode===mode)));
+ const isClassical=mode==="classical";
+ el("chsh-classical").hidden=!isClassical;
+ el("chsh-quantum").hidden=isClassical;
+ el("chsh-optimal").hidden=mode==="challenge";
+ el("chsh-angle-title").textContent=mode==="challenge"?"Find angles that beat 75%":"Choose the local measurement settings";
+ el("chsh-instruction").textContent=isClassical?"Agree on Alice and Bob's answers before the random questions arrive. No messages during rounds.":mode==="challenge"?"Adjust the four local measurement angles until the predicted winning rate exceeds 75%. The optimal settings are hidden.":"The pair is entangled. Each player selects a measurement using only their own question, then returns one bit.";
+ Object.keys(classical).forEach(k=>{const btn=el("chsh-c"+k);btn.textContent=classical[k];btn.setAttribute("aria-label",(k[0]==="a"?"Alice":"Bob")+"'s answer for question "+k[1]+": "+classical[k]);});
+ Object.keys(quantum).forEach(k=>{el("chsh-q"+k).value=quantum[k];el("chsh-v"+k).textContent=quantum[k]+"°";});
+ const expectation=predicted();
+ el("chsh-expected").textContent=pct(expectation,2);
+ el("chsh-bound").textContent=isClassical?"75.00%":"85.36%";
+ el("chsh-bound-label").textContent=isClassical?"Classical limit":"Quantum limit";
+ el("chsh-actual").textContent=played?pct(wins/played,2):"—";
+ el("chsh-count").textContent=played.toLocaleString()+" round"+(played===1?"":"s");
+ el("chsh-observed-value").textContent=played?pct(wins/played):"—";
+ el("chsh-predicted-value").textContent=pct(expectation);
+ el("chsh-observed-bar").style.width=played?(100*wins/played)+"%":"0%";
+ el("chsh-predicted-bar").style.width=(100*expectation)+"%";
+ const tbody=el("chsh-pairs");tbody.replaceChildren();
+ for(let x=0;x<2;x++)for(let y=0;y<2;y++){
+  const p=pairs[x*2+y],tr=document.createElement("tr");
+  [x,y,pct(probability(x,y)),p.played.toLocaleString()].forEach(v=>{const td=document.createElement("td");td.textContent=v;tr.appendChild(td);});
+  tbody.appendChild(tr);
+ }
+}
+function play(n){
+ let last;
+ for(let i=0;i<n;i++){
+  const x=Math.random()<.5?0:1,y=Math.random()<.5?0:1;
+  let a,b;
+  if(mode==="classical"){a=classical["a"+x];b=classical["b"+y];}
+  else {
+   a=Math.random()<.5?0:1;
+   const sameChance=(1+correlation(x,y))/2;
+   b=Math.random()<sameChance?a:1-a;
+  }
+  const won=(a^b)===(x&y);
+  wins+=Number(won);played++;const p=pairs[x*2+y];p.played++;p.wins+=Number(won);
+  last={x,y,a,b,won};
+ }
+ el("chsh-x").textContent=last.x;el("chsh-y").textContent=last.y;
+ el("chsh-a").textContent=last.a;el("chsh-b").textContent=last.b;
+ el("chsh-status").textContent=(n===1?"Last round: ":"Last of "+n.toLocaleString()+" rounds: ")+(last.won?"WIN":"LOSS")+" · "+(last.a^last.b)+" = "+(last.x&last.y)+". "+wins.toLocaleString()+" wins out of "+played.toLocaleString()+".";
+ render();
+}
+root.querySelectorAll("[data-mode]").forEach(b=>b.addEventListener("click",()=>{
+ mode=b.dataset.mode;
+ if(mode==="quantum")quantum={...optimum};
+ if(mode==="challenge")quantum={a0:0,a1:0,b0:0,b1:0};
+ reset("Strategy changed. Results start fresh so comparisons stay fair.");
+}));
+root.querySelectorAll("[data-classical]").forEach(b=>b.addEventListener("click",()=>{const k=b.dataset.classical;classical[k]^=1;reset("Classical answers changed. Results cleared.");}));
+root.querySelectorAll("[data-angle]").forEach(input=>input.addEventListener("input",()=>{
+ quantum[input.dataset.angle]=Number(input.value);
+ reset("Measurement settings changed. Results cleared.");
+}));
+el("chsh-optimal").addEventListener("click",()=>{quantum={...optimum};reset("Optimal CHSH angles loaded.");});
+el("chsh-round").addEventListener("click",()=>play(1));
+el("chsh-batch").addEventListener("click",()=>play(1000));
+el("chsh-reset").addEventListener("click",()=>reset());
+render();
+})();
+</script>
