@@ -1,0 +1,25 @@
+name: Quantum Gate Quest browser regression
+on:
+  pull_request:
+    paths:
+      - '_pages/quantum-gate-quest.html'
+      - '_pages/learn.md'
+      - 'tests/test_quantum_gate_quest.py'
+      - '.github/workflows/quantum-gate-quest-tests.yml'
+  workflow_dispatch:
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build Jekyll site
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+      - run: pip install playwright
+      - run: python -m playwright install chromium --with-deps
+      - run: python tests/test_quantum_gate_quest.py
