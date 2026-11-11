@@ -61,6 +61,12 @@ author_profile: false
       <p>Start with two circles. Then try the 3D Bloch sphere or a class activity.</p>
     </div>
     <div class="qt-play-resources">
+      <a class="qt-play-resource" href="/learn/chsh-game/">
+        <span class="qt-meta">Quantum nonlocal game · Alice &amp; Bob</span>
+        <h3>CHSH Quantum Challenge</h3>
+        <p>Can entanglement beat the classical 75% limit? Choose Alice and Bob's strategies, tune measurements, and watch the statistics.</p>
+        <span class="qt-play-resource__link">Play the CHSH challenge ↗</span>
+      </a>
       <a class="qt-play-resource" href="/learn/quantum-gate-quest/">
         <span class="qt-meta">Interactive game · Six challenges</span>
         <h3>Quantum Gate Quest</h3>
