@@ -1,0 +1,151 @@
+---
+layout: single
+title: "Quantum Gate Quest"
+permalink: /learn/quantum-gate-quest/
+author_profile: false
+---
+<style>
+.qgq{max-width:980px;margin:auto;font-family:system-ui,-apple-system,sans-serif;color:#423525}
+.qgq *{box-sizing:border-box}
+.qgq h1{margin:.35rem 0;color:#384b3f}
+.qgq-intro{max-width:680px;line-height:1.6}
+.qgq-board{background:#f8efd9;border:8px solid #a97444;border-radius:24px;padding:clamp(14px,3vw,28px);box-shadow:0 9px 0 #8b5f39}
+.qgq-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.qgq-tag{font-size:.84rem;font-weight:800;letter-spacing:.08em;color:#72563a}
+.qgq-progress{font-weight:800}
+.qgq-goal{font-size:clamp(1.15rem,3vw,1.6rem);margin:.9rem 0 .3rem}
+.qgq-help{margin:.3rem 0 1rem;color:#68563e}
+.qgq-panels{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.qgq-panel{background:#fffaf0;border:2px solid #c9b48e;border-radius:16px;padding:15px;text-align:center}
+.qgq-panel h2{font-size:1rem;margin:0 0 10px}
+.qgq-circles{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:370px;margin:auto}
+.qgq-circle svg{width:100%;max-width:160px}
+.qgq-circle p{margin:2px;font-weight:800}
+.qgq-state{font-family:ui-monospace,monospace;font-size:1.03rem;font-weight:800}
+.qgq-gates{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin:18px 0}
+.qgq-gates button{width:75px;height:75px;border:4px solid #fff8;border-radius:50%;font-size:2rem;font-weight:900;color:#fff;cursor:pointer;box-shadow:0 5px 0 #78573b;touch-action:manipulation}
+.qgq-gates button[data-gate="X"]{background:#d26759}
+.qgq-gates button[data-gate="H"]{background:#dcb34c;color:#443521}
+.qgq-gates button[data-gate="Z"]{background:#5389bd}
+.qgq-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.qgq-actions button{padding:.8rem 1.2rem;border:2px solid #776044;border-radius:12px;background:#fffaf0;font-weight:800;cursor:pointer;font-size:1rem}
+.qgq-actions #qgq-check{background:#387456;color:#fff;border-color:#387456}
+.qgq-actions button:disabled{opacity:.45;cursor:not-allowed}
+.qgq-status{text-align:center;min-height:2.7em;font-weight:750;margin:15px 0 0}
+.qgq-note{font-size:.89rem;line-height:1.6;color:#60513e;margin-top:18px}
+.qgq button:focus-visible{outline:4px solid #203f68;outline-offset:4px}
+@media(max-width:660px){.qgq-panels{grid-template-columns:1fr}.qgq-gates button{width:66px;height:66px}.qgq-board{border-width:6px}}
+</style>
+<div class="qgq" id="qgq">
+<p class="qt-kicker">The Quantum Turtle · Quantum Play Lab</p>
+<h1>Quantum Gate Quest</h1>
+<p class="qgq-intro">Can you build the target qubit? Start at |0⟩, use the quantum gates, then check your answer. Matching the probabilities isn't always enough: phase can matter too.</p>
+<section class="qgq-board" aria-label="Quantum gate game">
+<div class="qgq-top"><span class="qgq-tag">GATE QUEST</span><span id="qgq-progress" class="qgq-progress">Challenge 1 of 6</span></div>
+<h2 class="qgq-goal" id="qgq-title">Light up |1⟩</h2>
+<p class="qgq-help" id="qgq-hint">Try the X gate.</p>
+<div class="qgq-panels">
+<section class="qgq-panel" aria-label="Target quantum state">
+<h2>TARGET</h2><div id="qgq-target" class="qgq-circles"></div><p id="qgq-target-label" class="qgq-state">|1⟩</p>
+</section>
+<section class="qgq-panel" aria-label="Your quantum state">
+<h2>YOUR QUBIT</h2><div id="qgq-current" class="qgq-circles"></div><p id="qgq-current-label" class="qgq-state">|0⟩</p>
+</section>
+</div>
+<div class="qgq-gates" aria-label="Available quantum gates">
+<button type="button" data-gate="X" aria-label="Apply X gate">X</button>
+<button type="button" data-gate="H" aria-label="Apply H gate">H</button>
+<button type="button" data-gate="Z" aria-label="Apply Z gate">Z</button>
+</div>
+<div class="qgq-actions">
+<button type="button" id="qgq-reset">Reset qubit</button>
+<button type="button" id="qgq-check">Check state</button>
+<button type="button" id="qgq-next" disabled>Next challenge</button>
+</div>
+<p id="qgq-status" class="qgq-status" role="status" aria-live="polite">Start with |0⟩. Choose a gate.</p>
+</section>
+<p class="qgq-note">Circle area represents measurement probability; the clock hand represents the phase of each amplitude. Two states can measure the same way but differ in relative phase. States that differ only by a global phase count as a match. No account or leaderboard required. <a href="/learn/my-first-qubit/">Explore the full My First Qubit simulator</a>.</p>
+</div>
+<script>
+(function(){
+"use strict";
+const root=document.getElementById("qgq");
+if(!root)return;
+const $=id=>document.getElementById(id);
+const c=(re,im=0)=>({re,im});
+const add=(a,b)=>c(a.re+b.re,a.im+b.im);
+const sc=(a,k)=>c(a.re*k,a.im*k);
+const neg=(a)=>c(-a.re,-a.im);
+const abs2=a=>a.re*a.re+a.im*a.im;
+const mult=(a,b)=>c(a.re*b.re-a.im*b.im,a.re*b.im+a.im*b.re);
+const gates={
+ X:([a,b])=>[b,a],
+ Z:([a,b])=>[a,neg(b)],
+ H:([a,b])=>[sc(add(a,b),Math.SQRT1_2),sc(add(a,neg(b)),Math.SQRT1_2)]
+};
+const zero=()=>[c(1),c(0)];
+const equal=()=>[c(Math.SQRT1_2),c(Math.SQRT1_2)];
+const minus=()=>[c(Math.SQRT1_2),c(-Math.SQRT1_2)];
+const tasks=[
+ {title:"Light up |1⟩",hint:"Try the X gate.",target:[c(0),c(1)],name:"|1⟩"},
+ {title:"Make a fifty-fifty qubit",hint:"The H gate creates a superposition.",target:equal(),name:"|+⟩"},
+ {title:"Same chances, different phase",hint:"Start with H, then try Z.",target:minus(),name:"|−⟩"},
+ {title:"Return to |0⟩",hint:"Two H gates return you to |0⟩.",target:zero(),name:"|0⟩",minMoves:2},
+ {title:"Interfere to reach |1⟩",hint:"Try H, Z, H. Phase changes the next result.",target:[c(0),c(1)],name:"|1⟩",minMoves:3},
+ {title:"Reach |−⟩ another way",hint:"Try X, H, or H and Z.",target:minus(),name:"|−⟩",minMoves:2}
+];
+let level=0,state=zero(),moves=0,solved=false;
+function fidelity(a,b){
+ const overlap=add(mult(c(a[0].re,-a[0].im),b[0]),mult(c(a[1].re,-a[1].im),b[1]));
+ return abs2(overlap);
+}
+function circle(amp,label){
+ const prob=Math.max(0,Math.min(1,abs2(amp)));
+ const radius=76*Math.sqrt(prob);
+ const angle=Math.atan2(amp.im,amp.re);
+ const x=90+radius*Math.sin(angle),y=90-radius*Math.cos(angle);
+ const visible=prob>1e-10;
+ return '<div class="qgq-circle"><svg viewBox="0 0 180 180" role="img" aria-label="'+label+' '+Math.round(prob*100)+' percent"><circle cx="90" cy="90" r="76" fill="#e2d6be" stroke="#927b5b" stroke-width="4"/><circle cx="90" cy="90" r="'+radius+'" fill="'+(label==="0"?"#5d9ed0":"#e99b66")+'"/>'+(visible?'<line x1="90" y1="90" x2="'+x+'" y2="'+y+'" stroke="#293f4c" stroke-width="5" stroke-linecap="round"/>':'')+'<circle cx="90" cy="90" r="4" fill="#293f4c"/></svg><p>|'+label+'⟩ · '+Math.round(prob*100)+'%</p></div>';
+}
+function draw(){
+ const task=tasks[level];
+ $("qgq-progress").textContent="Challenge "+(level+1)+" of "+tasks.length;
+ $("qgq-title").textContent=task.title;
+ $("qgq-hint").textContent=task.hint;
+ $("qgq-target").innerHTML=circle(task.target[0],"0")+circle(task.target[1],"1");
+ $("qgq-current").innerHTML=circle(state[0],"0")+circle(state[1],"1");
+ $("qgq-target-label").textContent=task.name;
+ $("qgq-current-label").textContent=moves+" gate"+(moves===1?"":"s")+" applied";
+ $("qgq-next").disabled=!solved;
+ $("qgq-next").textContent=level===tasks.length-1?"Play again":"Next challenge";
+}
+function restart(){state=zero();moves=0;solved=false;$("qgq-status").textContent="Start with |0⟩. Choose a gate.";draw();}
+root.querySelectorAll("[data-gate]").forEach(btn=>btn.addEventListener("click",()=>{
+ if(solved)return;
+ state=gates[btn.dataset.gate](state);
+ moves++;
+ $("qgq-status").textContent=btn.dataset.gate+" applied. Check your state when ready.";
+ draw();
+}));
+$("qgq-reset").addEventListener("click",restart);
+$("qgq-check").addEventListener("click",()=>{
+ const task=tasks[level];
+ if(solved)return;
+ if(moves<(task.minMoves||1)){
+  $("qgq-status").textContent="Try at least "+(task.minMoves||1)+" gate"+((task.minMoves||1)===1?"":"s")+" first.";
+ }else if(fidelity(state,task.target)>1-1e-9){
+  solved=true;
+  $("qgq-status").textContent="Correct! Your qubit matches the target (global phase doesn't count).";
+ }else{
+  $("qgq-status").textContent="Not quite. Compare both circle sizes and clock hands, then try again.";
+ }
+ draw();
+});
+$("qgq-next").addEventListener("click",()=>{
+ if(!solved)return;
+ level=(level+1)%tasks.length;
+ restart();
+});
+restart();
+})();
+</script>
