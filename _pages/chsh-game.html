@@ -53,6 +53,21 @@ author_profile: false
 .chsh-bottom{margin:20px 0 0;line-height:1.7}
 .chsh button:focus-visible,.chsh input:focus-visible{outline:4px solid #1a4b79;outline-offset:3px}
 @media(max-width:630px){.chsh-board{border-width:5px}.chsh-players,.chsh-grid{grid-template-columns:1fr}.chsh-results{gap:6px}.chsh-result{padding:9px 5px}.chsh-chart-row{grid-template-columns:105px 1fr 52px;font-size:.79rem}}
+.chsh-match{border:2px solid #a9bfab;background:#eaf3e9;border-radius:16px;padding:16px;margin:16px 0}
+.chsh-match h3{margin:0 0 8px;color:#30493d}
+.chsh-match-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.chsh-match-controls select{border:1px solid #806c50;background:#fff;padding:9px;border-radius:9px}
+.chsh-match-controls button{border:2px solid #365d49;background:#365d49;color:#fff;border-radius:9px;padding:10px 14px;font-weight:800}
+.chsh-match-progress{font-weight:800;margin:9px 0 0}
+.chsh-puzzle{margin-top:16px;padding:14px;background:#fff9e9;border:1px solid #d8c7a7;border-radius:14px}
+.chsh-puzzle h3{margin:0 0 8px}
+.chsh-puzzle-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.chsh-puzzle-cell{border:2px solid #b5a58a;border-radius:10px;background:#fff;padding:10px}
+.chsh-puzzle-cell[data-satisfied="true"]{border-color:#38734c}
+.chsh-puzzle-cell[data-satisfied="false"]{border-color:#b85a41}
+.chsh-puzzle-cell strong{display:block}
+.chsh-match[hidden],.chsh-puzzle[hidden]{display:none}
+@media(max-width:450px){.chsh-puzzle-grid{grid-template-columns:1fr}}
 </style>
 <div class="chsh" id="chsh">
 <p class="qt-kicker">The Quantum Turtle · Quantum Play Lab</p>
@@ -91,6 +106,19 @@ author_profile: false
 </div>
 <div class="chsh-toolbar"><button type="button" id="chsh-optimal">Load optimal CHSH angles</button></div>
 </div>
+<section class="chsh-match" aria-label="Match play">
+<h3>Take on the referee</h3>
+<p class="chsh-instruction">Commit to a strategy, then play a fixed match. The referee draws two fresh independent random questions each round. Settings are locked during the match.</p>
+<div class="chsh-match-controls"><label for="chsh-match-length"><strong>Match length</strong></label><select id="chsh-match-length"><option value="10">10 rounds</option><option value="25" selected>25 rounds</option><option value="100">100 rounds</option></select><button type="button" id="chsh-match-start">Start match</button></div>
+<p class="chsh-match-progress" id="chsh-match-progress" role="status" aria-live="polite">Choose a strategy to begin.</p>
+</section>
+<section class="chsh-puzzle" id="chsh-puzzle" aria-label="Classical strategy analysis">
+<h3>Can one classical strategy win all four questions?</h3>
+<p class="chsh-instruction">The referee's four equally likely question pairs demand three matching answers and one different answer. Try changing the four pre-agreed answer bits.</p>
+<div class="chsh-puzzle-grid" id="chsh-puzzle-grid"></div>
+<p id="chsh-puzzle-summary" class="chsh-instruction"></p>
+<details id="chsh-puzzle-proof"><summary>Why is four out of four impossible?</summary><p>For (0,0), (0,1), and (1,0), the answers must agree. Together these force a₁ = b₁. But (1,1) requires a₁ ≠ b₁. This is a contradiction. Shared randomness can mix strategies, but cannot improve their average beyond three wins in four.</p></details>
+</section>
 <div class="chsh-toolbar">
 <button type="button" id="chsh-round">Play one round</button>
 <button type="button" id="chsh-batch">Play 1,000 rounds</button>
@@ -123,6 +151,7 @@ const el=id=>document.getElementById(id);
 let mode="classical";
 let classical={a0:0,a1:0,b0:0,b1:0};
 let quantum={a0:0,a1:45,b0:22.5,b1:-22.5};
+let matchLength=0, matchStarted=false, matchFinished=false;
 let wins=0,played=0,pairs=[{wins:0,played:0},{wins:0,played:0},{wins:0,played:0},{wins:0,played:0}];
 const optimum={a0:0,a1:45,b0:22.5,b1:-22.5};
 function correlation(x,y){
@@ -137,12 +166,36 @@ function probability(x,y){
 function predicted(){let total=0;for(let x=0;x<2;x++)for(let y=0;y<2;y++)total+=probability(x,y);return total/4;}
 function pct(v,digits=1){return (100*v).toFixed(digits)+"%";}
 function reset(message){
+ matchStarted=false;matchFinished=false;matchLength=0;
  wins=0;played=0;pairs.forEach(p=>{p.wins=0;p.played=0;});
  ["chsh-x","chsh-y","chsh-a","chsh-b"].forEach(id=>el(id).textContent="?");el("chsh-status").textContent=message||"Results cleared. Try another round.";render();
 }
 function render(){
  root.querySelectorAll("[data-mode]").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.mode===mode)));
  const isClassical=mode==="classical";
+ const locked=matchStarted;
+ root.querySelectorAll("[data-mode], [data-classical], [data-angle]").forEach(control=>control.disabled=locked);
+ el("chsh-optimal").disabled=locked;
+ el("chsh-match-length").disabled=locked;
+ el("chsh-match-start").disabled=locked;
+ el("chsh-batch").disabled=locked;
+ el("chsh-round").disabled=matchFinished;
+ el("chsh-round").textContent=locked?"Play next round":"Play one round";
+ el("chsh-match-start").textContent=matchFinished?"Match completed":"Start match";
+ el("chsh-match-progress").textContent=locked?"Match: "+played+" / "+matchLength+" rounds · "+wins+" wins":matchFinished?"Match complete: "+wins+" wins out of "+played+". Change your strategy and try again, or clear results.":"Choose a strategy to begin.";
+ el("chsh-puzzle").hidden=!isClassical;
+ if(isClassical){
+  const grid=el("chsh-puzzle-grid");grid.replaceChildren();
+  let satisfied=0;
+  for(let x=0;x<2;x++)for(let y=0;y<2;y++){
+   const a=classical["a"+x],b=classical["b"+y],ok=(a^b)===(x&y);satisfied+=Number(ok);
+   const cell=document.createElement("div");cell.className="chsh-puzzle-cell";cell.dataset.satisfied=String(ok);
+   const heading=document.createElement("strong");heading.textContent="Questions ("+x+", "+y+"): "+(ok?"WIN":"LOSS");
+   const info=document.createElement("span");info.textContent="Answers "+a+" ⊕ "+b+" = "+(a^b)+" · Required "+(x&y);
+   cell.append(heading,info);grid.appendChild(cell);
+  }
+  el("chsh-puzzle-summary").textContent="This strategy satisfies "+satisfied+" of 4 question pairs: "+(satisfied*25)+"% expected wins.";
+ }
  el("chsh-classical").hidden=!isClassical;
  el("chsh-quantum").hidden=isClassical;
  el("chsh-optimal").hidden=mode==="challenge";
@@ -168,6 +221,9 @@ function render(){
  }
 }
 function play(n){
+ if(matchFinished)return;
+ if(matchStarted)n=Math.min(n,matchLength-played);
+ if(n<1)return;
  let last;
  for(let i=0;i<n;i++){
   const x=Math.random()<.5?0:1,y=Math.random()<.5?0:1;
@@ -185,6 +241,7 @@ function play(n){
  el("chsh-x").textContent=last.x;el("chsh-y").textContent=last.y;
  el("chsh-a").textContent=last.a;el("chsh-b").textContent=last.b;
  el("chsh-status").textContent=(n===1?"Last round: ":"Last of "+n.toLocaleString()+" rounds: ")+(last.won?"WIN":"LOSS")+" · "+(last.a^last.b)+" = "+(last.x&last.y)+". "+wins.toLocaleString()+" wins out of "+played.toLocaleString()+".";
+ if(matchStarted&&played>=matchLength){matchStarted=false;matchFinished=true;el("chsh-status").textContent="MATCH COMPLETE · "+wins+" / "+played+" wins ("+pct(wins/played)+"). Theoretical expectation: "+pct(predicted())+". A short match can exceed a theoretical limit through chance.";}
  render();
 }
 root.querySelectorAll("[data-mode]").forEach(b=>b.addEventListener("click",()=>{
@@ -199,8 +256,15 @@ root.querySelectorAll("[data-angle]").forEach(input=>input.addEventListener("inp
  reset("Measurement settings changed. Results cleared.");
 }));
 el("chsh-optimal").addEventListener("click",()=>{quantum={...optimum};reset("Optimal CHSH angles loaded.");});
+el("chsh-match-start").addEventListener("click",()=>{
+ if(matchStarted||matchFinished)return;
+ wins=0;played=0;pairs.forEach(p=>{p.wins=0;p.played=0;});
+ matchLength=Number(el("chsh-match-length").value);matchStarted=true;
+ el("chsh-status").textContent="Strategy committed. Play the next round. Settings are locked until the match ends or you clear results.";
+ render();
+});
 el("chsh-round").addEventListener("click",()=>play(1));
-el("chsh-batch").addEventListener("click",()=>play(1000));
+el("chsh-batch").addEventListener("click",()=>{if(!matchStarted&&!matchFinished)play(1000);});
 el("chsh-reset").addEventListener("click",()=>reset());
 render();
 })();
