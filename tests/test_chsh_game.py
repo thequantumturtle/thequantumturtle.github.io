@@ -14,6 +14,10 @@ with sync_playwright() as pw:
     assert page.locator("#chsh-expected").inner_text() == "75.00%"
     assert page.locator("#chsh-bound").inner_text() == "75.00%"
     assert page.locator("#chsh-count").inner_text() == "0 rounds"
+    assert page.locator("#chsh .chsh-players").count() == 1
+    assert page.locator("#chsh-score-round").inner_text() == "0 / 25"
+    assert page.locator("#chsh-reveal").is_hidden()
+    assert page.locator("#chsh-lab").is_visible()
     assert not errors, repr(errors)
 
     # Deterministic classical strategy: zero output loses only on x=y=1.
@@ -45,6 +49,7 @@ with sync_playwright() as pw:
             return seed / 4294967296;
         };
     }""")
+    page.locator("#chsh-lab summary").first.click()
     page.locator("#chsh-batch").click()
     assert page.locator("#chsh-count").inner_text() == "1,000 rounds"
     actual = float(page.locator("#chsh-actual").inner_text().strip("%"))
@@ -84,6 +89,7 @@ with sync_playwright() as pw:
     page.locator("#chsh-reset").click()
     page.locator("#chsh-match-length").select_option("10")
     page.locator("#chsh-match-start").click()
+    assert page.locator("#chsh-setup").is_hidden()
     assert page.locator("#chsh-ca0").is_disabled()
     assert page.locator('[data-mode="quantum"]').is_disabled()
     assert page.locator("#chsh-match-length").is_disabled()
@@ -92,9 +98,14 @@ with sync_playwright() as pw:
         page.locator("#chsh-round").click()
         assert page.locator("#chsh-count").inner_text() == f"{round_number} round" + ("" if round_number == 1 else "s")
     assert "MATCH COMPLETE" in page.locator("#chsh-status").inner_text()
+    assert page.locator("#chsh-reveal").is_visible()
+    assert page.locator("#chsh-reveal").get_attribute("open") is not None
+    assert page.locator("#chsh-score-round").inner_text() == "10 / 10"
+    assert page.locator("#chsh-setup").is_visible()
     assert page.locator("#chsh-round").is_disabled()
     assert page.locator("#chsh-ca0").is_enabled()
     page.locator("#chsh-reset").click()
+    assert page.locator("#chsh-reveal").is_hidden()
     assert page.locator("#chsh-round").is_enabled()
     assert page.locator("#chsh-match-start").is_enabled()
     assert page.locator("#chsh-count").inner_text() == "0 rounds"
@@ -116,6 +127,9 @@ with sync_playwright() as pw:
     phone.locator('[data-mode="quantum"]').click()
     phone.locator("#chsh-round").click()
     assert phone.locator("#chsh-count").inner_text() == "1 round"
+    assert phone.locator("#chsh-score-wins").is_visible()
+    assert phone.locator("#chsh-players").count() == 0  # class-based player grid
+    assert phone.locator(".chsh-players").is_visible()
     assert not phone_errors, repr(phone_errors)
     browser.close()
     print("PASS CHSH: classical logic, quantum bound and sampling, angle inputs, challenge and mobile")
