@@ -1,5 +1,12 @@
 name: CHSH game browser regression
 on:
+  push:
+    branches: [master]
+    paths:
+      - '_pages/chsh-game.html'
+      - '_pages/learn.md'
+      - 'tests/test_chsh_game.py'
+      - '.github/workflows/chsh-browser-tests.yml'
   pull_request:
     paths:
       - '_pages/chsh-game.html'

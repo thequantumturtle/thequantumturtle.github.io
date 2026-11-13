@@ -68,6 +68,47 @@ with sync_playwright() as pw:
     assert page.locator("#chsh-count").inner_text() == "0 rounds"
     assert not errors, repr(errors)
 
+    # Iteration 2: all 16 classical deterministic assignments satisfy exactly 1 or 3 pairs.
+    page.locator('[data-mode="classical"]').click()
+    for mask in range(16):
+        for index, key in enumerate(("a0", "a1", "b0", "b1")):
+            expected_bit = (mask >> index) & 1
+            button = page.locator("#chsh-c"+key)
+            if int(button.inner_text()) != expected_bit:
+                button.click()
+        expected = float(page.locator("#chsh-expected").inner_text().strip("%"))
+        assert expected in (25.0, 75.0), (mask, expected)
+        assert page.locator(".chsh-puzzle-cell[data-satisfied='true']").count() == int(expected / 25)
+
+    # Match is locked after commitment and advances one round per click.
+    page.locator("#chsh-reset").click()
+    page.locator("#chsh-match-length").select_option("10")
+    page.locator("#chsh-match-start").click()
+    assert page.locator("#chsh-ca0").is_disabled()
+    assert page.locator('[data-mode="quantum"]').is_disabled()
+    assert page.locator("#chsh-match-length").is_disabled()
+    assert page.locator("#chsh-batch").is_disabled()
+    for round_number in range(1, 11):
+        page.locator("#chsh-round").click()
+        assert page.locator("#chsh-count").inner_text() == f"{round_number} round" + ("" if round_number == 1 else "s")
+    assert "MATCH COMPLETE" in page.locator("#chsh-status").inner_text()
+    assert page.locator("#chsh-round").is_disabled()
+    assert page.locator("#chsh-ca0").is_enabled()
+    page.locator("#chsh-reset").click()
+    assert page.locator("#chsh-round").is_enabled()
+    assert page.locator("#chsh-match-start").is_enabled()
+    assert page.locator("#chsh-count").inner_text() == "0 rounds"
+
+    # Quantum match locks measurement sliders and preserves theoretical prediction.
+    page.locator('[data-mode="quantum"]').click()
+    page.locator("#chsh-match-length").select_option("10")
+    page.locator("#chsh-match-start").click()
+    assert page.locator("#chsh-qa1").is_disabled()
+    assert page.locator("#chsh-expected").inner_text() == "85.36%"
+    page.locator("#chsh-reset").click()
+    assert page.locator("#chsh-qa1").is_enabled()
+    assert not errors, repr(errors)
+
     phone = browser.new_page(viewport={"width": 390, "height": 844})
     phone_errors = []
     phone.on("pageerror", lambda e: phone_errors.append(str(e)))
