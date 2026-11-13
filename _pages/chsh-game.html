@@ -68,26 +68,58 @@ author_profile: false
 .chsh-puzzle-cell strong{display:block}
 .chsh-match[hidden],.chsh-puzzle[hidden]{display:none}
 @media(max-width:450px){.chsh-puzzle-grid{grid-template-columns:1fr}}
+.page__title{display:none}
+.chsh{max-width:880px}.chsh h1{font-size:clamp(1.8rem,4vw,2.6rem);margin:.2rem 0}.chsh-intro{margin:0 0 14px;font-size:1rem}
+.chsh-board{border-width:5px;padding:clamp(12px,2vw,20px)}
+.chsh-board-header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;font-size:.75rem;font-weight:800;letter-spacing:.08em}
+#chsh-mode-badge{padding:5px 10px;border-radius:50px;background:#dfeee1;color:#294a38}
+.chsh-players{gap:12px}.chsh-player{padding:12px}.chsh-player h2{font-size:1.15rem}.chsh-player p{margin:3px 0;font-size:.82rem}.chsh-bit{margin:5px 0;padding:7px 10px}.chsh-bit output{font-size:1.35rem}
+.chsh-scoreboard{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:12px 0}.chsh-scoreboard>div{background:#fffaf0;border:1px solid #c9b48e;border-radius:12px;text-align:center;padding:9px}.chsh-scoreboard span{display:block;font-size:.8rem;color:#675744}.chsh-scoreboard strong{font-size:1.4rem;font-variant-numeric:tabular-nums}
+#chsh-setup[hidden],#chsh-reveal[hidden],.chsh-config[hidden]{display:none}
+.chsh-match{margin:10px 0;padding:12px}.chsh-match h3{font-size:1rem}.chsh-match .chsh-instruction{font-size:.9rem;margin:4px 0 8px}.chsh-toolbar{margin:10px 0}.chsh-toolbar #chsh-round{background:#365d49;color:#fff;border-color:#365d49}
+.chsh-status{font-size:1rem;margin:8px 0;min-height:1.3em}.chsh-config{margin:10px 0;padding:12px}.chsh-modes{margin:10px 0}.chsh-modes button{padding:8px 10px;font-size:.9rem}
+.chsh-after-match,.chsh-advanced{margin:14px 0;padding:12px;background:#fffaf0;border:1px solid #c9b48e;border-radius:12px}
+.chsh-after-match>summary,.chsh-advanced>summary,.chsh-bottom summary{font-weight:800;cursor:pointer}
+.chsh-puzzle{margin-top:12px}.chsh-bottom{font-size:.95rem}.chsh button:disabled{opacity:.5;cursor:not-allowed}
+@media(max-width:500px){.chsh-scoreboard strong{font-size:1.1rem}.chsh-board{border-width:4px}.chsh-player{padding:9px}.chsh-bit{font-size:.85rem}}
 </style>
 <div class="chsh" id="chsh">
 <p class="qt-kicker">The Quantum Turtle · Quantum Play Lab</p>
 <h1>Alice &amp; Bob's Quantum Challenge</h1>
 <p class="chsh-intro">Can two players beat the best classical strategy without talking? Play the CHSH game with classical answers or measurements on an entangled pair. Discover why entanglement changes the odds.</p>
 <div class="chsh-board">
+<div class="chsh-board-header"><span>COOPERATE · NO COMMUNICATION</span><strong id="chsh-mode-badge">Classical challenge</strong></div>
+<div class="chsh-players">
+<section class="chsh-player" aria-label="Alice's question and answer"><h2>Alice</h2><p>Receives x and responds with a</p><div class="chsh-bit">Question x <output id="chsh-x">?</output></div><div class="chsh-bit">Answer a <output id="chsh-a">?</output></div></section>
+<section class="chsh-player" aria-label="Bob's question and answer"><h2>Bob</h2><p>Receives y and responds with b</p><div class="chsh-bit">Question y <output id="chsh-y">?</output></div><div class="chsh-bit">Answer b <output id="chsh-b">?</output></div></section>
+</div>
+
+<div class="chsh-scoreboard"><div><span>Round</span><strong id="chsh-score-round">0 / 25</strong></div><div><span>Wins</span><strong id="chsh-score-wins">0</strong></div><div><span>Win rate</span><strong id="chsh-score-rate">—</strong></div></div>
+<p class="chsh-status" role="status" aria-live="polite" id="chsh-status">Choose a strategy, then start a match.</p>
+<div class="chsh-toolbar">
+<button type="button" id="chsh-round">Play one round</button>
+
+<button type="button" id="chsh-reset">Clear results</button>
+</div>
+
+<section class="chsh-match" aria-label="Match play">
+<h3>Take on the referee</h3>
+<p class="chsh-instruction">Commit to a strategy, then play a fixed match. The referee draws two fresh independent random questions each round. Settings are locked during the match.</p>
+<div class="chsh-match-controls"><label for="chsh-match-length"><strong>Match length</strong></label><select id="chsh-match-length"><option value="10">10 rounds</option><option value="25" selected>25 rounds</option><option value="100">100 rounds</option></select><button type="button" id="chsh-match-start">Start match</button></div>
+<p class="chsh-match-progress" id="chsh-match-progress" role="status" aria-live="polite">Choose a strategy to begin.</p>
+</section>
+
+<div id="chsh-setup">
 <div class="chsh-modes" role="group" aria-label="Select game mode">
 <button type="button" data-mode="classical" aria-pressed="true">Classical strategy</button>
 <button type="button" data-mode="quantum" aria-pressed="false">Quantum strategy</button>
 <button type="button" data-mode="challenge" aria-pressed="false">Find the advantage</button>
 </div>
 <p class="chsh-instruction" id="chsh-instruction">Alice and Bob agree on their answers before receiving random questions. During a round they cannot communicate.</p>
-<div class="chsh-rule">Win when <strong>a ⊕ b = x ∧ y</strong><div style="font-size:.85rem;font-weight:500;margin-top:5px">Answers must be the same, except when both questions are 1.</div></div>
-<div class="chsh-players">
-<section class="chsh-player" aria-label="Alice's question and answer"><h2>Alice</h2><p>Receives x and responds with a</p><div class="chsh-bit">Question x <output id="chsh-x">?</output></div><div class="chsh-bit">Answer a <output id="chsh-a">?</output></div></section>
-<section class="chsh-player" aria-label="Bob's question and answer"><h2>Bob</h2><p>Receives y and responds with b</p><div class="chsh-bit">Question y <output id="chsh-y">?</output></div><div class="chsh-bit">Answer b <output id="chsh-b">?</output></div></section>
-</div>
+<p class="chsh-rule">Your mission: give matching answers, except when both questions are 1.</p>
 <div class="chsh-config" id="chsh-classical">
 <h3>Agree on a strategy before the questions arrive</h3>
-<p class="chsh-instruction">Choose the bit each player returns for each possible question. There are 16 deterministic strategies; shared randomness cannot improve the 75% classical limit.</p>
+<p class="chsh-instruction">Choose the bit each player returns for each possible question. Try different answer combinations, then commit to your strategy before the referee asks questions.</p>
 <div class="chsh-grid">
 <div class="chsh-choice"><label for="chsh-ca0">Alice: x = 0</label><button id="chsh-ca0" type="button" data-classical="a0" aria-label="Alice's answer when x is zero: 0">0</button></div>
 <div class="chsh-choice"><label for="chsh-ca1">Alice: x = 1</label><button id="chsh-ca1" type="button" data-classical="a1" aria-label="Alice's answer when x is one: 0">0</button></div>
@@ -106,12 +138,8 @@ author_profile: false
 </div>
 <div class="chsh-toolbar"><button type="button" id="chsh-optimal">Load optimal CHSH angles</button></div>
 </div>
-<section class="chsh-match" aria-label="Match play">
-<h3>Take on the referee</h3>
-<p class="chsh-instruction">Commit to a strategy, then play a fixed match. The referee draws two fresh independent random questions each round. Settings are locked during the match.</p>
-<div class="chsh-match-controls"><label for="chsh-match-length"><strong>Match length</strong></label><select id="chsh-match-length"><option value="10">10 rounds</option><option value="25" selected>25 rounds</option><option value="100">100 rounds</option></select><button type="button" id="chsh-match-start">Start match</button></div>
-<p class="chsh-match-progress" id="chsh-match-progress" role="status" aria-live="polite">Choose a strategy to begin.</p>
-</section>
+</div><!-- end setup -->
+<details class="chsh-after-match" id="chsh-reveal" hidden><summary>Discover why the classical strategy has a limit</summary>
 <section class="chsh-puzzle" id="chsh-puzzle" aria-label="Classical strategy analysis">
 <h3>Can one classical strategy win all four questions?</h3>
 <p class="chsh-instruction">The referee's four equally likely question pairs demand three matching answers and one different answer. Try changing the four pre-agreed answer bits.</p>
@@ -119,11 +147,10 @@ author_profile: false
 <p id="chsh-puzzle-summary" class="chsh-instruction"></p>
 <details id="chsh-puzzle-proof"><summary>Why is four out of four impossible?</summary><p>For (0,0), (0,1), and (1,0), the answers must agree. Together these force a₁ = b₁. But (1,1) requires a₁ ≠ b₁. This is a contradiction. Shared randomness can mix strategies, but cannot improve their average beyond three wins in four.</p></details>
 </section>
-<div class="chsh-toolbar">
-<button type="button" id="chsh-round">Play one round</button>
-<button type="button" id="chsh-batch">Play 1,000 rounds</button>
-<button type="button" id="chsh-reset">Clear results</button>
-</div>
+</details>
+<details class="chsh-advanced" id="chsh-lab"><summary>Advanced Lab: statistics and Bell inequalities</summary>
+<div class="chsh-rule"><strong>a ⊕ b = x ∧ y</strong></div>
+<div class="chsh-toolbar"><button type="button" id="chsh-batch">Play 1,000 rounds</button></div>
 <div class="chsh-results" aria-label="Winning statistics">
 <div class="chsh-result"><span>Actual wins</span><strong id="chsh-actual">—</strong><span id="chsh-count">0 rounds</span></div>
 <div class="chsh-result"><span>Predicted win rate</span><strong id="chsh-expected">75.00%</strong><span>Current strategy</span></div>
@@ -134,15 +161,17 @@ author_profile: false
 <div class="chsh-chart-row"><span>Predicted</span><div class="chsh-track"><div id="chsh-predicted-bar" class="chsh-fill quantum"></div></div><output id="chsh-predicted-value">75.0%</output></div>
 <div class="chsh-chart-row"><span>Classical ceiling</span><div class="chsh-track"><div class="chsh-fill classical" style="width:75%"></div></div><span>75.0%</span></div>
 </div>
-<p class="chsh-status" role="status" aria-live="polite" id="chsh-status">Play a round to see Alice and Bob's questions and answers.</p>
+
 <details><summary>See the four question pairs</summary><table class="chsh-table"><thead><tr><th>x</th><th>y</th><th>Win rate for this pair</th><th>Rounds played</th></tr></thead><tbody id="chsh-pairs"></tbody></table></details>
+
+</details>
 </div>
-<div class="chsh-bottom">
+<div class="chsh-bottom"><details><summary>Learn the physics behind the CHSH game</summary>
 <h2>What makes the quantum game different?</h2>
 <p>The referee chooses independent, uniformly random bits x and y. Alice and Bob cannot communicate after receiving them. A classical strategy can win at most <strong>75%</strong> of rounds on average. With shared entanglement and the right measurement settings, the maximum rises to <strong>cos²(π/8) ≈ 85.36%</strong> (Tsirelson's bound).</p>
 <p>For the entangled |Φ⁺⟩ state and real measurement angles α and β, the correlation is E = cos(2(α−β)). The game samples individual outcomes from those quantum probabilities. It does not predetermine a win, and finite samples can be above or below the theoretical limits. Changing settings clears prior results so the observed rate always refers to one strategy.</p>
 <p>This is a local browser simulation, not an experiment on quantum hardware. No account or physical separation is required: the game enforces the no-communication rule by generating each answer from only its local question and preselected strategy. <a href="/learn/">Explore more Quantum Play Lab activities</a>.</p>
-</div></div>
+</details></div></div>
 <script>
 (function(){
 "use strict";
@@ -166,7 +195,7 @@ function probability(x,y){
 function predicted(){let total=0;for(let x=0;x<2;x++)for(let y=0;y<2;y++)total+=probability(x,y);return total/4;}
 function pct(v,digits=1){return (100*v).toFixed(digits)+"%";}
 function reset(message){
- matchStarted=false;matchFinished=false;matchLength=0;
+ matchStarted=false;matchFinished=false;matchLength=0;el("chsh-reveal").open=false;
  wins=0;played=0;pairs.forEach(p=>{p.wins=0;p.played=0;});
  ["chsh-x","chsh-y","chsh-a","chsh-b"].forEach(id=>el(id).textContent="?");el("chsh-status").textContent=message||"Results cleared. Try another round.";render();
 }
@@ -183,6 +212,12 @@ function render(){
  el("chsh-round").textContent=locked?"Play next round":"Play one round";
  el("chsh-match-start").textContent=matchFinished?"Match completed":"Start match";
  el("chsh-match-progress").textContent=locked?"Match: "+played+" / "+matchLength+" rounds · "+wins+" wins":matchFinished?"Match complete: "+wins+" wins out of "+played+". Change your strategy and try again, or clear results.":"Choose a strategy to begin.";
+ el("chsh-reveal").hidden=!(isClassical&&matchFinished);
+ el("chsh-setup").hidden=locked;
+ el("chsh-mode-badge").textContent=isClassical?"Classical challenge":mode==="challenge"?"Quantum discovery":"Quantum challenge";
+ el("chsh-score-round").textContent=played+" / "+(matchLength||Number(el("chsh-match-length").value));
+ el("chsh-score-wins").textContent=String(wins);
+ el("chsh-score-rate").textContent=played?pct(wins/played):"—";
  el("chsh-puzzle").hidden=!isClassical;
  if(isClassical){
   const grid=el("chsh-puzzle-grid");grid.replaceChildren();
@@ -241,7 +276,7 @@ function play(n){
  el("chsh-x").textContent=last.x;el("chsh-y").textContent=last.y;
  el("chsh-a").textContent=last.a;el("chsh-b").textContent=last.b;
  el("chsh-status").textContent=(n===1?"Last round: ":"Last of "+n.toLocaleString()+" rounds: ")+(last.won?"WIN":"LOSS")+" · "+(last.a^last.b)+" = "+(last.x&last.y)+". "+wins.toLocaleString()+" wins out of "+played.toLocaleString()+".";
- if(matchStarted&&played>=matchLength){matchStarted=false;matchFinished=true;el("chsh-status").textContent="MATCH COMPLETE · "+wins+" / "+played+" wins ("+pct(wins/played)+"). Theoretical expectation: "+pct(predicted())+". A short match can exceed a theoretical limit through chance.";}
+ if(matchStarted&&played>=matchLength){matchStarted=false;matchFinished=true;el("chsh-reveal").open=true;el("chsh-status").textContent="MATCH COMPLETE · "+wins+" / "+played+" wins ("+pct(wins/played)+"). Theoretical expectation: "+pct(predicted())+". A short match can exceed a theoretical limit through chance.";}
  render();
 }
 root.querySelectorAll("[data-mode]").forEach(b=>b.addEventListener("click",()=>{
@@ -259,7 +294,7 @@ el("chsh-optimal").addEventListener("click",()=>{quantum={...optimum};reset("Opt
 el("chsh-match-start").addEventListener("click",()=>{
  if(matchStarted||matchFinished)return;
  wins=0;played=0;pairs.forEach(p=>{p.wins=0;p.played=0;});
- matchLength=Number(el("chsh-match-length").value);matchStarted=true;
+ matchLength=Number(el("chsh-match-length").value);matchStarted=true;el("chsh-lab").open=false;
  el("chsh-status").textContent="Strategy committed. Play the next round. Settings are locked until the match ends or you clear results.";
  render();
 });
